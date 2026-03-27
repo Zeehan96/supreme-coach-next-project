@@ -1,8 +1,159 @@
 "use client";
 
 import Link from "next/link";
+import TraditionalMarketing from "./Home/TraditionalMarketing";
+import SectionSingleReview from "./Home/SectionSingleReview";
+import SectionBento2 from "./Home/SectionBento2";
+import SectionBento3 from "./Home/SectionBento3";
+import SectionModals from "./Home/SectionModals";
+import SectionCta from "./Home/SectionCta";
+import SectionCaseStudies from "./Home/SectionCaseStudies";
+import FaqSection from "./Payment/FaqSection";
 
-export default function CreatorsPageContent() {
+type CreatorsPageContentProps = {
+  type?: "coach" | "firms";
+};
+
+export default function CreatorsPageContent({
+  type = "coach",
+}: CreatorsPageContentProps) {
+  const isFirm = type === "firms";
+  const audienceWord = isFirm ? "firms" : "coaches";
+  const audienceWordCapitalized = isFirm ? "Firms" : "Coaches";
+
+  const createInitialsAvatar = (name: string) => {
+    const initials = name
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() ?? "")
+      .join("");
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'>
+      <defs>
+        <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+          <stop offset='0%' stop-color='#FCEDE3'/>
+          <stop offset='100%' stop-color='#FF9147'/>
+        </linearGradient>
+      </defs>
+      <rect width='96' height='96' rx='48' fill='url(#g)'/>
+      <text x='50%' y='53%' dominant-baseline='middle' text-anchor='middle' fill='#7A2D08' font-size='30' font-family='Arial, sans-serif' font-weight='700'>${initials}</text>
+    </svg>`;
+    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+  };
+
+  const creatorSlides = [
+    {
+      gradient: "orange",
+      name: "ByteByteGo",
+      followers: "1M+",
+      about: "System design newsletter trusted by top engineers.",
+      cover:
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/bytebytego?source=partner-discovery",
+    },
+    {
+      gradient: "blue",
+      name: "The Rundown AI",
+      followers: "900K+",
+      about: "Daily AI brief for founders, operators, and creators.",
+       cover:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/the-rundown-ai",
+    },
+    {
+      gradient: "green",
+      name: "Lenny's Newsletter",
+      followers: "1M+",
+      about: "Product growth insights from top startup teams.",
+      cover:
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1541534401786-2077eed87a72?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/lennysnewsletter",
+    },
+    {
+      gradient: "purple",
+      name: "SaaStr",
+      followers: "300K+",
+      about: "B2B SaaS playbooks, GTM trends, and case studies.",
+      cover:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1557862921-37829c790f19?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/saastr",
+    },
+    {
+      gradient: "red",
+      name: "The Hustle",
+      followers: "1.5M+",
+      about: "Business stories and market shifts in plain language.",
+      cover:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1504593811423-6dd665756598?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/thehustle",
+    },
+    {
+      gradient: "orange",
+      name: "Marketing Examined",
+      followers: "420K+",
+      about: "Practical B2B marketing breakdowns and strategy insights.",
+      cover:
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/",
+    },
+    {
+      gradient: "blue",
+      name: "Demand Curve",
+      followers: "380K+",
+      about: "Growth, demand gen, and GTM playbooks for startups.",
+      cover:
+        "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/",
+    },
+    {
+      gradient: "green",
+      name: "ProductLed",
+      followers: "270K+",
+      about: "PLG lessons from top SaaS teams and operators.",
+      cover:
+        "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/",
+    },
+    {
+      gradient: "purple",
+      name: "Founder Story",
+      followers: "510K+",
+      about: "Interviews and insights from B2B founders building fast.",
+      cover:
+        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/",
+    },
+    {
+      gradient: "red",
+      name: "AI Revenue Weekly",
+      followers: "640K+",
+      about: "Revenue-focused AI workflows for operators and founders.",
+      cover:
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=340&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=96&h=96&fit=crop&crop=faces",
+      href: "https://www.passionfroot.me/",
+    },
+  ];
+
   return (
     <>
       {/* Pop-up Wrapper */}
@@ -103,12 +254,13 @@ export default function CreatorsPageContent() {
             <div className="creators_hero-component">
               <div className="hero_texts-wrapper creators">
                 <h1 className="heading-style-h2 main-hero-heading">
-                  Where creators do <br />
+                  Where {audienceWord} do <br />
                   brand deals
                 </h1>
                 <div className="max-width-small creators-hero-para">
                   <div className="text-size-medium color-neutral-800">
-                    The all-in-one tool to help creators do more sponsorship -
+                    The all-in-one tool to help {audienceWordCapitalized} do
+                    more sponsorship -
                     easier, and faster.
                   </div>
                 </div>
@@ -209,113 +361,66 @@ export default function CreatorsPageContent() {
                     className="swiper-container basic-swiper-container"
                   >
                     <div className="swiper-wrapper basic-swiper-wrapper">
-                      {/* Slide 1 */}
-                      <div
-                        data-bg-gradient="orange"
-                        className="swiper-slide creators-slide"
-                      >
-                        <div className="creator_slide-top">
-                          <div>
-                            <strong>Partnered with</strong>
-                          </div>
-                          <div className="creator_slide-sponsors"></div>
-                          <a
-                            aria-label="open-in-a-new-tab"
-                            href="#"
-                            target="_blank"
-                            className="open-tab-icon-link w-inline-block"
-                          >
-                            <div className="open-tab-icon w-embed">
-                              <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 16 16"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                      {creatorSlides.map((slide) => (
+                        <div
+                          key={slide.name}
+                          data-bg-gradient={slide.gradient}
+                          className="swiper-slide creators-slide"
+                        >
+                          <div className="creator-coach-card">
+                            <div className="creator-coach-card-header">
+                              <div className="creator-coach-card-top">
+                                <img
+                                  src={slide.image}
+                                  loading="lazy"
+                                  width={48}
+                                  height={48}
+                                  alt={`${slide.name} profile`}
+                                  className="creator-coach-card-image"
+                                  onError={(e) => {
+                                    const target = e.currentTarget;
+                                    target.onerror = null;
+                                    target.src = createInitialsAvatar(slide.name);
+                                  }}
+                                />
+                                <div className="creator-coach-card-name-wrap">
+                                  <div className="creator-coach-card-title">{slide.name}</div>
+                                  <div className="creator-coach-card-followers">{slide.followers}</div>
+                                </div>
+                              </div>
+                              <div
+                                aria-hidden="true"
+                                className="creator-coach-card-link w-inline-block"
                               >
-                                <path
-                                  d="M8.7999 2.3999C8.35807 2.3999 7.9999 2.75807 7.9999 3.1999C7.9999 3.64173 8.35807 3.9999 8.7999 3.9999H10.8685L5.83422 9.03422C5.5218 9.34664 5.5218 9.85317 5.83422 10.1656C6.14664 10.478 6.65317 10.478 6.96559 10.1656L11.9999 5.13127V7.1999C11.9999 7.64173 12.3581 7.9999 12.7999 7.9999C13.2417 7.9999 13.5999 7.64173 13.5999 7.1999V3.1999C13.5999 2.75807 13.2417 2.3999 12.7999 2.3999H8.7999Z"
-                                  fill="currentColor"
-                                  fillOpacity="0.45"
-                                />
-                                <path
-                                  d="M3.9999 3.9999C3.11625 3.9999 2.3999 4.71625 2.3999 5.5999V11.9999C2.3999 12.8836 3.11625 13.5999 3.9999 13.5999H10.3999C11.2836 13.5999 11.9999 12.8836 11.9999 11.9999V9.5999C11.9999 9.15807 11.6417 8.7999 11.1999 8.7999C10.7581 8.7999 10.3999 9.15807 10.3999 9.5999V11.9999H3.9999V5.5999L6.3999 5.5999C6.84173 5.5999 7.1999 5.24173 7.1999 4.7999C7.1999 4.35807 6.84173 3.9999 6.3999 3.9999H3.9999Z"
-                                  fill="currentColor"
-                                  fillOpacity="0.45"
-                                />
-                              </svg>
+                                <div className="open-tab-icon w-embed">
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M8.7999 2.3999C8.35807 2.3999 7.9999 2.75807 7.9999 3.1999C7.9999 3.64173 8.35807 3.9999 8.7999 3.9999H10.8685L5.83422 9.03422C5.5218 9.34664 5.5218 9.85317 5.83422 10.1656C6.14664 10.478 6.65317 10.478 6.96559 10.1656L11.9999 5.13127V7.1999C11.9999 7.64173 12.3581 7.9999 12.7999 7.9999C13.2417 7.9999 13.5999 7.64173 13.5999 7.1999V3.1999C13.5999 2.75807 13.2417 2.3999 12.7999 2.3999H8.7999Z"
+                                      fill="currentColor"
+                                      fillOpacity="0.45"
+                                    />
+                                    <path
+                                      d="M3.9999 3.9999C3.11625 3.9999 2.3999 4.71625 2.3999 5.5999V11.9999C2.3999 12.8836 3.11625 13.5999 3.9999 13.5999H10.3999C11.2836 13.5999 11.9999 12.8836 11.9999 11.9999V9.5999C11.9999 9.15807 11.6417 8.7999 11.1999 8.7999C10.7581 8.7999 10.3999 9.15807 10.3999 9.5999V11.9999H3.9999V5.5999L6.3999 5.5999C6.84173 5.5999 7.1999 5.24173 7.1999 4.7999C7.1999 4.35807 6.84173 3.9999 6.3999 3.9999H3.9999Z"
+                                      fill="currentColor"
+                                      fillOpacity="0.45"
+                                    />
+                                  </svg>
+                                </div>
+                              </div>
                             </div>
-                          </a>
-                        </div>
-                        <div className="creator_slide-bottom">
-                          <div className="creator_slide-img"></div>
-                          <div className="creator_slide-name">Creator Name</div>
-                        </div>
-                      </div>
-                      {/* Slide 2 */}
-                      <div
-                        data-bg-gradient="blue"
-                        className="swiper-slide creators-slide"
-                      >
-                        <div className="creator_slide-top">
-                          <div>
-                            <strong>Partnered with</strong>
+                            <div className="creator-coach-card-content">
+                              <div className="creator-coach-card-about">About</div>
+                              <div className="creator-coach-card-text">{slide.about}</div>
+                            </div>
                           </div>
-                          <div className="creator_slide-sponsors"></div>
                         </div>
-                        <div className="creator_slide-bottom">
-                          <div className="creator_slide-img"></div>
-                          <div className="creator_slide-name">Creator Name</div>
-                        </div>
-                      </div>
-                      {/* Slide 3 */}
-                      <div
-                        data-bg-gradient="green"
-                        className="swiper-slide creators-slide"
-                      >
-                        <div className="creator_slide-top">
-                          <div>
-                            <strong>Partnered with</strong>
-                          </div>
-                          <div className="creator_slide-sponsors"></div>
-                        </div>
-                        <div className="creator_slide-bottom">
-                          <div className="creator_slide-img"></div>
-                          <div className="creator_slide-name">Creator Name</div>
-                        </div>
-                      </div>
-                      {/* Slide 4 */}
-                      <div
-                        data-bg-gradient="purple"
-                        className="swiper-slide creators-slide"
-                      >
-                        <div className="creator_slide-top">
-                          <div>
-                            <strong>Partnered with</strong>
-                          </div>
-                          <div className="creator_slide-sponsors"></div>
-                        </div>
-                        <div className="creator_slide-bottom">
-                          <div className="creator_slide-img"></div>
-                          <div className="creator_slide-name">Creator Name</div>
-                        </div>
-                      </div>
-                      {/* Slide 5 */}
-                      <div
-                        data-bg-gradient="red"
-                        className="swiper-slide creators-slide"
-                      >
-                        <div className="creator_slide-top">
-                          <div>
-                            <strong>Partnered with</strong>
-                          </div>
-                          <div className="creator_slide-sponsors"></div>
-                        </div>
-                        <div className="creator_slide-bottom">
-                          <div className="creator_slide-img"></div>
-                          <div className="creator_slide-name">Creator Name</div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -325,793 +430,22 @@ export default function CreatorsPageContent() {
         </div>
       </div>
 
-      {/* Monetize Platforms Section */}
-      <div data-scrolltrigger="monetize_grid" className="section_platforms-tab">
-        <div className="padding-global">
-          <div className="container-xlarge">
-            <div className="monetize_bento-outer">
-              <div className="monetize_left-side">
-                <div className="moentize_headings">
-                  <h2 className="heading-style-h3-v2">
-                    Monetize your content.
-                  </h2>
-                  <div className="text-size-xxlarge">Wherever you create.</div>
-                </div>
-                <div className="monetize_bento">
-                  <div>Get sponsored by our ad network</div>
-                </div>
-                <div className="monetize_bento">
-                  <div>Discover paid brand partnership opportunities</div>
-                </div>
-              </div>
-              <div className="monetize_right_side">
-                <div className="monetize_bento">
-                  <div>Launch a professional media kit in minutes</div>
-                </div>
-                <div className="monetize_bento">
-                  <div>Instant payments</div>
-                </div>
-                <div className="monetize_bento">
-                  <div>Automatic calendar &amp; scheduling</div>
-                </div>
-                <div
-                  id="w-node-_52b727a8-2265-618b-a932-6aa557ad2b23-b9c24b01"
-                  className="monetize_bento-inner"
-                >
-                  <div className="monetize_bento end">
-                    <div>Workflows to accelerate collaborations</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     <TraditionalMarketing/>
+     <SectionSingleReview />
+        <SectionBento2 />
+        <SectionBento3 />
+        <SectionModals/>
+        <SectionCta />
+        <SectionCaseStudies />
+        <FaqSection/>
 
       {/* Bento Section - Payments */}
-      <div className="section_bento">
-        <div className="padding-section-xmedium z-index-10">
-          <div className="padding-global">
-            <div className="container-xlarge">
-              <div className="bento_outer-component">
-                <div className="max-width-small">
-                  <h2 className="heading-style-h3-v2">Do more brand deals</h2>
-                </div>
-                <div className="bento_grid-outer">
-                  <div className="bento_top">
-                    <div className="bento_item large">
-                      <div className="bento_graphic mediakit">
-                        <div className="mk_graphic-wrapper">
-                          <div className="mk_dash"></div>
-                        </div>
-                      </div>
-                      <div className="bento_texts">
-                        <div className="meta-text is-small">media kit</div>
-                        <h3 className="heading-style-h6-v2">
-                          Launch a professional media kit in minutes
-                        </h3>
-                        <div className="text-size-xregular color-neutral-800">
-                          No more building pitch decks - launch a profile that
-                          showcases your work, stats, and past partners
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bento_item">
-                      <div className="bento_graphic calendar">
-                        <div className="c-calendar_wrapper"></div>
-                      </div>
-                      <div className="bento_texts short-spacing">
-                        <div className="meta-text is-small">scheduling</div>
-                        <h3 className="heading-style-h6-v2">
-                          Automatic calendar &amp; scheduling
-                        </h3>
-                        <div className="text-size-xregular color-neutral-800">
-                          No more back-and-forth to find a time - sync your
-                          calendar and let sponsors book your time
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bento_bottom">
-                    <div className="bento_item">
-                      <div className="bento_graphic invoice">
-                        <div className="invoice_wrapper">
-                          <div className="invoice_head">
-                            <div className="invoice_logo"></div>
-                            <div className="invoice-head-text">Invoice</div>
-                          </div>
-                          <div className="invoice_items-wrapper">
-                            <div className="invoice_item">
-                              <div className="i-item-left">
-                                <div className="g-date">June 1</div>
-                                <div>Instagram Post</div>
-                              </div>
-                              <div>$2,500</div>
-                            </div>
-                            <div className="invoice_item">
-                              <div className="i-item-left">
-                                <div className="g-date">June 15</div>
-                                <div>Newsletter mention</div>
-                              </div>
-                              <div>$1,800</div>
-                            </div>
-                            <div className="invoice_item last">
-                              <div className="i-item-left">
-                                <div className="g-date">June 28</div>
-                                <div>YouTube video</div>
-                              </div>
-                              <div>$1,225</div>
-                            </div>
-                          </div>
-                          <div className="invoice_rate-wrapper">
-                            <div>Total</div>
-                            <div className="g-date">Due July 1</div>
-                            <div className="invoice-rate">USD 5525</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="bento_texts short-spacing">
-                        <div className="meta-text is-small">payments</div>
-                        <h3 className="heading-style-h6-v2">
-                          Get paid at the click of a button
-                        </h3>
-                        <div className="text-size-xregular color-neutral-800">
-                          No more creating invoices or haggling with procurement
-                          - our global payments software gets you paid at the
-                          click of a button
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bento_bg-overlay"></div>
-      </div>
+    
 
-      {/* Light CTA Section */}
-      <div className="section_light-cta">
-        <div className="padding-section-xmedium light-cta">
-          <div className="padding-global">
-            <div className="container-xlarge">
-              <div className="light_cta-component">
-                <div className="small-meta-box">
-                  <div>Live on Supreme Coach</div>
-                  <div className="icon-embed-custom-12 w-embed">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 17 16"
-                      fill="none"
-                      preserveAspectRatio="xMidYMid meet"
-                      aria-hidden="true"
-                      role="img"
-                    >
-                      <path
-                        d="M8.50016 1.33325C4.82016 1.33325 1.8335 4.31992 1.8335 7.99992C1.8335 11.6799 4.82016 14.6666 8.50016 14.6666C12.1802 14.6666 15.1668 11.6799 15.1668 7.99992C15.1668 4.31992 12.1802 1.33325 8.50016 1.33325ZM11.5468 10.0066C11.3268 10.3866 10.9135 10.6133 10.4668 10.6133H6.5335C6.08683 10.6133 5.6735 10.3866 5.4535 10.0066L3.48016 6.59992C3.26016 6.21992 3.26016 5.77325 3.48016 5.39325C3.70016 5.01325 4.1135 4.78659 4.56016 4.78659H12.4402C12.8868 4.78659 13.3002 5.01325 13.5202 5.39325C13.7402 5.77325 13.7402 6.21992 13.5202 6.59992L11.5468 10.0066Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div className="light_cta-heading-wrapper">
-                  <h2 className="heading-style-h3-v2">
-                    Create a free storefront today
-                  </h2>
-                  <div className="text-size-medium color-neutral-800">
-                    Showcase your work, set your rates, and get discovered by
-                    top brands.
-                  </div>
-                </div>
-                <Link
-                  href="/get-access"
-                  target="_blank"
-                  className="button-dark w-inline-block"
-                >
-                  <div>Start for free</div>
-                  <div className="icon-embed-xxsmall w-embed">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      preserveAspectRatio="xMidYMid meet"
-                      aria-hidden="true"
-                      role="img"
-                    >
-                      <path
-                        className="arrow-line"
-                        d="M2.349 7.23025C3.06607 7.21757 3.71403 7.1808 4.35755 7.29175C4.42539 7.30316 4.50401 7.26575 4.57565 7.2442C4.9288 7.13768 5.28321 7.1231 5.64269 7.21503C5.95526 7.29492 6.27417 7.22644 6.59054 7.2499C7.07873 7.28604 7.56438 7.15417 8.0494 7.17889C8.44439 7.19918 8.84381 7.19284 9.23627 7.25434C9.43535 7.28541 9.62365 7.29619 9.82717 7.24483C10.0484 7.18967 10.2678 7.32218 10.4973 7.32218C10.7497 7.32218 10.9982 7.38558 11.2404 7.45786C11.5117 7.53838 11.5802 7.78438 11.3824 7.98409C11.0806 8.28905 10.6863 8.42282 10.2779 8.48242C9.94002 8.53187 9.59512 8.56041 9.25466 8.57816C8.89454 8.59654 8.53188 8.72081 8.16669 8.60035C8.10392 8.57943 8.02594 8.57499 7.96254 8.59211C7.53775 8.70877 7.09585 8.63015 6.66789 8.71384C6.53602 8.73983 6.39146 8.73096 6.25705 8.71003C6.07065 8.68087 5.89186 8.68594 5.71433 8.74427C5.48736 8.81908 5.26165 8.72398 5.03404 8.72842C4.80389 8.73286 4.57565 8.7411 4.35755 8.79626C4.01455 8.88375 3.67345 8.83493 3.33933 8.79943C3.03754 8.76773 2.74653 8.79436 2.44918 8.80197C2.16831 8.80957 1.87476 8.83366 1.59833 8.78485C1.2845 8.72905 1.14818 8.44248 1.03343 8.18063C0.930717 7.94605 1.07527 7.77296 1.23314 7.60432C1.46582 7.35515 1.73401 7.22201 2.07955 7.24546C2.1924 7.25307 2.30716 7.23215 2.3509 7.22961L2.349 7.23025Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        className="arrow-tip"
-                        d="M11.1802 13.0869C10.782 13.0901 10.4764 12.7344 10.543 12.321C10.5867 12.0478 10.6869 11.7923 10.8644 11.5704C11.0007 11.3998 11.139 11.228 11.2512 11.0416C11.6424 10.3892 12.071 9.76533 12.5845 9.20233C12.6295 9.15288 12.6663 9.08884 12.6885 9.02544C12.821 8.64567 13.0866 8.35719 13.346 8.06555C13.5038 7.88803 13.5178 7.75615 13.3377 7.59892C13.0993 7.39033 12.9129 7.15194 12.7804 6.8641C12.6866 6.66121 12.4888 6.54329 12.3442 6.38161C12.1432 6.15654 12.0139 5.88138 11.8725 5.62207C11.6766 5.26258 11.3932 4.97601 11.1631 4.64759C10.931 4.31664 10.7364 3.9654 10.5956 3.58562C10.5639 3.50003 10.5417 3.40874 10.5328 3.31807C10.517 3.14689 10.621 3.04037 10.7548 2.95732C10.8809 2.8787 10.9944 2.91167 11.106 2.99473C11.3266 3.15893 11.5606 3.29905 11.7318 3.52983C11.9505 3.82401 12.284 4.01865 12.4736 4.34327C12.9732 4.62794 13.2134 5.14022 13.5545 5.56564C13.7549 5.81544 13.9996 6.03164 14.2348 6.25101C14.4244 6.4279 14.5791 6.62127 14.6476 6.87551C14.6875 7.02323 14.7763 7.14243 14.8587 7.2686C15.0553 7.56975 15.0426 7.87661 14.8498 8.17713C14.5652 8.62094 14.3293 9.09645 14.0066 9.51617C13.6718 9.95173 13.4499 10.4665 13.06 10.8647C12.8229 11.1069 12.6974 11.4182 12.5509 11.7181C12.3487 12.1321 12.1096 12.5252 11.7704 12.8447C11.5834 13.0203 11.4122 13.0856 11.1821 13.0876L11.1802 13.0869Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
 
-      {/* Bento Section - Brand Deals */}
-      <div className="section_bento">
-        <div className="padding-section-xmedium z-index-10">
-          <div className="padding-global">
-            <div className="container-xlarge">
-              <div className="bento_outer-component run_campaigns">
-                <div className="max-width-small">
-                  <h2 className="heading-style-h3-v2">
-                    Streamline and accelerate your own brand deals
-                  </h2>
-                </div>
-                <div className="bento_grid-outer purple-gradient">
-                  <div className="bento_bottom brand_deals">
-                    <div className="bento_item">
-                      <div
-                        data-automated-bento="trigger"
-                        className="bento_graphic automated"
-                      >
-                        <div
-                          data-automated-bento="floating-menu"
-                          className="automated_floating-menu"
-                        >
-                          <div>Choose channel</div>
-                          <div className="auto_channels-wrap">
-                            <div className="auto_channel-item">
-                              <div className="icon-embed-custom-63 w-embed">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="100%"
-                                  height="100%"
-                                  viewBox="0 0 9 9"
-                                  fill="none"
-                                  preserveAspectRatio="xMidYMid meet"
-                                  aria-hidden="true"
-                                  role="img"
-                                >
-                                  <circle
-                                    cx="4.5"
-                                    cy="4.5"
-                                    r="4.5"
-                                    fill="#FF0000"
-                                  />
-                                </svg>
-                              </div>
-                              <div>YouTube</div>
-                            </div>
-                            <div className="auto_channel-item active">
-                              <div className="icon-embed-custom-63 w-embed">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="100%"
-                                  height="100%"
-                                  viewBox="0 0 9 9"
-                                  fill="none"
-                                  preserveAspectRatio="xMidYMid meet"
-                                  aria-hidden="true"
-                                  role="img"
-                                >
-                                  <circle
-                                    cx="4.5"
-                                    cy="4.5"
-                                    r="4.5"
-                                    fill="#0A66C2"
-                                  />
-                                </svg>
-                              </div>
-                              <div>LinkedIn</div>
-                            </div>
-                            <div className="auto_channel-item">
-                              <div className="icon-embed-custom-63 w-embed">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="100%"
-                                  height="100%"
-                                  viewBox="0 0 9 9"
-                                  fill="none"
-                                  preserveAspectRatio="xMidYMid meet"
-                                  aria-hidden="true"
-                                  role="img"
-                                >
-                                  <circle
-                                    cx="4.5"
-                                    cy="4.5"
-                                    r="4.5"
-                                    fill="#E1306C"
-                                  />
-                                </svg>
-                              </div>
-                              <div>Instagram</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="automated_scheduling-dash"></div>
-                      </div>
-                      <div className="bento_texts short-spacing">
-                        <div className="meta-text is-small">automation</div>
-                        <h3 className="heading-style-h6-v2">
-                          Automate your workflow
-                        </h3>
-                        <div className="text-size-xregular color-neutral-800">
-                          Set your channels, rates, and availability - let
-                          sponsors book and pay automatically
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bento_item">
-                      <div className="bento_graphic messaging">
-                        <div className="messaging_wrapper">
-                          <div className="msg_item">
-                            <div className="msg_avatar"></div>
-                            <div className="msg_content">
-                              <div className="msg_name">Brand Manager</div>
-                              <div className="msg_text">
-                                Hi! We&apos;d love to work with you on...
-                              </div>
-                            </div>
-                          </div>
-                          <div className="msg_item">
-                            <div className="msg_avatar"></div>
-                            <div className="msg_content">
-                              <div className="msg_name">Marketing Team</div>
-                              <div className="msg_text">
-                                Great content! Can we discuss...
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="bento_texts short-spacing">
-                        <div className="meta-text is-small">messaging</div>
-                        <h3 className="heading-style-h6-v2">
-                          Workflow &amp; messaging
-                        </h3>
-                        <div className="text-size-xregular color-neutral-800">
-                          Ditch email and scattered DMs - chat with all your
-                          sponsors in one inbox and accelerate your
-                          collaborations with automations
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bento_bg-overlay"></div>
-      </div>
-
-      {/* Modals/Testimonials Section */}
-      <div className="section_modals">
-        <div className="padding-section-xmedium">
-          <div className="padding-global">
-            <div className="container-xlarge">
-              <div className="modals_outer-component">
-                <div className="max-width-small creators_testimonials-heading">
-                  <h2 className="heading-style-h3-v2">
-                    Powered by passion, built for people like you
-                  </h2>
-                  <div className="max-width-xxsmall-v2">
-                    <div className="text-size-medium">
-                      Join the community of leading creators and get more out of
-                      your business.
-                    </div>
-                  </div>
-                </div>
-                <div className="modals_grid-wrapper">
-                  {/* Modal Items */}
-                  <a
-                    id="w-node-modal1"
-                    href="#"
-                    target="_blank"
-                    className="modal-item w-inline-block"
-                  >
-                    <div className="modal-toggle outline"></div>
-                  </a>
-                  <a
-                    id="w-node-modal2"
-                    href="#"
-                    target="_blank"
-                    className="modal-item w-inline-block"
-                  >
-                    <div className="modal-toggle outline"></div>
-                  </a>
-                  <a
-                    id="w-node-modal3"
-                    href="#"
-                    target="_blank"
-                    className="modal-item w-inline-block"
-                  >
-                    <div className="modal-toggle outline"></div>
-                  </a>
-                  <a
-                    id="w-node-modal4"
-                    href="#"
-                    target="_blank"
-                    className="modal-item w-inline-block"
-                  >
-                    <div className="modal-toggle outline"></div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Creators Community Section */}
-      <div className="section_creators-community">
-        <div className="padding-section-xlarge">
-          <div className="padding-global">
-            <div className="container-xlarge">
-              <div className="creators-community_component">
-                {/* Header Section */}
-                <div className="creators-community_header">
-                  <h2 className="heading-style-h2 text-align-center">
-                    We&apos;re helping thousands of creators live off their
-                    passion - big and small.
-                  </h2>
-                  <div className="text-size-medium text-align-center color-neutral-800 margin-top margin-small">
-                    Join thousands of creators moving their brand partnership
-                    business forward on Supreme Coach
-                  </div>
-                  <div className="text-align-center margin-top margin-medium">
-                    <Link
-                      href="/get-access"
-                      target="_blank"
-                      className="button-dark w-inline-block"
-                    >
-                      <div>Start for free</div>
-                      <div className="icon-embed-xxsmall w-embed">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="100%"
-                          height="100%"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          preserveAspectRatio="xMidYMid meet"
-                          aria-hidden="true"
-                          role="img"
-                        >
-                          <path
-                            className="arrow-line"
-                            d="M2.349 7.23025C3.06607 7.21757 3.71403 7.1808 4.35755 7.29175C4.42539 7.30316 4.50401 7.26575 4.57565 7.2442C4.9288 7.13768 5.28321 7.1231 5.64269 7.21503C5.95526 7.29492 6.27417 7.22644 6.59054 7.2499C7.07873 7.28604 7.56438 7.15417 8.0494 7.17889C8.44439 7.19918 8.84381 7.19284 9.23627 7.25434C9.43535 7.28541 9.62365 7.29619 9.82717 7.24483C10.0484 7.18967 10.2678 7.32218 10.4973 7.32218C10.7497 7.32218 10.9982 7.38558 11.2404 7.45786C11.5117 7.53838 11.5802 7.78438 11.3824 7.98409C11.0806 8.28905 10.6863 8.42282 10.2779 8.48242C9.94002 8.53187 9.59512 8.56041 9.25466 8.57816C8.89454 8.59654 8.53188 8.72081 8.16669 8.60035C8.10392 8.57943 8.02594 8.57499 7.96254 8.59211C7.53775 8.70877 7.09585 8.63015 6.66789 8.71384C6.53602 8.73983 6.39146 8.73096 6.25705 8.71003C6.07065 8.68087 5.89186 8.68594 5.71433 8.74427C5.48736 8.81908 5.26165 8.72398 5.03404 8.72842C4.80389 8.73286 4.57565 8.7411 4.35755 8.79626C4.01455 8.88375 3.67345 8.83493 3.33933 8.79943C3.03754 8.76773 2.74653 8.79436 2.44918 8.80197C2.16831 8.80957 1.87476 8.83366 1.59833 8.78485C1.2845 8.72905 1.14818 8.44248 1.03343 8.18063C0.930717 7.94605 1.07527 7.77296 1.23314 7.60432C1.46582 7.35515 1.73401 7.22201 2.07955 7.24546C2.1924 7.25307 2.30716 7.23215 2.3509 7.22961L2.349 7.23025Z"
-                            fill="currentColor"
-                          />
-                          <path
-                            className="arrow-tip"
-                            d="M11.1802 13.0869C10.782 13.0901 10.4764 12.7344 10.543 12.321C10.5867 12.0478 10.6869 11.7923 10.8644 11.5704C11.0007 11.3998 11.139 11.228 11.2512 11.0416C11.6424 10.3892 12.071 9.76533 12.5845 9.20233C12.6295 9.15288 12.6663 9.08884 12.6885 9.02544C12.821 8.64567 13.0866 8.35719 13.346 8.06555C13.5038 7.88803 13.5178 7.75615 13.3377 7.59892C13.0993 7.39033 12.9129 7.15194 12.7804 6.8641C12.6866 6.66121 12.4888 6.54329 12.3442 6.38161C12.1432 6.15654 12.0139 5.88138 11.8725 5.62207C11.6766 5.26258 11.3932 4.97601 11.1631 4.64759C10.931 4.31664 10.7364 3.9654 10.5956 3.58562C10.5639 3.50003 10.5417 3.40874 10.5328 3.31807C10.517 3.14689 10.621 3.04037 10.7548 2.95732C10.8809 2.8787 10.9944 2.91167 11.106 2.99473C11.3266 3.15893 11.5606 3.29905 11.7318 3.52983C11.9505 3.82401 12.284 4.01865 12.4736 4.34327C12.9732 4.62794 13.2134 5.14022 13.5545 5.56564C13.7549 5.81544 13.9996 6.03164 14.2348 6.25101C14.4244 6.4279 14.5791 6.62127 14.6476 6.87551C14.6875 7.02323 14.7763 7.14243 14.8587 7.2686C15.0553 7.56975 15.0426 7.87661 14.8498 8.17713C14.5652 8.62094 14.3293 9.09645 14.0066 9.51617C13.6718 9.95173 13.4499 10.4665 13.06 10.8647C12.8229 11.1069 12.6974 11.4182 12.5509 11.7181C12.3487 12.1321 12.1096 12.5252 11.7704 12.8447C11.5834 13.0203 11.4122 13.0856 11.1821 13.0876L11.1802 13.0869Z"
-                            fill="currentColor"
-                          />
-                        </svg>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Creator Grid */}
-                <div className="creators-community_grid">
-                  <CreatorCard
-                    name="Hackernoon"
-                    platform="web"
-                    followers="3.5m+"
-                    categories={["AI", "Engineering"]}
-                  />
-                  <CreatorCard
-                    name="Forgoodcode"
-                    platform="instagram"
-                    followers="1.8m+"
-                    categories={["AI", "Tech"]}
-                  />
-                  <CreatorCard
-                    name="Big Technology"
-                    platform="newsletter"
-                    followers="160k+"
-                    categories={["Business", "Tech"]}
-                  />
-                  <CreatorCard
-                    name="Scott Clary"
-                    platform="instagram"
-                    followers="1.7m+"
-                    categories={["Sales", "Business"]}
-                  />
-                  <CreatorCard
-                    name="Marketing Mentor"
-                    platform="instagram"
-                    followers="1.6m+"
-                    categories={["Marketing", "SEO"]}
-                  />
-                  <CreatorCard
-                    name="Elena Verna"
-                    platform="linkedin"
-                    followers="125k+"
-                    categories={["Marketing", "Product"]}
-                  />
-                  <CreatorCard
-                    name="Katelyn Bourgoin"
-                    platform="twitter"
-                    followers="135k+"
-                    categories={["Ecom", "Marketing"]}
-                  />
-                  <CreatorCard
-                    name="Not Boring"
-                    platform="newsletter"
-                    followers="231k+"
-                    categories={["Startups", "Tech"]}
-                  />
-                  <CreatorCard
-                    name="Ben Williams"
-                    platform="newsletter"
-                    followers="6.8k+"
-                    categories={["Product", "Growth"]}
-                  />
-                  <CreatorCard
-                    name="Patrick Dang"
-                    platform="youtube"
-                    followers="250k+"
-                    categories={["Sales", "YT"]}
-                  />
-                  <CreatorCard
-                    name="Jody Padar"
-                    platform="youtube"
-                    followers="610k+"
-                    categories={["Finance", "Accounting"]}
-                  />
-                  <CreatorCard
-                    name="Productivity Game"
-                    platform="web"
-                    followers="570k+"
-                    categories={["Productivity", "NL"]}
-                  />
-                  <CreatorCard
-                    name="Linda Raynier"
-                    platform="youtube"
-                    followers="1m+"
-                    categories={["Career", "Personal Development"]}
-                  />
-                  <CreatorCard
-                    name="Max Tech"
-                    platform="newsletter"
-                    followers="1.2m+"
-                    categories={["Consumer Electronics"]}
-                  />
-                  <CreatorCard
-                    name="Zain Kahn"
-                    platform="instagram"
-                    followers="67k+"
-                    categories={["AI", "Productivity"]}
-                  />
-                  <CreatorCard
-                    name="Premiere Gal"
-                    platform="youtube"
-                    followers="500k+"
-                    categories={["YT", "Tech"]}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* FAQ Section */}
-      <div className="section_faqs">
-        <div className="padding-section-xmedium">
-          <div className="padding-global">
-            <div className="container-xlarge">
-              <div className="faqs_component">
-                <div className="faqs_top-wrapper">
-                  <h2 className="heading-style-h3-v2">
-                    Frequently Asked Questions
-                  </h2>
-                </div>
-                <div className="faq_grid flex-inners">
-                  <div className="faq_grid-side">
-                    <div
-                      data-delay="700"
-                      data-hover="false"
-                      className="faq-p w-dropdown"
-                    >
-                      <div className="faq w-dropdown-toggle">
-                        <div className="accordian-icon-wrap">
-                          <div className="faq-bg-gradient orange-gradient"></div>
-                          <div className="faq-bg-gradient obsidian-gradient"></div>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="100%"
-                            viewBox="0 0 17 16"
-                            fill="none"
-                            className="faq-chevron-icon"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M4.73431 6.63422C5.04673 6.3218 5.55327 6.3218 5.86569 6.63422L8.5 9.26853L11.1343 6.63422C11.4467 6.3218 11.9533 6.3218 12.2657 6.63422C12.5781 6.94664 12.5781 7.45317 12.2657 7.76559L9.06569 10.9656C8.75327 11.278 8.24673 11.278 7.93431 10.9656L4.73431 7.76559C4.42189 7.45317 4.42189 6.94664 4.73431 6.63422Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </div>
-                        <div className="faq-text">What is Supreme Coach?</div>
-                      </div>
-                      <nav className="faq-content w-dropdown-list">
-                        <div className="faq-body">
-                          <p className="text-size-regular">
-                            Supreme Coach is an all-in-one platform that helps
-                            creators monetize their content through brand
-                            partnerships. We provide tools for creating
-                            professional media kits, managing sponsorships,
-                            handling payments, and more.
-                          </p>
-                        </div>
-                      </nav>
-                    </div>
-                    <div
-                      data-delay="700"
-                      data-hover="false"
-                      className="faq-p w-dropdown"
-                    >
-                      <div className="faq w-dropdown-toggle">
-                        <div className="accordian-icon-wrap">
-                          <div className="faq-bg-gradient orange-gradient"></div>
-                          <div className="faq-bg-gradient obsidian-gradient"></div>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="100%"
-                            viewBox="0 0 17 16"
-                            fill="none"
-                            className="faq-chevron-icon"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M4.73431 6.63422C5.04673 6.3218 5.55327 6.3218 5.86569 6.63422L8.5 9.26853L11.1343 6.63422C11.4467 6.3218 11.9533 6.3218 12.2657 6.63422C12.5781 6.94664 12.5781 7.45317 12.2657 7.76559L9.06569 10.9656C8.75327 11.278 8.24673 11.278 7.93431 10.9656L4.73431 7.76559C4.42189 7.45317 4.42189 6.94664 4.73431 6.63422Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </div>
-                        <div className="faq-text">Is Supreme Coach free?</div>
-                      </div>
-                      <nav className="faq-content w-dropdown-list">
-                        <div className="faq-body">
-                          <p className="text-size-regular">
-                            Yes! Supreme Coach is free to use for creators. You
-                            can create your profile, set up your media kit, and
-                            start receiving partnership inquiries at no cost.
-                          </p>
-                        </div>
-                      </nav>
-                    </div>
-                    <div
-                      data-delay="700"
-                      data-hover="false"
-                      className="faq-p w-dropdown"
-                    >
-                      <div className="faq w-dropdown-toggle">
-                        <div className="accordian-icon-wrap">
-                          <div className="faq-bg-gradient orange-gradient"></div>
-                          <div className="faq-bg-gradient obsidian-gradient"></div>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="100%"
-                            viewBox="0 0 17 16"
-                            fill="none"
-                            className="faq-chevron-icon"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M4.73431 6.63422C5.04673 6.3218 5.55327 6.3218 5.86569 6.63422L8.5 9.26853L11.1343 6.63422C11.4467 6.3218 11.9533 6.3218 12.2657 6.63422C12.5781 6.94664 12.5781 7.45317 12.2657 7.76559L9.06569 10.9656C8.75327 11.278 8.24673 11.278 7.93431 10.9656L4.73431 7.76559C4.42189 7.45317 4.42189 6.94664 4.73431 6.63422Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </div>
-                        <div className="faq-text">How do payments work?</div>
-                      </div>
-                      <nav className="faq-content w-dropdown-list">
-                        <div className="faq-body">
-                          <p className="text-size-regular">
-                            Supreme Coach handles all payment processing for
-                            you. When a brand books your services, we manage the
-                            invoicing and ensure you get paid on time - no more
-                            chasing payments or dealing with procurement.
-                          </p>
-                        </div>
-                      </nav>
-                    </div>
-                  </div>
-                  <div className="faq_grid-side">
-                    <div
-                      data-delay="700"
-                      data-hover="false"
-                      className="faq-p w-dropdown"
-                    >
-                      <div className="faq w-dropdown-toggle">
-                        <div className="accordian-icon-wrap">
-                          <div className="faq-bg-gradient orange-gradient"></div>
-                          <div className="faq-bg-gradient obsidian-gradient"></div>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="100%"
-                            viewBox="0 0 17 16"
-                            fill="none"
-                            className="faq-chevron-icon"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M4.73431 6.63422C5.04673 6.3218 5.55327 6.3218 5.86569 6.63422L8.5 9.26853L11.1343 6.63422C11.4467 6.3218 11.9533 6.3218 12.2657 6.63422C12.5781 6.94664 12.5781 7.45317 12.2657 7.76559L9.06569 10.9656C8.75327 11.278 8.24673 11.278 7.93431 10.9656L4.73431 7.76559C4.42189 7.45317 4.42189 6.94664 4.73431 6.63422Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </div>
-                        <div className="faq-text">
-                          What platforms are supported?
-                        </div>
-                      </div>
-                      <nav className="faq-content w-dropdown-list">
-                        <div className="faq-body">
-                          <p className="text-size-regular">
-                            Supreme Coach supports creators on all major
-                            platforms including YouTube, LinkedIn, Instagram,
-                            TikTok, Twitter/X, newsletters, podcasts, and more.
-                          </p>
-                        </div>
-                      </nav>
-                    </div>
-                    <div
-                      data-delay="700"
-                      data-hover="false"
-                      className="faq-p w-dropdown"
-                    >
-                      <div className="faq w-dropdown-toggle">
-                        <div className="accordian-icon-wrap">
-                          <div className="faq-bg-gradient orange-gradient"></div>
-                          <div className="faq-bg-gradient obsidian-gradient"></div>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="100%"
-                            viewBox="0 0 17 16"
-                            fill="none"
-                            className="faq-chevron-icon"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M4.73431 6.63422C5.04673 6.3218 5.55327 6.3218 5.86569 6.63422L8.5 9.26853L11.1343 6.63422C11.4467 6.3218 11.9533 6.3218 12.2657 6.63422C12.5781 6.94664 12.5781 7.45317 12.2657 7.76559L9.06569 10.9656C8.75327 11.278 8.24673 11.278 7.93431 10.9656L4.73431 7.76559C4.42189 7.45317 4.42189 6.94664 4.73431 6.63422Z"
-                              fill="currentColor"
-                            />
-                          </svg>
-                        </div>
-                        <div className="faq-text">How do I get started?</div>
-                      </div>
-                      <nav className="faq-content w-dropdown-list">
-                        <div className="faq-body">
-                          <p className="text-size-regular">
-                            Getting started is easy! Simply sign up for free,
-                            create your media kit, set your rates and
-                            availability, and start receiving partnership
-                            opportunities from brands.
-                          </p>
-                        </div>
-                      </nav>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+    
     </>
   );
 }

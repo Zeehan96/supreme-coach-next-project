@@ -21,11 +21,26 @@ export const metadata = {
   },
 };
 
-export default function CreatorsPage() {
+type CreatorsPageProps = {
+  searchParams?:
+    | { [key: string]: string | string[] | undefined }
+    | Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function CreatorsPage({ searchParams }: CreatorsPageProps) {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const rawType = resolvedSearchParams?.type;
+  const typeValue = Array.isArray(rawType) ? rawType[0] : rawType;
+  const normalizedType = String(typeValue || "").toLowerCase();
+  const type =
+    normalizedType === "firms" || normalizedType === "firm"
+      ? "firms"
+      : "coach";
+
   return (
     <>
       <Header />
-      <CreatorsPageContent />
+      <CreatorsPageContent type={type} />
       <Footer />
       <CreatorsPageScripts />
     </>

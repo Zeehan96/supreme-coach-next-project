@@ -371,7 +371,7 @@ function ForBrandsDropdown() {
           <div className="nav_mega-left" style={{ flex: "1 1 auto", maxWidth: 520 }}>
             <div className="nav_mega-links">
               <a
-                href="/"
+                href="/creators?type=coach"
                 aria-label="nav-link"
                 className="nav_mega-link w-inline-block"
               >
@@ -606,7 +606,7 @@ function ForCreatorsDropdown() {
           <div className="nav_mega-left" style={{ flex: "1 1 auto", maxWidth: 520 }}>
             <div className="nav_mega-links">
               <a
-                href="/creators"
+                href="/creators?type=firms"
                 aria-label="nav-link"
                 className="nav_mega-link w-inline-block"
               >

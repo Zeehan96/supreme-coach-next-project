@@ -10,37 +10,33 @@ declare global {
 
 export default function CreatorsPageScripts() {
   useEffect(() => {
-    // Wait for Swiper to be available
-    const initSwiper = () => {
-      if (typeof window !== 'undefined' && window.Swiper) {
-        // Initialize creators slider
+    let hasInitializedSwiper = false
+
+    const createSwiper = () => {
+      if (typeof window !== 'undefined' && window.Swiper && !hasInitializedSwiper) {
+        hasInitializedSwiper = true
         new window.Swiper('#creators-slider', {
-          spaceBetween: 24,
+          spaceBetween: 18,
           preventClicks: false,
           grabCursor: true,
           a11y: false,
-          freeMode: {
-            enabled: true,
-            momentum: true,
-            momentumRatio: 0.8,
-            momentumVelocityRatio: 0.2,
-          },
-          speed: 30000,
-          loopAdditionalSlides: 10,
+          allowTouchMove: true,
+          speed: 1200,
+          loopAdditionalSlides: 24,
           loop: true,
-          centeredSlides: true,
+          centeredSlides: false,
           autoplay: {
-            delay: 0,
+            delay: 2200,
             disableOnInteraction: false,
           },
           breakpoints: {
             0: {
-              slidesPerView: 1.2,
+              slidesPerView: 1.15,
               spaceBetween: 16,
             },
             480: {
               slidesPerView: 'auto',
-              spaceBetween: 16,
+              spaceBetween: 14,
             },
             767: {
               slidesPerView: 'auto',
@@ -48,28 +44,37 @@ export default function CreatorsPageScripts() {
             },
             992: {
               slidesPerView: 'auto',
-              spaceBetween: 24,
+              spaceBetween: 18,
             },
           },
         })
       }
     }
 
-    // Check if Swiper is already loaded
-    if (window.Swiper) {
-      initSwiper()
-    } else {
-      // Wait for Swiper to load
-      const checkSwiper = setInterval(() => {
-        if (window.Swiper) {
-          clearInterval(checkSwiper)
-          initSwiper()
-        }
-      }, 100)
+    const ensureSwiperScript = () => {
+      if (window.Swiper) {
+        createSwiper()
+        return
+      }
 
-      // Clear interval after 10 seconds to prevent infinite loop
-      setTimeout(() => clearInterval(checkSwiper), 10000)
+      const existing = document.querySelector(
+        'script[data-swiper-script="true"]'
+      ) as HTMLScriptElement | null
+
+      if (existing) {
+        existing.addEventListener('load', createSwiper)
+        return
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js'
+      script.async = true
+      script.dataset.swiperScript = 'true'
+      script.onload = createSwiper
+      document.body.appendChild(script)
     }
+
+    ensureSwiperScript()
 
     // CTA Slider activation on scroll
     const ctaSlider = document.querySelector('[data-cta-slider="make-active-on-scroll"]')
