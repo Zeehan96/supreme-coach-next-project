@@ -2,7 +2,7 @@ import React from "react";
 
 const SectionBento3 = () => {
   return (
-    <div className="section_bento">
+    <div className="section_bento section-bento-home-payments">
       <div className="padding-section-xmedium z-index-10">
         <div className="padding-global">
           <div className="container-xlarge">
@@ -29,7 +29,7 @@ const SectionBento3 = () => {
                     className="bento_graphic full-height green_color full-height-with-image"
                   >
                     <img
-                      src="/beautiful-mountain-landscape.jpg"
+                      src="/images/trainer-clipboard-gym.jpg"
                       alt=""
                       className="bento-bg-image"
                       aria-hidden
@@ -53,7 +53,7 @@ const SectionBento3 = () => {
                       className="bento_graphic measure green_color measure-with-image"
                     >
                       <img
-                        src="/beautiful-mountain-landscape.jpg"
+                        src="/images/trainer-clipboard-gym.jpg"
                         alt=""
                         className="bento-bg-image"
                         aria-hidden
@@ -105,7 +105,7 @@ const SectionBento3 = () => {
                       className="bento_graphic short green_color short-with-image"
                     >
                       <img
-                        src="/beautiful-mountain-landscape.jpg"
+                        src="/images/trainer-clipboard-gym.jpg"
                         alt=""
                         className="bento-bg-image"
                         aria-hidden

@@ -220,120 +220,31 @@ const SectionModals = () => {
           // specific check for Guidde or modal-3
           const modalName = item.querySelector('.modal-inside-name')?.textContent?.trim();
 
-          // Specific styling for Replit (modal-1) - kept existing logic
+          // Replit (modal-1): layout uses .replit-popup-compact in CSS — no extra inline sizing
           if (modalId === 'modal-1' || modalName === 'Replit') {
-            popupInner.style.paddingTop = '2rem';
-            popupInner.style.paddingBottom = '2rem';
-            popupContentWrapper.style.maxHeight = 'none';
-            popupContentWrapper.style.overflowY = 'visible';
+            popupInner.style.paddingTop = '0.75rem';
+            popupInner.style.paddingBottom = '0.75rem';
+            popupContentWrapper.style.maxHeight = 'min(92vh, 100%)';
+            popupContentWrapper.style.overflowY = 'auto';
             popupContentWrapper.style.height = 'auto';
-
-            // Fix image to show full image
-            const modalImage = item.querySelector('.modal_img-item') as HTMLElement;
-            if (modalImage) {
-              modalImage.style.objectFit = 'contain';
-              modalImage.style.position = 'relative';
-              modalImage.style.height = 'auto';
-              modalImage.style.width = '100%';
-              modalImage.style.inset = 'auto';
-              modalImage.style.transform = 'none';
-            }
           }
 
-          // Specific styling for Guidde
+          // Guidde: layout/CSS via .guidde-popup-compact
           if (modalName === 'Guidde') {
-            popupInner.style.paddingTop = '2rem';
-            popupInner.style.paddingBottom = '2rem';
-            popupContentWrapper.style.maxHeight = 'none';
-            popupContentWrapper.style.overflowY = 'visible';
+            popupInner.style.paddingTop = '0.75rem';
+            popupInner.style.paddingBottom = '0.75rem';
+            popupContentWrapper.style.maxHeight = 'min(92vh, 100%)';
+            popupContentWrapper.style.overflowY = 'auto';
             popupContentWrapper.style.height = 'auto';
-
-            // Fix image to show full image
-            const modalImage = item.querySelector('.modal_img-item') as HTMLElement;
-            if (modalImage) {
-              modalImage.style.objectFit = 'contain';
-              modalImage.style.position = 'relative';
-              modalImage.style.height = 'auto';
-              modalImage.style.width = '100%';
-              modalImage.style.inset = 'auto';
-              modalImage.style.transform = 'none';
-              modalImage.style.marginBottom = '0';
-              modalImage.style.paddingBottom = '0';
-            }
-
-            // Remove bottom spacing from image wrap
-            const modalImgWrap = item.querySelector('.modal_img-wrap') as HTMLElement;
-            if (modalImgWrap) {
-              modalImgWrap.style.paddingBottom = '0';
-              modalImgWrap.style.marginBottom = '0';
-            }
-
-            // Make character icon bigger
-            const characterIcon = item.querySelector('.pf_character-modal') as HTMLElement;
-            if (characterIcon) {
-              characterIcon.style.width = '180px';
-              characterIcon.style.height = 'auto';
-            }
           }
 
-          // Specific styling for Nebius
+          // Nebius: layout/CSS via .nebius-popup-compact
           if (modalName === 'Nebius') {
-            popupInner.style.paddingTop = '2rem';
-            popupInner.style.paddingBottom = '0';
-            popupContentWrapper.style.maxHeight = 'none';
-            popupContentWrapper.style.overflowY = 'visible';
+            popupInner.style.paddingTop = '0.75rem';
+            popupInner.style.paddingBottom = '0.75rem';
+            popupContentWrapper.style.maxHeight = 'min(92vh, 100%)';
+            popupContentWrapper.style.overflowY = 'auto';
             popupContentWrapper.style.height = 'auto';
-            popupContentWrapper.style.paddingBottom = '0';
-            popupContentWrapper.style.marginBottom = '0';
-
-            // Remove bottom spacing from popup-content
-            const popupContent = item.querySelector('.popup-content') as HTMLElement;
-            if (popupContent) {
-              popupContent.style.paddingBottom = '0';
-              popupContent.style.marginBottom = '0';
-            }
-
-            // Fix image to show full image
-            const modalImage = item.querySelector('.modal_img-item') as HTMLElement;
-            if (modalImage) {
-              modalImage.style.objectFit = 'contain';
-              modalImage.style.position = 'relative';
-              modalImage.style.height = 'auto';
-              modalImage.style.width = '100%';
-              modalImage.style.inset = 'auto';
-              modalImage.style.transform = 'none';
-              modalImage.style.marginBottom = '0';
-              modalImage.style.paddingBottom = '0';
-            }
-
-            // Remove bottom spacing from image wrap
-            const modalImgWrap = item.querySelector('.modal_img-wrap') as HTMLElement;
-            if (modalImgWrap) {
-              modalImgWrap.style.paddingBottom = '0';
-              modalImgWrap.style.marginBottom = '0';
-            }
-
-            // Remove bottom spacing from content block
-            const modalContentBlock = item.querySelector('.modal_content-block') as HTMLElement;
-            if (modalContentBlock) {
-              modalContentBlock.style.paddingBottom = '0';
-              modalContentBlock.style.marginBottom = '0';
-            }
-
-            // Reduce spacing between testimonial text and details row
-            const testimonialInnerText = item.querySelector('.testimonial_inner-text') as HTMLElement;
-            if (testimonialInnerText) {
-              testimonialInnerText.style.marginBottom = '0';
-              testimonialInnerText.style.paddingBottom = '0';
-            }
-
-            const testimonialModalDetails = item.querySelector('.testimonial_modal-details') as HTMLElement;
-            if (testimonialModalDetails) {
-              testimonialModalDetails.style.marginTop = '0';
-              testimonialModalDetails.style.paddingTop = '0';
-              testimonialModalDetails.style.marginBottom = '0';
-              testimonialModalDetails.style.paddingBottom = '0';
-            }
           }
 
           if (modalId !== 'modal-0' && modalId !== 'modal-1' && modalName !== 'Replit' && modalName !== 'Guidde' && modalName !== 'Nebius') {
@@ -388,6 +299,7 @@ const SectionModals = () => {
               modalImage.style.objectFit = '';
               modalImage.style.position = '';
               modalImage.style.height = '';
+              modalImage.style.maxHeight = '';
               modalImage.style.width = '';
               modalImage.style.inset = '';
               modalImage.style.transform = '';
@@ -400,6 +312,9 @@ const SectionModals = () => {
             if (modalImgWrap) {
               modalImgWrap.style.paddingBottom = '';
               modalImgWrap.style.marginBottom = '';
+              modalImgWrap.style.maxHeight = '';
+              modalImgWrap.style.height = '';
+              modalImgWrap.style.alignSelf = '';
             }
 
             // Reset content block styles (for Nebius)
@@ -465,7 +380,7 @@ const SectionModals = () => {
                 >
                   <a href="#" className="modal-toggle w-inline-block">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66f555f8558bc8b45807a694_Frame%2053110-5.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       alt="an image of gamma"
                       className="modal-inside-img"
@@ -632,16 +547,15 @@ const SectionModals = () => {
                           // style={{ backgroundColor: '#ff9147' }}
                           >
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670de704193f5bd7cbaa39ad_moran.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={460}
                               sizes="(max-width: 479px) 100vw, (max-width: 991px) 460px, (max-width: 1279px) 32vw, 24vw"
                               alt="modal-img"
-                              srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670de704193f5bd7cbaa39ad_moran-p-500.avif 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670de704193f5bd7cbaa39ad_moran.avif 920w"
                               className="modal_img-item"
                             />
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670de728c120dbe81b74d823_Group%2053423.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width="120.5"
                               alt="character"
@@ -653,7 +567,7 @@ const SectionModals = () => {
                             style={{ backgroundColor: '#ff9147' }}
                           >
                             <div className="modal-testimonial">
-                              "Passionfroot has been a game-changer for us at
+                              "Supreme Coach has been a game-changer for us at
                               Gamma. Their platform has streamlined our entire
                               creator marketing process, allowing us to
                               collaborate with over 30 creators seamlessly,
@@ -662,7 +576,7 @@ const SectionModals = () => {
                               significant boost in user engagement and signups,
                               all while maintaining the same ad spend. It's rare
                               to find a tool that makes such an immediate
-                              impact—Passionfroot has been instrumental in
+                              Supreme Coach has been instrumental in
                               scaling our growth effortlessly."
                             </div>
                             <div className="testimonial_modal-details">
@@ -870,21 +784,19 @@ const SectionModals = () => {
                 >
                   <div className="modal-toggle outline">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef058fc07498299c834ca_FigmaThumbnail.png"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={429}
                       sizes="(max-width: 479px) 100vw, (max-width: 991px) 429px, (max-width: 1279px) 32vw, 24vw"
                       alt="a logo of notion"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef058fc07498299c834ca_FigmaThumbnail-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef058fc07498299c834ca_FigmaThumbnail.png 572w"
                       className="modal-inside-img"
                     />
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef06f7883d142ddf22f92_FigmaThumbnail_Hover.png"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       sizes="(max-width: 479px) 100vw, 286px"
                       alt="testimonial-image-hover"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef06f7883d142ddf22f92_FigmaThumbnail_Hover-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef06f7883d142ddf22f92_FigmaThumbnail_Hover.png 572w"
                       className="modal-inside-hover"
                     />
                   </div>
@@ -912,7 +824,7 @@ const SectionModals = () => {
                       </svg>
                     </div>
                     <div className="long-testimonial-text">
-                      Partnering with creators through Passionfroot has been a
+                      Partnering with creators through Supreme Coach has been a
                       game-changer for Intercom’s Startup program. By
                       collaborating with top newsletters, we’ve reached
                       thousands of founders
@@ -1012,14 +924,14 @@ const SectionModals = () => {
                             style={{ backgroundColor: '#ee5968' }}
                           >
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670deaec3c2a05d69d232207_Frame%20427323155.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={460}
                               alt="modal-img"
                               className="modal_img-item"
                             />
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670deab60be59566697f0736_Group%2053242.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={124}
                               alt="pf character"
@@ -1028,7 +940,7 @@ const SectionModals = () => {
                           </div>
                           <div className="modal_content-block">
                             <div className="modal-testimonial">
-                              “Partnering with creators through Passionfroot has
+                              “Partnering with creators through Supreme Coach has
                               been a game-changer for Intercom’s Startup
                               program. By collaborating with top newsletters,
                               we’ve reached thousands of founders”
@@ -1189,14 +1101,14 @@ const SectionModals = () => {
                 >
                   <div className="modal-toggle outline">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66f63bf93af4b2116b9e7264_hubspot%20testimonial.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="a logo of hubspot"
                       className="modal-inside-img"
                     />
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66fa2431b662efe575f2c02d_Frame%2053120.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="testimonial-image-hover"
@@ -1210,7 +1122,7 @@ const SectionModals = () => {
                 >
                   <a href="#" className="modal-toggle w-inline-block">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66f5564ae0c2bb338a36185e_Frame%2053110-4.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="an image of gamma"
@@ -1307,16 +1219,15 @@ const SectionModals = () => {
                         <div className="popup-content">
                           <div className="modal_img-wrap">
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c408c9bfffad449fda4f7_munch-compressed.webp"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={460}
                               sizes="(max-width: 479px) 100vw, (max-width: 991px) 460px, (max-width: 1279px) 32vw, 24vw"
                               alt="modal-img"
-                              srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c408c9bfffad449fda4f7_munch-compressed-p-500.webp 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c408c9bfffad449fda4f7_munch-compressed-p-800.webp 800w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c408c9bfffad449fda4f7_munch-compressed.webp 920w"
                               className="modal_img-item"
                             />
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670deb720ae166e32b8c8cfd_Group%2052490.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={124}
                               alt="pf character"
@@ -1328,7 +1239,7 @@ const SectionModals = () => {
                             style={{ backgroundColor: '#51b1fb' }}
                           >
                             <div className="modal-testimonial">
-                              "Passionfroot has completely transformed the way
+                              "Supreme Coach has completely transformed the way
                               we approach creator marketing at Munch. We went
                               from struggling to get responses to locking in a
                               month's worth of collaborations in under a week.
@@ -1538,7 +1449,7 @@ const SectionModals = () => {
                 >
                   <a href="#" className="modal-toggle w-inline-block">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66f555f8865cb540bdeab2d0_Frame%2053110-3.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="an image of gamma"
@@ -1635,14 +1546,14 @@ const SectionModals = () => {
                         <div className="popup-content">
                           <div className="modal_img-wrap">
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670deda89626ec1b5f754520_Frame%20427323153.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={460}
                               alt="modal-img"
                               className="modal_img-item"
                             />
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670deda3a0c85dd3f4063953_reportfroot.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={124}
                               alt="pf character"
@@ -1780,14 +1691,14 @@ const SectionModals = () => {
                 >
                   <div className="modal-toggle outline">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66f63bf87b0e28aac3e5d802_Frame%2053120-3.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="a logo of intercom"
                       className="modal-inside-img"
                     />
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66fa242b6b6fd608f784a2d2_Frame%2053120-1.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="testimonial-image-hover"
@@ -1818,7 +1729,7 @@ const SectionModals = () => {
                       </svg>
                     </div>
                     <div className="long-testimonial-text " >
-                      Passionfroot really helped us level up our creator program
+                      Supreme Coach really helped us level up our creator program
                       into a strong growth channel. Instead of scouring the
                       internet, their AI search enabled us to find and book the
                       best creators in PLG.
@@ -1919,16 +1830,15 @@ const SectionModals = () => {
                         <div className="popup-content">
                           <div className="modal_img-wrap">
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670df4a3f53521140fb87232_Frame%20427323153%20(4).avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={460}
                               sizes="(max-width: 479px) 100vw, (max-width: 991px) 460px, (max-width: 1279px) 32vw, 24vw"
                               alt="modal-img"
-                              srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670df4a3f53521140fb87232_Frame%20427323153%20(4)-p-500.avif 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670df4a3f53521140fb87232_Frame%20427323153%20(4).avif 920w"
                               className="modal_img-item"
                             />
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/670def89c8133002fdeea065_Frame%20427323490.avif"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={128}
                               alt="pf character"
@@ -1937,7 +1847,7 @@ const SectionModals = () => {
                           </div>
                           <div className="modal_content-block">
                             <div className="modal-testimonial">
-                              “Passionfroot really helped us level up our
+                              Supreme Coach really helped us level up our
                               creator program into a strong growth channel.
                               Instead of scouring the internet, their AI search
                               enabled us to find and book the best creators in
@@ -2145,21 +2055,19 @@ const SectionModals = () => {
                 >
                   <div className="modal-toggle outline">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef116e4c834f182e01541_FramerThumbnail.png"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       sizes="(max-width: 479px) 100vw, 286px"
                       alt="a logo of posthog"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef116e4c834f182e01541_FramerThumbnail-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef116e4c834f182e01541_FramerThumbnail.png 572w"
                       className="modal-inside-img"
                     />
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef12ce527dcbe700ac32a_FramerThumbnail_Hover.png"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       sizes="(max-width: 479px) 100vw, 286px"
                       alt="testimonial-image-hover"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef12ce527dcbe700ac32a_FramerThumbnail_Hover-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef12ce527dcbe700ac32a_FramerThumbnail_Hover.png 572w"
                       className="modal-inside-hover"
                     />
                   </div>
@@ -2170,7 +2078,7 @@ const SectionModals = () => {
                 >
                   <a href="#" className="modal-toggle w-inline-block">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c20a9d38ce96f49fc6cf_alex%20lin%20gray%20(1).avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="an image of gamma"
@@ -2249,7 +2157,7 @@ const SectionModals = () => {
                   <div className="popup-wrapper" style={{ display: "none" }}>
                     <div style={{ opacity: 0 }} className="popup-inner">
                       <div
-                        className="popup-content-wrapper obsidian-gradient"
+                        className="popup-content-wrapper obsidian-gradient replit-popup-compact"
                         style={{
                           transform:
                             "translate3d(0px, 3em, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
@@ -2264,112 +2172,37 @@ const SectionModals = () => {
                             alt="close-icon"
                           />
                         </a>
-                        <div className="popup-content">
+                        <div className="popup-content replit-popup-compact">
                           <div className="modal_img-wrap">
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c12f3b0d43b89cd8f1a5_alex%20lin.webp"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={460}
                               sizes="(max-width: 479px) 100vw, (max-width: 991px) 460px, (max-width: 1279px) 32vw, 24vw"
                               alt="modal-img"
-                              srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c12f3b0d43b89cd8f1a5_alex%20lin-p-500.webp 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c12f3b0d43b89cd8f1a5_alex%20lin-p-800.webp 800w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c12f3b0d43b89cd8f1a5_alex%20lin.webp 920w"
                               className="modal_img-item"
-                              style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, objectFit: 'cover', objectPosition: 'top' }}
                             />
 
                           </div>
-                          <div className="modal_content-block">
+                          <div className="modal_content-block replit-popup-compact__body">
                             <div className="modal-testimonial white">
-                              Passionfroot has been essential in scaling
-                              Passionfroot has been essential in scaling
+                              Supreme Coach has been essential in scaling
                               Replit’s creator marketing. What started as a
                               small test quickly 10x’d into a six-figure monthly
                               program because the platform made it easy to
                               discover, activate, and manage the right creators.
-                              Passionfroot has turned creator marketing into one of our most
+                              Supreme Coach has turned creator marketing into one of our most
                               impactful growth engines!
                             </div>
-                            <div className="testimonial_modal-details">
-                              <div className="inside_modal-name-wrap white-color">
-                                <div className="modal-testimonial white">
-                                  Alex Lin
-                                </div>
-                                <div>GTM, Replit</div>
+                            <div className="replit-popup-compact__meta">
+                              <div className="replit-popup-compact__stat-line">
+                                10x initial speed
                               </div>
-                              <div className="testimonial_author-stats">
-                                <div className="author_stat-item">
-                                  <div className="stat-icon w-embed">
-                                    <svg
-                                      width="100%"
-                                      height="100%"
-                                      viewBox="0 0 48 48"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M23.7032 36.962C23.7497 37.1966 23.6546 37.3405 23.4731 37.5087C22.9397 38.0023 22.3133 37.9138 21.6825 37.8894C21.4877 37.8828 21.2907 37.9625 21.0982 37.9558C20.5891 37.9403 20.0823 37.8806 19.5732 37.8783C19.2191 37.8761 18.865 37.9403 18.6149 37.9669C18.4754 38.2391 18.4201 38.5158 18.2674 38.5932C18.1412 38.6552 17.869 38.5158 17.7118 38.3985C17.4839 38.2281 17.2669 38.02 17.1098 37.7832C16.9018 37.4689 16.7557 37.1148 16.5875 36.7761C16.282 36.1608 15.9677 35.5522 15.8571 34.8594C15.8283 34.6845 15.6712 34.534 15.5959 34.3636C15.2086 33.4894 14.8146 32.6173 14.4472 31.7342C14.1993 31.141 14.0001 30.5257 13.7544 29.9304C13.5929 29.5408 13.3848 29.1712 13.2033 28.7905C13.0417 28.4474 12.8802 28.1044 12.7363 27.7525C12.5482 27.2899 12.349 26.8273 12.2118 26.3492C12.1431 26.1036 12.1985 25.8225 12.1985 25.4993C12.0657 25.5237 11.8443 25.5724 11.6208 25.6011C11.5455 25.6122 11.4659 25.5768 11.3884 25.5591C11.1361 25.5015 10.886 25.4418 10.6337 25.3842C10.2817 25.3045 10.191 25.0035 10.1954 24.7291C10.1976 24.5697 10.3836 24.3661 10.5385 24.2665C10.7709 24.1204 10.6956 24.0253 10.6359 23.8061C10.5274 23.4033 10.2751 22.9872 10.5451 22.5313C10.596 22.445 10.4721 22.2657 10.4477 22.124C10.4101 21.9138 10.3924 21.6991 10.6182 21.6747C10.585 21.4954 10.5496 21.3361 10.5274 21.1745C10.4964 20.9488 10.4566 20.723 10.4522 20.495C10.4411 19.8355 10.4256 19.1737 10.4477 18.5141C10.4699 17.8346 10.5341 17.1574 10.5805 16.4646C10.4013 16.4159 10.2862 16.3938 10.1799 16.3539C9.9409 16.2654 9.74834 16.1304 9.78597 15.836C9.82359 15.5461 10.025 15.4155 10.2884 15.3579C10.4721 15.3181 10.6558 15.2761 10.8417 15.2473C11.0697 15.2097 11.2977 15.172 11.5256 15.1543C12.1099 15.1056 12.7562 14.8931 13.2675 15.0702C13.9271 15.296 14.518 15.0282 15.14 15.1101C15.7685 15.1919 16.4303 15.0259 17.0633 15.0968C17.8225 15.1809 18.5662 15.4 19.3187 15.5571C19.4161 15.5771 19.5245 15.5948 19.6197 15.5771C20.0402 15.4907 20.4563 15.3867 20.8746 15.2982C20.9853 15.2761 21.1048 15.2982 21.2177 15.2805C21.3594 15.2583 21.4966 15.2207 21.6338 15.1809C21.8042 15.13 21.968 15.0636 22.1384 15.0127C22.4085 14.9308 22.6807 14.8511 22.9529 14.7803C23.1721 14.7227 23.3934 14.674 23.6169 14.6342C24.0242 14.5612 24.4336 14.5147 24.8365 14.4239C24.9759 14.3929 25.0844 14.2336 25.2238 14.1849C25.9807 13.9171 26.7399 13.6648 27.5013 13.4102C27.7514 13.3283 28.0192 13.2907 28.256 13.1823C28.6788 12.9897 29.086 12.7595 29.4977 12.5426C29.5818 12.4984 29.6637 12.4076 29.7434 12.412C30.2104 12.4364 30.4627 12.0867 30.788 11.8565C30.9717 11.7259 31.1754 11.6197 31.3613 11.4913C31.8305 11.1615 32.3042 10.8339 32.7601 10.4887C32.9305 10.3581 33.0678 10.1788 33.2116 10.0172C33.6499 9.52145 34.1988 9.32668 34.845 9.41521C34.9336 9.42628 35.0464 9.49489 35.0863 9.57015C35.2634 9.90436 35.4559 10.2386 35.5666 10.5949C35.664 10.9158 35.6418 11.27 35.706 11.6042C35.841 12.2992 35.8034 12.9809 35.6772 13.6758C35.5909 14.1495 35.5998 14.6408 35.5666 15.1189C36.2239 15.1853 36.7264 15.4642 37.2575 15.6346C37.8994 15.8427 38.2535 16.3252 38.7471 16.6638C39.0968 16.9028 39.1101 17.33 39.2584 17.6731C39.4598 18.1423 39.6036 18.6425 39.7121 19.1449C39.9024 20.0192 40.0043 20.9023 39.7254 21.7876C39.6014 22.1816 39.5505 22.5999 39.4222 22.9939C39.3668 23.1643 39.2163 23.3148 39.0791 23.4409C38.8024 23.6933 38.5302 23.9699 38.2071 24.147C37.7954 24.3727 37.3461 24.583 36.8901 24.6627C36.4829 24.7335 36.0424 24.6206 35.5644 24.583C35.5444 24.8685 35.509 25.154 35.5112 25.4396C35.5135 25.8822 35.54 26.3249 35.5599 26.7698C35.5776 27.2191 35.6197 27.6706 35.6108 28.1199C35.6042 28.4961 35.5577 28.8746 35.5002 29.2487C35.4626 29.501 35.4714 29.6825 35.7016 29.8728C36.038 30.1517 36.3324 30.4859 36.6068 30.8267C36.6976 30.9374 36.671 31.1433 36.6976 31.3048C36.5316 31.2982 36.3457 31.3358 36.2018 31.2738C35.8964 31.1455 35.6131 30.9662 35.3032 30.7958C35.2346 31.068 35.1925 31.338 35.0907 31.5815C35.0332 31.7209 34.8871 31.8626 34.7499 31.9113C34.6879 31.9334 34.4865 31.7519 34.4511 31.6324C34.3227 31.2074 34.2497 30.767 34.1301 30.3398C34.0903 30.196 34.0018 30.0255 33.8822 29.9503C33.3201 29.5939 32.7535 29.2442 32.1647 28.9366C31.4587 28.567 30.7261 28.2505 30.0156 27.8941C29.6504 27.7104 29.3096 27.4824 28.9532 27.2855C28.6522 27.1217 28.3091 27.0132 28.0369 26.8118C27.5655 26.4621 26.9745 26.5329 26.4721 26.285C25.9763 26.0416 25.4363 25.8822 24.9051 25.7251C24.4801 25.5989 24.0352 25.5325 23.6014 25.4329C23.4886 25.4064 23.3801 25.3621 23.2694 25.3245C23.0791 25.2603 22.8954 25.1784 22.7006 25.1363C22.03 24.9903 21.3549 24.8641 20.6843 24.7224C20.2593 24.6339 20.1819 24.5166 20.0624 25.0389C20.0026 25.2957 19.9428 25.5768 19.6263 25.6365C19.3939 25.6808 19.2014 25.4794 19.0243 25.0013C17.0412 25.4661 15.0094 25.6056 12.9244 25.4064C13.2963 25.9663 13.657 26.4466 13.947 26.969C14.2148 27.4515 14.4096 27.976 14.6331 28.4829C14.6552 28.536 14.6375 28.6289 14.6707 28.6489C15.1355 28.9344 15.1333 29.4943 15.4144 29.8883C15.5052 30.0167 15.5206 30.1982 15.5893 30.3465C15.9589 31.1565 16.3418 31.96 16.7026 32.7745C16.8531 33.1131 16.946 33.4783 17.0832 33.8236C17.2979 34.3725 17.5325 34.9125 17.7517 35.4592C17.8822 35.7823 18.0018 36.1099 18.1412 36.4729C18.679 36.3976 19.2368 36.2936 19.799 36.2516C20.2571 36.2184 20.7197 36.2604 21.1801 36.2693C21.2266 36.2693 21.2775 36.2892 21.3217 36.2781C22.2535 36.0457 22.9529 36.6079 23.7121 36.9687L23.7032 36.962ZM20.2638 23.6468C20.5781 23.6468 20.8724 23.6335 21.1646 23.649C21.6227 23.6756 22.0831 23.7818 22.5346 23.7464C23.1012 23.7021 23.5682 23.981 24.0817 24.0983C24.1371 24.1116 24.1703 24.2156 24.2079 24.2687C24.3916 24.2488 24.5797 24.178 24.7413 24.22C25.4872 24.4148 26.2331 24.6162 26.9612 24.8663C27.8842 25.1828 28.7983 25.5281 29.6969 25.9066C30.186 26.1124 30.6375 26.4112 31.1045 26.6746C31.7198 27.0199 32.3374 27.3607 32.9438 27.7215C33.3201 27.945 33.6764 28.1973 34.0837 28.4652C33.9177 28.0845 34.1633 27.7082 33.9509 27.3452C33.8867 27.2346 33.9818 26.9977 34.0549 26.8428C34.1567 26.6281 34.2098 26.4267 34.0438 26.2364C33.8225 25.9796 34.0637 25.7295 34.0328 25.475C33.9973 25.1917 33.973 24.9039 33.9796 24.6206C33.9929 24.0164 34.0505 23.4144 34.0527 22.8102C34.0549 22.1816 34.0106 21.553 33.9863 20.9244C33.9619 20.287 33.9332 19.6473 33.9132 19.0099C33.9022 18.7023 33.8867 18.3946 33.9044 18.0892C33.9332 17.5801 34.004 17.071 34.0239 16.562C34.0482 15.9445 34.0261 15.3247 34.0527 14.705C34.0814 14.0211 34.1346 13.3394 34.1988 12.6599C34.2364 12.2704 34.3205 11.8853 34.3847 11.4979C34.4112 11.343 34.4422 11.1903 34.471 11.0287C34.2098 11.2102 33.9752 11.3541 33.7605 11.5245C33.1098 12.0402 32.4901 12.5979 31.815 13.0782C31.182 13.5275 30.4472 13.8175 29.7743 14.2137C29.2697 14.5102 28.6854 14.6762 28.1276 14.8799C27.6451 15.0547 27.1516 15.1986 26.6624 15.3535C26.3083 15.4664 25.9586 15.5903 25.6001 15.6811C25.257 15.7674 24.9006 15.794 24.5576 15.8803C24.0375 16.0109 23.5306 16.2101 23.0061 16.3097C22.4394 16.4181 21.8573 16.4469 21.2797 16.5044C21.0672 16.5266 20.8503 16.5111 20.6422 16.5487C20.5581 16.5642 20.4298 16.6682 20.4231 16.739C20.3877 17.195 20.3678 17.6509 20.37 18.1091C20.3744 18.8306 20.4187 19.5522 20.4143 20.2715C20.4121 20.8469 20.277 21.4091 20.3589 22.0045C20.4298 22.5202 20.3036 23.0691 20.2638 23.6468ZM11.9971 16.6572C11.9971 17.1906 12.0059 17.6642 11.9926 18.1379C11.9838 18.4411 11.8443 18.7775 11.9351 19.0409C12.1542 19.6805 11.851 20.3025 11.9683 20.9355C12.0701 21.4888 12.1144 22.0576 12.1365 22.622C12.1498 22.9452 12.0568 23.2705 12.0303 23.5959C12.0214 23.6933 12.0767 23.7973 12.0967 23.8991C12.1343 24.0961 12.2295 24.0275 12.3468 23.9677C12.4132 23.9345 12.5061 23.9257 12.5814 23.9389C13.0794 24.0297 13.5641 24.0496 14.0731 23.9434C14.5224 23.8504 15.0005 23.8725 15.4653 23.8836C15.9036 23.8947 16.3529 24.0363 16.7756 23.9766C17.3931 23.888 17.9531 24.1027 18.5396 24.1669C18.8207 24.1979 18.8804 24.1492 18.8472 23.8548C18.7963 23.4122 18.6193 22.9761 18.7587 22.5158C18.7853 22.425 18.7565 22.3077 18.7299 22.2081C18.6281 21.854 18.6436 21.5176 18.8539 21.2232C18.8052 21.117 18.7255 21.0218 18.7277 20.9311C18.7432 20.3025 18.7742 19.6761 18.8074 19.0475C18.8362 18.5031 18.876 17.9608 18.8982 17.4163C18.9048 17.2791 18.8406 17.133 18.8605 17.0002C18.9004 16.7324 18.9756 16.4712 19.0398 16.1924C18.9269 16.1813 18.876 16.1614 18.834 16.1724C18.0261 16.4203 17.2382 16.7811 16.3573 16.5686C16.3174 16.5598 16.2687 16.5952 16.2223 16.6018C15.9788 16.6395 15.7353 16.697 15.4919 16.7014C15.0514 16.7081 14.611 16.6726 14.1705 16.6749C13.7279 16.6771 13.2852 16.7014 12.8448 16.7191C12.6765 16.7258 12.5083 16.7435 12.2427 16.7612C12.4242 16.604 12.5172 16.5266 12.6079 16.4469C12.588 16.4137 12.5659 16.3805 12.546 16.3473C12.3578 16.4557 12.1675 16.5598 11.9971 16.6572ZM38.2646 20.9156C38.1893 20.453 38.0942 19.9948 38.0455 19.53C37.9924 19.0188 37.8706 18.5318 37.6537 18.0692C37.5386 17.8236 37.4523 17.5292 37.2598 17.361C36.9211 17.0644 36.5249 16.8209 36.1221 16.6173C36.0225 16.5664 35.6972 16.3739 35.633 16.6771C35.5467 17.0755 35.5245 17.496 35.5334 17.9032C35.5467 18.4743 35.6308 19.0453 35.6551 19.6186C35.6684 19.9019 35.5998 20.1896 35.6042 20.4751C35.6131 20.9842 35.675 21.491 35.6662 21.9979C35.6573 22.4981 35.5799 22.9961 35.5533 23.4963C35.5444 23.6468 35.6064 23.8548 35.8167 23.7707C36.2881 23.5826 36.7905 23.4564 37.1845 23.0935C37.4811 22.8212 37.7511 22.5932 37.8773 22.1484C37.9924 21.7478 38.1517 21.3604 38.2646 20.9156Z"
-                                        fill="#F5F3EA"
-                                      />
-                                      <path
-                                        d="M23.7124 36.9737C23.6283 36.7989 23.5663 36.6063 23.4556 36.4514C23.1436 36.0154 23.0617 35.4864 22.8293 35.0194C22.7097 34.7781 22.4862 34.5856 22.2604 34.3111C21.7381 34.4661 21.1693 34.6985 20.5805 34.7804C20.3349 34.8136 19.9918 34.5789 19.7904 34.3731C19.5934 34.1673 19.631 33.822 19.8634 33.6294C19.9984 33.5166 20.2397 33.5143 20.4367 33.4944C20.897 33.4457 21.3596 33.417 21.7979 33.3815C21.6695 32.9588 21.5633 32.6113 21.4592 32.2616C21.3109 31.7614 21.0586 31.6485 20.5872 31.861C20.1091 32.0779 19.6155 31.9894 19.1308 31.8986C18.8564 31.8477 18.5554 31.8101 18.4358 31.4892C18.4049 31.4051 18.4004 31.3121 18.3827 31.2081C18.4403 31.124 18.5775 31.0133 18.5753 30.9026C18.5731 30.6083 18.7678 30.5463 18.9715 30.5175C19.5226 30.4401 20.0759 30.3869 20.6005 30.3272C20.4212 29.734 20.2397 29.1298 20.0626 28.5388C19.6842 28.665 19.3787 28.8133 19.0556 28.8642C18.5487 28.9439 17.9888 29.1099 17.5882 28.6274C17.4908 28.5123 17.5527 28.2445 17.5771 28.0519C17.6147 27.7664 17.7918 27.6004 18.0884 27.5738C18.686 27.5207 19.2835 27.4676 19.8988 27.41C19.8988 27.2241 19.8745 26.9939 19.9077 26.7748C19.932 26.6155 20.0339 26.4672 20.1003 26.3145C20.2751 26.3919 20.5164 26.4229 20.6137 26.5579C20.8882 26.9364 21.1427 27.337 21.3309 27.7642C21.6695 28.5322 21.9639 29.3201 22.256 30.1058C22.4397 30.5972 22.5637 31.1107 22.7607 31.5954C22.8935 31.9185 23.1281 32.1952 23.2808 32.5117C23.5442 33.0562 23.7389 33.6383 24.0399 34.1606C24.3343 34.6697 24.4959 35.2164 24.6752 35.7609C24.7194 35.8914 24.6818 36.0486 24.6818 36.2478C24.9053 36.3252 24.8655 36.5333 24.746 36.7591C24.5933 37.049 24.3078 37.1796 23.9957 37.091C23.8939 37.0623 23.7987 37.0092 23.7013 36.9671C23.7013 36.9627 23.7124 36.9737 23.7124 36.9737Z"
-                                        fill="#F5F3EA"
-                                      />
-                                    </svg>
-                                  </div>
-                                  <div className="stat_texts-author">
-                                    <div className="text-size-regular">CPM</div>
-                                    <div>$14</div>
-                                  </div>
-                                </div>
-                                <div className="stat-divider w-embed">
-                                  <svg
-                                    width={1}
-                                    height="100%"
-                                    viewBox="0 0 1 68"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <rect
-                                      width={1}
-                                      height={68}
-                                      fill="#F5F3EA"
-                                    />
-                                  </svg>
-                                </div>
-                                <div className="author_stat-item">
-                                  <div className="stat-icon w-embed">
-                                    <svg
-                                      width="100%"
-                                      height="100%"
-                                      viewBox="0 0 48 48"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M36.3929 9.45282C36.4505 9.28018 36.5147 9.09426 36.5789 8.90613C36.6231 8.77334 36.6386 8.61176 36.7227 8.51216C36.8378 8.37715 37.0481 8.17353 37.1455 8.20673C37.3159 8.26427 37.504 8.46126 37.5527 8.63611C37.6811 9.09648 37.7586 9.57234 37.8117 10.0482C37.8471 10.3669 37.805 10.6923 37.805 11.0154C37.805 11.4581 37.8294 11.903 37.8095 12.3434C37.7873 12.8303 37.6767 13.3173 37.6988 13.802C37.7209 14.3221 37.5704 14.8466 37.6213 15.3314C37.6922 15.9865 37.5262 16.5996 37.5239 17.2326C37.5217 17.9918 37.504 18.7531 37.4753 19.5123C37.4642 19.8155 37.3801 20.1143 37.3712 20.4175C37.3602 20.7894 37.4044 21.1612 37.4022 21.5331C37.3956 22.3298 37.3093 23.1311 37.3757 23.9212C37.4443 24.7357 37.2097 25.5281 37.2716 26.3226C37.3115 26.8339 37.2517 27.343 37.3048 27.8388C37.3978 28.7086 37.3513 29.574 37.3823 30.4394C37.4066 31.1255 37.4421 31.8116 37.462 32.5C37.4708 32.8165 37.4775 33.2636 37.6302 33.4539C37.8714 33.7527 37.774 33.9519 37.732 34.233C37.6767 34.5938 37.4177 34.6845 37.161 34.6801C36.4992 34.6712 35.8396 34.6026 35.1801 34.5606C34.536 34.5185 33.8897 34.4853 33.2456 34.4344C32.8539 34.4034 32.4643 34.337 32.0726 34.306C31.6897 34.2751 31.3068 34.2795 30.9239 34.2463C30.5941 34.2175 30.2997 34.0737 30.3395 33.6465C30.3683 33.3366 30.2532 33.0179 30.2333 32.6992C30.2134 32.4137 30.2245 32.1215 30.2422 31.836C30.2776 31.2982 30.3595 30.7603 30.3639 30.2247C30.3705 29.2841 30.3395 28.3434 30.313 27.4027C30.2997 26.9291 30.2532 26.4577 30.2422 25.984C30.2377 25.8556 30.3108 25.7251 30.3351 25.5945C30.3484 25.517 30.3351 25.4351 30.3263 25.3576C30.2931 25.0832 30.2399 24.8087 30.2222 24.5343C30.1957 24.1116 30.1913 23.6866 30.1758 23.2616C30.1735 23.2152 30.1492 23.1532 30.1713 23.1222C30.51 22.6618 30.0894 22.1882 30.1979 21.7168C30.2754 21.3825 30.2731 21.0262 30.2864 20.6787C30.2975 20.3799 30.2731 20.0789 30.2798 19.7779C30.282 19.6584 30.344 19.5389 30.3395 19.4216C30.3196 18.8727 30.2731 18.3238 30.2643 17.7749C30.2599 17.5026 30.3263 17.2282 30.3395 16.9537C30.3573 16.5509 30.3462 16.1459 30.3617 15.7408C30.375 15.3978 30.4126 15.0569 30.4281 14.7139C30.4546 14.1495 30.4901 13.5851 30.4945 13.0207C30.4989 12.4386 30.4569 11.8565 30.4679 11.2744C30.4701 11.146 30.5764 10.9911 30.6804 10.8959C30.9039 10.6878 30.8198 10.5064 30.6317 10.3868C30.3816 10.2275 30.3573 9.99287 30.4082 9.77375C30.4768 9.48159 30.822 9.33773 31.1297 9.35101C31.3577 9.35986 31.5901 9.27354 31.8225 9.26469C32.5529 9.24034 33.2943 9.15845 34.0136 9.24034C34.7153 9.32002 35.4235 9.1496 36.1096 9.35322C36.1849 9.37535 36.2624 9.40634 36.3929 9.45282ZM36.4261 10.6679C35.9636 10.6679 35.5408 10.6679 35.1181 10.6679C34.8768 10.6679 34.6378 10.6657 34.3965 10.6746C34.1309 10.6856 33.8653 10.7277 33.5997 10.7233C33.073 10.7144 32.5462 10.6945 32.0217 10.6546C31.683 10.6281 31.6941 10.8029 31.745 11.0398C31.7915 11.2522 31.8402 11.4669 31.8623 11.6838C31.9044 12.1265 31.9486 12.5714 31.9575 13.0162C31.9641 13.4124 31.9176 13.8086 31.9021 14.2048C31.8778 14.7847 31.8535 15.3646 31.8402 15.9467C31.8247 16.5686 31.8291 17.1883 31.8114 17.8103C31.8003 18.1799 31.7516 18.5473 31.7428 18.9147C31.7317 19.3529 31.7494 19.7934 31.7428 20.2338C31.7406 20.4397 31.6941 20.6433 31.6919 20.8469C31.6919 21.3936 31.7052 21.9403 31.7118 22.487C31.714 22.5711 31.7184 22.653 31.7184 22.7371C31.7162 23.3635 31.7384 23.992 31.7007 24.6184C31.6875 24.8419 31.4794 25.0611 31.7539 25.258C31.7671 25.2669 31.7649 25.3023 31.7671 25.3267C31.7826 25.8136 31.8136 26.3005 31.8114 26.7874C31.8092 27.8808 31.8092 28.9742 31.7804 30.0654C31.7583 30.8644 31.6786 31.6611 31.6543 32.4602C31.6498 32.604 31.7693 32.8652 31.8601 32.8785C32.3293 32.9471 32.8096 32.9626 33.2855 32.9825C33.7193 33.0002 34.1531 32.9803 34.5869 33.0135C35.0229 33.0467 35.4545 33.1286 35.8883 33.1706C35.9392 33.175 36.0521 33.071 36.0521 33.0179C36.0521 32.6793 36.0145 32.3406 36.0145 32.002C36.0145 31.5815 36.0853 31.1543 36.0388 30.7404C35.9591 30.0366 35.8086 29.3416 35.9923 28.6333C36.0034 28.5957 35.9724 28.547 35.9702 28.5028C35.9282 27.8166 35.8573 27.1283 35.8573 26.4422C35.8573 25.7693 35.9503 25.0965 35.9613 24.4214C35.9702 23.8238 35.8994 23.2262 35.906 22.6286C35.9104 22.2369 36.0123 21.8473 36.0277 21.4534C36.0565 20.7363 36.0344 20.0191 36.0742 19.302C36.1185 18.4986 36.041 17.6952 36.207 16.8851C36.3155 16.3561 36.176 15.7895 36.2447 15.2229C36.3531 14.3398 36.2889 13.4368 36.3177 12.5426C36.3354 11.9229 36.3863 11.3031 36.4261 10.6679Z"
-                                        fill="#F5F3EA"
-                                      />
-                                      <path
-                                        d="M16.7636 16.7721C16.83 17.3011 16.9208 17.8057 16.9473 18.3126C16.9694 18.7729 16.9075 19.2377 16.9075 19.7003C16.9075 20.2868 16.9517 20.8734 16.9451 21.4621C16.9407 21.9889 16.8787 22.5156 16.8698 23.0446C16.8654 23.2903 16.9451 23.5382 16.9517 23.7861C16.9805 24.7666 17.0137 25.7471 17.0093 26.7298C17.0049 27.3074 16.9141 27.8851 16.8964 28.465C16.8853 28.8346 16.9517 29.2043 16.9672 29.5761C16.9761 29.7952 16.9495 30.0165 16.954 30.2357C16.965 30.7447 17.0049 31.2538 16.9938 31.7628C16.9871 32.086 16.9296 32.4135 16.8588 32.7301C16.7813 33.0842 16.6485 33.425 16.5688 33.7792C16.4958 34.1001 16.29 34.1709 16.0266 34.089C15.8451 34.0315 15.7056 33.9739 15.5662 34.1576C15.5264 34.2085 15.4179 34.224 15.3404 34.224C14.5968 34.2262 13.8531 34.2351 13.1094 34.213C12.5627 34.1953 12.0205 34.1089 11.4738 34.0979C10.9006 34.0868 10.3273 34.1488 9.75406 34.1444C9.54601 34.1421 9.33796 34.0448 9.08121 33.9784C8.98162 34.182 8.81783 34.1444 8.58986 33.9407C8.10736 33.5069 7.9303 33.0598 8.57215 32.6415C8.68061 32.5707 8.67618 32.2896 8.67618 32.1059C8.68061 31.5371 8.61642 30.9749 8.71381 30.395C8.80676 29.835 8.69831 29.2419 8.68503 28.662C8.67839 28.3809 8.68725 28.102 8.68946 27.8209C8.6961 27.002 8.68946 26.1831 8.71602 25.3642C8.7293 24.9923 8.83996 24.6249 8.85767 24.2531C8.87538 23.899 8.8289 23.5404 8.80677 23.1863C8.78906 22.8764 8.71602 22.5599 8.76029 22.2589C8.85988 21.5573 8.74701 20.8645 8.73151 20.1673C8.72266 19.78 8.58322 19.3838 8.63191 19.0098C8.75586 18.0757 8.63413 17.1528 8.61199 16.2232C8.60093 15.7164 8.67839 15.6212 9.17196 15.4353C9.3623 15.3644 9.5283 15.225 9.71643 15.1431C9.91563 15.0546 10.1303 14.9505 10.3273 15.163C10.345 15.1829 10.3959 15.1829 10.4269 15.1741C11.0931 14.986 11.7704 15.132 12.4432 15.1077C12.9833 15.0878 13.5278 15.2228 14.0722 15.256C14.63 15.2892 15.1922 15.2604 15.7499 15.2936C16.1262 15.3157 16.5069 15.3711 16.8721 15.4618C17.0425 15.5039 17.2063 15.6477 17.328 15.785C17.6069 16.0993 17.5272 16.5176 17.0602 16.7123C16.9805 16.7389 16.8853 16.7455 16.7636 16.7721ZM15.7743 16.9115C15.5242 16.8761 15.2895 16.8363 15.0549 16.8097C14.6521 16.7632 14.2493 16.6968 13.8443 16.6858C13.4436 16.6747 13.0408 16.7278 12.6402 16.7389C11.8611 16.7632 11.0798 16.7743 10.3007 16.8053C10.2277 16.8075 10.0971 16.9204 10.0971 16.9802C10.1015 17.3763 10.1347 17.7703 10.1591 18.1665C10.179 18.5051 10.2056 18.8438 10.2189 19.1824C10.2388 19.7114 10.2432 20.2426 10.2675 20.7715C10.2875 21.2253 10.3406 21.6768 10.3517 22.1305C10.3583 22.385 10.2432 22.6551 10.2985 22.8919C10.4092 23.3567 10.3782 23.8082 10.345 24.2708C10.3295 24.4921 10.3406 24.7134 10.3384 24.937C10.3317 25.5058 10.3384 26.0724 10.3096 26.639C10.2919 26.9644 10.2255 27.2897 10.1635 27.6129C10.1414 27.7302 10.0197 27.8431 10.0307 27.9493C10.0573 28.226 10.1591 28.496 10.1768 28.7727C10.1989 29.1224 10.1724 29.4743 10.1547 29.8262C10.148 29.9789 10.0883 30.1316 10.0971 30.2821C10.1148 30.5433 10.1901 30.8 10.2011 31.059C10.2211 31.5614 10.2078 32.0638 10.2277 32.5663C10.2299 32.6305 10.3362 32.7411 10.3959 32.7455C10.6637 32.7588 10.9315 32.7455 11.1994 32.7278C11.4384 32.7123 11.6752 32.6548 11.912 32.6526C12.5185 32.6526 13.1249 32.6747 13.7314 32.6836C13.9062 32.6858 14.0855 32.6614 14.2581 32.6836C14.6875 32.7389 15.1147 32.8142 15.5507 32.8828C15.6038 32.4379 15.657 32.0041 15.7123 31.5459C15.6968 31.5083 15.6724 31.4176 15.6304 31.3357C15.4423 30.9727 15.6171 30.5765 15.5219 30.1958C15.4467 29.897 15.4976 29.565 15.502 29.2463C15.5042 29.0869 15.5374 28.9276 15.5419 28.766C15.5551 28.029 15.5618 27.2942 15.5751 26.5571C15.5773 26.3867 15.6525 26.1986 15.6016 26.0503C15.3427 25.3044 15.6658 24.543 15.4821 23.775C15.3427 23.1929 15.4887 22.5444 15.4976 21.9247C15.5064 21.3404 15.491 20.7583 15.5042 20.174C15.5197 19.3572 15.5352 18.5427 15.5861 17.7282C15.5972 17.4361 15.7123 17.155 15.7743 16.9115Z"
-                                        fill="#F5F3EA"
-                                      />
-                                      <path
-                                        d="M26.3099 20.0683C26.5091 19.8669 26.6619 19.5814 26.8566 19.5482C27.1953 19.4929 27.2307 19.8912 27.2727 20.1037C27.3856 20.6814 27.4011 21.2768 27.4874 21.8589C27.6069 22.6579 27.3148 23.4414 27.4808 24.2559C27.6025 24.8579 27.4985 25.5064 27.514 26.1328C27.5273 26.7104 27.5782 27.2881 27.587 27.868C27.5892 28.0871 27.4941 28.3085 27.4918 28.5276C27.483 29.2779 27.5273 30.0304 27.4896 30.7785C27.452 31.52 27.5892 32.2769 27.3104 33.0029C27.2794 33.087 27.3347 33.2486 27.4033 33.3172C27.7176 33.6248 27.711 34.0299 27.3104 34.1848C26.7504 34.4017 26.1816 34.5876 25.5464 34.5234C24.8071 34.4504 24.0612 34.4615 23.3175 34.4349C22.9059 34.4194 22.4942 34.3751 22.0825 34.384C21.4827 34.3973 20.8829 34.4305 20.2853 34.4836C19.8205 34.5256 19.805 34.4194 19.774 33.928C19.7541 33.616 19.825 33.3172 19.794 33.0051C19.7364 32.4385 19.7608 31.8608 19.7497 31.2898C19.7386 30.5948 19.7209 29.8976 19.7231 29.2026C19.7231 28.9105 19.7696 28.6183 19.7829 28.3239C19.8095 27.6777 19.836 27.0314 19.8493 26.3851C19.8648 25.7078 19.8936 25.0283 19.8626 24.3533C19.8272 23.5344 19.7231 22.7176 19.6767 21.8987C19.6678 21.746 19.774 21.58 19.8493 21.4295C19.929 21.2679 20.0131 21.1418 19.774 21.0245C19.5926 20.9337 19.4155 20.3228 19.4775 20.1369C19.5771 19.8359 19.9245 19.6367 20.2831 19.65C20.728 19.6655 21.1861 19.5925 21.6133 19.6832C22.4566 19.8647 23.3021 19.6411 24.1431 19.7916C24.8757 19.92 25.6172 19.982 26.3099 20.0683ZM21.0002 21.2746C21.0865 21.6176 21.1706 21.912 21.2304 22.2108C21.3521 22.8128 21.3499 23.4215 21.3477 24.0323C21.3477 24.7716 21.3411 25.5108 21.3455 26.2501C21.3477 26.5179 21.4141 26.7879 21.3898 27.0513C21.3521 27.4563 21.2636 27.8592 21.195 28.262C21.1551 28.4899 21.0046 28.7688 21.0865 28.9348C21.2946 29.3664 21.1507 29.8047 21.1906 30.2318C21.2658 31.0485 21.1972 31.8785 21.1596 32.7019C21.1463 32.9985 21.2105 33.0582 21.4982 32.9763C21.6863 32.9232 21.9032 32.9498 22.1047 32.9675C22.4588 32.9985 22.8107 33.0826 23.1648 33.0848C23.7425 33.0892 24.3224 33.0383 24.9023 33.025C25.4003 33.0139 25.8983 33.0228 26.2989 33.0228C26.2214 32.3854 26.113 31.6904 26.0576 30.9932C26.0222 30.555 26.0709 30.1101 26.0643 29.6696C26.051 28.8374 26.02 28.003 26.0067 27.1708C26.0001 26.7724 26.0333 26.3718 26.02 25.9712C26.0023 25.4267 25.9315 24.8823 25.9359 24.3378C25.9403 23.8663 26.0333 23.3949 26.0554 22.9235C26.0775 22.4321 26.0598 21.9408 26.0598 21.4605C25.885 21.4494 25.7345 21.4406 25.5862 21.4273C24.9244 21.3631 24.2648 21.2524 23.6031 21.248C22.886 21.2436 22.1733 21.5003 21.4473 21.2613C21.3123 21.2148 21.1441 21.2679 21.0002 21.2746Z"
-                                        fill="#F5F3EA"
-                                      />
-                                      <path
-                                        d="M23.7685 37.6348C23.7685 37.6348 23.7796 37.5595 23.7951 37.471C23.7486 37.4843 23.7287 37.4865 23.711 37.4953C23.5516 37.5706 23.3923 37.71 23.2329 37.7122C22.6242 37.7145 22.0156 37.679 21.4069 37.6392C20.9598 37.6104 20.515 37.5308 20.0679 37.5175C19.5654 37.502 19.063 37.5285 18.5606 37.5485C18.0051 37.5706 17.4451 37.6613 16.894 37.6259C16.3384 37.5905 15.7918 37.4068 15.2362 37.3426C14.7382 37.2829 14.2336 37.2984 13.7312 37.2784C13.6205 37.274 13.5098 37.2629 13.3992 37.2563C13.3306 37.2519 13.2509 37.2209 13.1911 37.243C12.6024 37.471 11.9915 37.1456 11.3851 37.3316C11.0929 37.4223 10.741 37.2917 10.4156 37.2939C9.87116 37.2984 9.3289 37.336 8.78443 37.3448C8.60515 37.3471 8.42808 37.3028 8.24881 37.2829C7.48964 37.1965 6.72826 37.1213 5.97131 37.0128C5.83187 36.9929 5.71236 36.8402 5.58398 36.7495C5.69244 36.6211 5.77654 36.4285 5.91377 36.3776C6.79909 36.0412 7.68884 35.707 8.67597 35.9062C8.88845 35.9482 9.1297 35.8154 9.3621 35.7999C9.83353 35.7712 10.3072 35.7623 10.7808 35.7557C11.3696 35.7468 11.9605 35.7335 12.5493 35.7468C12.8104 35.7513 13.0716 35.8177 13.335 35.8486C13.6382 35.8841 13.9282 36.0102 14.2513 35.8331C14.3929 35.7557 14.6342 35.8663 14.8312 35.8863C15.4841 35.9571 16.137 36.0235 16.79 36.0921C16.8254 36.0965 16.8652 36.1076 16.8962 36.0987C17.3588 35.9372 17.8236 36.0833 18.2862 36.0833C18.7222 36.0833 19.156 36.0102 19.592 35.9903C19.8443 35.9792 20.0966 36.0191 20.349 36.0169C20.7806 36.0124 21.2631 35.8663 21.6349 36.0102C22.1285 36.2006 22.622 36.1784 23.1067 36.2205C23.7884 36.278 24.4812 36.2116 25.1695 36.205C25.32 36.2028 25.4706 36.2227 25.6211 36.2338C26.3913 36.2935 27.1615 36.3931 27.9317 36.3998C28.764 36.4086 29.5984 36.3024 30.4328 36.3024C31.1875 36.3024 31.9445 36.3754 32.6992 36.4175C32.7789 36.4219 32.863 36.433 32.9405 36.4197C33.1574 36.3843 33.3721 36.3002 33.5867 36.3002C34.0604 36.3024 34.5363 36.3887 35.0033 36.3555C35.5854 36.3156 36.1542 36.3488 36.7296 36.4175C37.4556 36.5038 38.1926 36.6521 38.912 36.599C39.5228 36.5547 40.043 36.8402 40.6251 36.8491C40.8486 36.8513 41.1009 37.0261 41.2846 37.1877C41.5281 37.4002 41.4152 37.7056 41.2138 37.9601C40.7623 38.5245 40.1935 38.2457 39.6667 38.239C39.2418 38.2346 38.819 38.1571 38.3918 38.1217C38.0621 38.0952 37.7101 38.1461 37.4069 38.0465C37.0417 37.9292 36.6942 38.011 36.3401 37.9845C35.9306 37.9535 35.5256 37.8694 35.1161 37.8251C34.9435 37.8052 34.7642 37.8185 34.5894 37.834C34.4012 37.8517 34.2153 37.9114 34.0272 37.9159C33.7948 37.9203 33.5624 37.8716 33.33 37.876C32.8209 37.8827 32.3119 37.9225 31.805 37.9203C31.4177 37.9181 31.0326 37.8716 30.6453 37.8495C30.5324 37.8428 30.4107 37.8185 30.3044 37.8473C29.8263 37.9756 29.3527 37.9181 28.868 37.876C28.3434 37.8318 27.81 37.9004 27.2788 37.8893C26.8185 37.8782 26.3514 37.7499 25.9044 37.8118C25.4883 37.8694 25.0899 37.5994 24.6826 37.8096C24.6184 37.8428 24.5144 37.8185 24.4325 37.8008C24.2267 37.7521 24.0186 37.6968 23.7685 37.6348Z"
-                                        fill="#F5F3EA"
-                                      />
-                                    </svg>
-                                  </div>
-                                  <div className="stat_texts-author">
-                                    <div className="text-size-regular">
-                                      initial spend
-                                    </div>
-                                    <div>10x</div>
-                                  </div>
-                                </div>
+                              <div className="modal-testimonial white replit-popup-compact__name">
+                                Alex Lin
+                              </div>
+                              <div className="replit-popup-compact__role">
+                                GTM, Replit
                               </div>
                             </div>
                           </div>
@@ -2385,7 +2218,7 @@ const SectionModals = () => {
                 >
                   <a href="#" className="modal-toggle w-inline-block">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66f555f8583d79386dfeace4_Frame%2053110-1.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="an image of gamma"
@@ -2462,23 +2295,13 @@ const SectionModals = () => {
                     </div>
                   </a>
                   <div className="popup-wrapper" style={{ display: "none" }}>
-                    <div
-                      style={{
-                        opacity: 0,
-                        padding: "2rem",
-                        paddingTop: "2rem",
-                        paddingBottom: "1rem",
-                      }}
-                      className="popup-inner"
-                    >
+                    <div style={{ opacity: 0 }} className="popup-inner">
                       <div
-                        className="popup-content-wrapper blue-gradient"
+                        className="popup-content-wrapper blue-gradient nebius-popup-compact"
                         style={{
                           transform:
                             "translate3d(0px, 3em, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
                           transformStyle: "preserve-3d",
-                          maxHeight: "calc(100vh - 8rem)",
-                          overflowY: "auto",
                         }}
                       >
                         <a href="#" className="popup-close w-inline-block">
@@ -2489,191 +2312,33 @@ const SectionModals = () => {
                             alt="close-icon"
                           />
                         </a>
-                        <div className="popup-content">
-                          <div
-                            className="modal_img-wrap"
-                            style={{ backgroundColor: '#51b1fb' }}
-                          >
+                        <div className="popup-content nebius-popup-compact">
+                          <div className="modal_img-wrap">
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c41cb15d893daa317f058_nebius-comp.webp"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               alt="modal-img"
-                              srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c41cb15d893daa317f058_nebius-comp-p-500.webp 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c41cb15d893daa317f058_nebius-comp-p-800.webp 800w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c41cb15d893daa317f058_nebius-comp.webp 920w"
-                              className="modal_img-item-nebius"
+                              className="modal_img-item"
                             />
-
                           </div>
-                          <div
-                            className="modal_content-block"
-                            style={{ backgroundColor: '#51b1fb' }}
-                          >
-                            <div className="testimonial_inner-text">
-                              <div className="modal-testimonial ">
-                                "Passionfroot has been instrumental in helping
-                                us reach engineers, founders, and researchers in
-                                the AI space. By leveraging top-tier creators
-                                across leading AI newsletters, we were able to
-                                precisely target and engage the right audience
-                                for Nebius. The platform made it easy to tap
-                                into high-quality creators, driving both
-                                visibility and impactful engagement in a way
-                                that truly accelerated our growth."
-                              </div>
-                              <div className="modal-testimonial inner-text">
-                                Olga Reger, Senior Digital Marketing Manager at
-                                Nebius
-                              </div>
+                          <div className="modal_content-block nebius-popup-compact__body">
+                            <div className="modal-testimonial nebius-popup-compact__quote">
+                              "Supreme Coach has been instrumental in helping
+                              us reach engineers, founders, and researchers in
+                              the AI space. By leveraging top-tier creators
+                              across leading AI newsletters, we were able to
+                              precisely target and engage the right audience
+                              for Nebius. The platform made it easy to tap
+                              into high-quality creators, driving both
+                              visibility and impactful engagement in a way
+                              that truly accelerated our growth."
                             </div>
-                            <div className="testimonial_modal-details">
-                              <div className="inside_modal-name-wrap">
-                                <div className="modal-testimonial">
-                                  Olga Reger
-                                </div>
-                                <div>
-                                  Senior Digital Marketing Manager at Nebius
-                                </div>
+                            <div className="nebius-popup-compact__meta">
+                              <div className="modal-testimonial nebius-popup-compact__name">
+                                Olga Reger
                               </div>
-                              <div className="testimonial_author-stats">
-                                <div className="author_stat-item">
-                                  <div className="stat-icon w-embed">
-                                    <svg
-                                      width="100%"
-                                      height="100%"
-                                      viewBox="0 0 48 48"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M23.7032 36.962C23.7497 37.1966 23.6546 37.3405 23.4731 37.5087C22.9397 38.0023 22.3133 37.9138 21.6825 37.8894C21.4877 37.8828 21.2907 37.9625 21.0982 37.9558C20.5891 37.9403 20.0823 37.8806 19.5732 37.8784C19.2191 37.8761 18.865 37.9403 18.6149 37.9669C18.4754 38.2391 18.4201 38.5158 18.2674 38.5932C18.1412 38.6552 17.869 38.5158 17.7118 38.3985C17.4839 38.2281 17.2669 38.02 17.1098 37.7832C16.9018 37.4689 16.7557 37.1148 16.5875 36.7761C16.282 36.1608 15.9677 35.5522 15.8571 34.8594C15.8283 34.6845 15.6712 34.534 15.5959 34.3636C15.2086 33.4894 14.8146 32.6173 14.4472 31.7342C14.1993 31.141 14.0001 30.5257 13.7544 29.9304C13.5929 29.5408 13.3848 29.1712 13.2033 28.7905C13.0417 28.4474 12.8802 28.1044 12.7363 27.7525C12.5482 27.2899 12.349 26.8273 12.2118 26.3492C12.1431 26.1036 12.1985 25.8225 12.1985 25.4993C12.0657 25.5237 11.8443 25.5724 11.6208 25.6011C11.5455 25.6122 11.4659 25.5768 11.3884 25.5591C11.1361 25.5015 10.886 25.4418 10.6337 25.3842C10.2817 25.3045 10.191 25.0035 10.1954 24.7291C10.1976 24.5697 10.3836 24.3661 10.5385 24.2665C10.7709 24.1204 10.6956 24.0253 10.6359 23.8061C10.5274 23.4033 10.2751 22.9872 10.5451 22.5313C10.596 22.445 10.4721 22.2657 10.4477 22.124C10.4101 21.9138 10.3924 21.6991 10.6182 21.6747C10.585 21.4954 10.5496 21.3361 10.5274 21.1745C10.4964 20.9488 10.4566 20.723 10.4522 20.495C10.4411 19.8355 10.4256 19.1737 10.4477 18.5141C10.4699 17.8346 10.5341 17.1574 10.5805 16.4646C10.4013 16.4159 10.2862 16.3938 10.1799 16.3539C9.9409 16.2654 9.74834 16.1304 9.78597 15.836C9.82359 15.5461 10.025 15.4155 10.2884 15.3579C10.4721 15.3181 10.6558 15.2761 10.8417 15.2473C11.0697 15.2097 11.2977 15.172 11.5256 15.1543C12.1099 15.1056 12.7562 14.8931 13.2675 15.0702C13.9271 15.296 14.518 15.0282 15.14 15.1101C15.7685 15.1919 16.4303 15.0259 17.0633 15.0968C17.8225 15.1809 18.5662 15.4 19.3187 15.5571C19.4161 15.5771 19.5245 15.5948 19.6197 15.5771C20.0402 15.4907 20.4563 15.3867 20.8746 15.2982C20.9853 15.2761 21.1048 15.2982 21.2177 15.2805C21.3594 15.2583 21.4966 15.2207 21.6338 15.1809C21.8042 15.13 21.968 15.0636 22.1384 15.0127C22.4085 14.9308 22.6807 14.8511 22.9529 14.7803C23.1721 14.7227 23.3934 14.674 23.6169 14.6342C24.0242 14.5612 24.4336 14.5147 24.8365 14.4239C24.9759 14.3929 25.0844 14.2336 25.2238 14.1849C25.9807 13.9171 26.7399 13.6648 27.5013 13.4102C27.7514 13.3283 28.0192 13.2907 28.256 13.1823C28.6788 12.9897 29.086 12.7595 29.4977 12.5426C29.5818 12.4984 29.6637 12.4076 29.7434 12.412C30.2104 12.4364 30.4627 12.0867 30.788 11.8565C30.9717 11.7259 31.1754 11.6197 31.3613 11.4913C31.8305 11.1615 32.3042 10.8339 32.7601 10.4887C32.9305 10.3581 33.0678 10.1788 33.2116 10.0172C33.6499 9.52145 34.1988 9.32668 34.845 9.41521C34.9336 9.42628 35.0464 9.49489 35.0863 9.57015C35.2634 9.90436 35.4559 10.2386 35.5666 10.5949C35.664 10.9158 35.6418 11.27 35.706 11.6042C35.841 12.2992 35.8034 12.9809 35.6772 13.6758C35.5909 14.1495 35.5998 14.6408 35.5666 15.1189C36.2239 15.1853 36.7264 15.4642 37.2575 15.6346C37.8994 15.8427 38.2535 16.3252 38.7471 16.6638C39.0968 16.9028 39.1101 17.33 39.2584 17.6731C39.4598 18.1423 39.6036 18.6425 39.7121 19.1449C39.9024 20.0192 40.0043 20.9023 39.7254 21.7876C39.6014 22.1816 39.5505 22.5999 39.4222 22.9939C39.3668 23.1643 39.2163 23.3148 39.0791 23.4409C38.8024 23.6933 38.5302 23.9699 38.2071 24.147C37.7954 24.3727 37.3461 24.583 36.8901 24.6627C36.4829 24.7335 36.0424 24.6206 35.5644 24.583C35.5444 24.8685 35.509 25.154 35.5112 25.4396C35.5135 25.8822 35.54 26.3249 35.5599 26.7698C35.5776 27.2191 35.6197 27.6706 35.6108 28.1199C35.6042 28.4961 35.5577 28.8746 35.5002 29.2487C35.4626 29.501 35.4714 29.6825 35.7016 29.8728C36.038 30.1517 36.3324 30.4859 36.6068 30.8268C36.6976 30.9374 36.671 31.1433 36.6976 31.3048C36.5316 31.2982 36.3457 31.3358 36.2018 31.2738C35.8964 31.1455 35.6131 30.9662 35.3032 30.7958C35.2346 31.068 35.1925 31.338 35.0907 31.5815C35.0332 31.7209 34.8871 31.8626 34.7499 31.9113C34.6879 31.9334 34.4865 31.7519 34.4511 31.6324C34.3227 31.2074 34.2497 30.767 34.1301 30.3398C34.0903 30.196 34.0018 30.0255 33.8822 29.9503C33.3201 29.5939 32.7535 29.2442 32.1647 28.9366C31.4587 28.567 30.7261 28.2505 30.0156 27.8941C29.6504 27.7104 29.3096 27.4824 28.9532 27.2855C28.6522 27.1217 28.3091 27.0132 28.0369 26.8118C27.5655 26.4621 26.9745 26.5329 26.4721 26.285C25.9763 26.0416 25.4363 25.8822 24.9051 25.7251C24.4801 25.5989 24.0352 25.5325 23.6014 25.4329C23.4886 25.4064 23.3801 25.3621 23.2694 25.3245C23.0791 25.2603 22.8954 25.1784 22.7006 25.1363C22.03 24.9903 21.3549 24.8641 20.6843 24.7224C20.2593 24.6339 20.1819 24.5166 20.0624 25.039C20.0026 25.2957 19.9428 25.5768 19.6263 25.6365C19.3939 25.6808 19.2014 25.4794 19.0243 25.0013C17.0412 25.4661 15.0094 25.6056 12.9244 25.4064C13.2963 25.9663 13.657 26.4466 13.947 26.969C14.2148 27.4515 14.4096 27.976 14.6331 28.4829C14.6552 28.536 14.6375 28.6289 14.6707 28.6489C15.1355 28.9344 15.1333 29.4943 15.4144 29.8883C15.5052 30.0167 15.5206 30.1982 15.5893 30.3465C15.9589 31.1565 16.3418 31.96 16.7026 32.7745C16.8531 33.1131 16.946 33.4783 17.0832 33.8236C17.2979 34.3725 17.5325 34.9125 17.7517 35.4592C17.8822 35.7823 18.0018 36.1099 18.1412 36.4729C18.679 36.3976 19.2368 36.2936 19.799 36.2516C20.2571 36.2184 20.7197 36.2604 21.1801 36.2693C21.2266 36.2693 21.2775 36.2892 21.3217 36.2781C22.2535 36.0457 22.9529 36.6079 23.7121 36.9687L23.7032 36.962ZM20.2638 23.6468C20.5781 23.6468 20.8724 23.6335 21.1646 23.649C21.6227 23.6756 22.0831 23.7818 22.5346 23.7464C23.1012 23.7021 23.5682 23.981 24.0817 24.0983C24.1371 24.1116 24.1703 24.2156 24.2079 24.2687C24.3916 24.2488 24.5797 24.178 24.7413 24.22C25.4872 24.4148 26.2331 24.6162 26.9612 24.8663C27.8842 25.1828 28.7983 25.5281 29.6969 25.9066C30.186 26.1124 30.6375 26.4112 31.1045 26.6746C31.7198 27.0199 32.3374 27.3607 32.9438 27.7215C33.3201 27.945 33.6764 28.1973 34.0837 28.4652C33.9177 28.0845 34.1633 27.7082 33.9509 27.3452C33.8867 27.2346 33.9818 26.9977 34.0549 26.8428C34.1567 26.6281 34.2098 26.4267 34.0438 26.2364C33.8225 25.9796 34.0637 25.7295 34.0328 25.475C33.9973 25.1917 33.973 24.9039 33.9796 24.6206C33.9929 24.0164 34.0505 23.4144 34.0527 22.8102C34.0549 22.1816 34.0106 21.553 33.9863 20.9244C33.9619 20.287 33.9332 19.6473 33.9132 19.0099C33.9022 18.7023 33.8867 18.3946 33.9044 18.0892C33.9332 17.5801 34.004 17.071 34.0239 16.562C34.0482 15.9445 34.0261 15.3247 34.0527 14.705C34.0814 14.0211 34.1346 13.3394 34.1988 12.6599C34.2364 12.2704 34.3205 11.8853 34.3847 11.4979C34.4112 11.343 34.4422 11.1903 34.471 11.0287C34.2098 11.2102 33.9752 11.3541 33.7605 11.5245C33.1098 12.0402 32.4901 12.5979 31.815 13.0782C31.182 13.5275 30.4472 13.8175 29.7743 14.2137C29.2697 14.5102 28.6854 14.6762 28.1276 14.8799C27.6451 15.0547 27.1516 15.1986 26.6624 15.3535C26.3083 15.4664 25.9586 15.5903 25.6001 15.6811C25.257 15.7674 24.9006 15.794 24.5576 15.8803C24.0375 16.0109 23.5306 16.2101 23.0061 16.3097C22.4394 16.4181 21.8573 16.4469 21.2797 16.5044C21.0672 16.5266 20.8503 16.5111 20.6422 16.5487C20.5581 16.5642 20.4298 16.6682 20.4231 16.739C20.3877 17.195 20.3678 17.6509 20.37 18.1091C20.3744 18.8306 20.4187 19.5522 20.4143 20.2715C20.4121 20.8469 20.277 21.4091 20.3589 22.0045C20.4298 22.5202 20.3036 23.0691 20.2638 23.6468ZM11.9971 16.6572C11.9971 17.1906 12.0059 17.6642 11.9926 18.1379C11.9838 18.4411 11.8443 18.7775 11.9351 19.0409C12.1542 19.6805 11.851 20.3025 11.9683 20.9355C12.0701 21.4888 12.1144 22.0576 12.1365 22.622C12.1498 22.9452 12.0568 23.2705 12.0303 23.5959C12.0214 23.6933 12.0767 23.7973 12.0967 23.8991C12.1343 24.0961 12.2295 24.0275 12.3468 23.9677C12.4132 23.9345 12.5061 23.9257 12.5814 23.9389C13.0794 24.0297 13.5641 24.0496 14.0731 23.9434C14.5224 23.8504 15.0005 23.8725 15.4653 23.8836C15.9036 23.8947 16.3529 24.0363 16.7756 23.9766C17.3931 23.888 17.9531 24.1027 18.5396 24.1669C18.8207 24.1979 18.8804 24.1492 18.8472 23.8548C18.7963 23.4122 18.6193 22.9762 18.7587 22.5158C18.7853 22.425 18.7565 22.3077 18.7299 22.2081C18.6281 21.854 18.6436 21.5176 18.8539 21.2232C18.8052 21.117 18.7255 21.0218 18.7277 20.9311C18.7432 20.3025 18.7742 19.6761 18.8074 19.0475C18.8362 18.5031 18.876 17.9608 18.8982 17.4163C18.9048 17.2791 18.8406 17.133 18.8605 17.0002C18.9004 16.7324 18.9756 16.4712 19.0398 16.1924C18.9269 16.1813 18.876 16.1614 18.834 16.1724C18.0261 16.4203 17.2382 16.7811 16.3573 16.5686C16.3174 16.5598 16.2687 16.5952 16.2223 16.6018C15.9788 16.6395 15.7353 16.697 15.4919 16.7014C15.0514 16.7081 14.611 16.6726 14.1705 16.6749C13.7279 16.6771 13.2852 16.7014 12.8448 16.7191C12.6765 16.7258 12.5083 16.7435 12.2427 16.7612C12.4242 16.604 12.5172 16.5266 12.6079 16.4469C12.588 16.4137 12.5659 16.3805 12.546 16.3473C12.3578 16.4557 12.1675 16.5598 11.9971 16.6572ZM38.2646 20.9156C38.1893 20.453 38.0942 19.9948 38.0455 19.53C37.9924 19.0188 37.8706 18.5318 37.6537 18.0692C37.5386 17.8236 37.4523 17.5292 37.2598 17.361C36.9211 17.0644 36.5249 16.8209 36.1221 16.6173C36.0225 16.5664 35.6972 16.3739 35.633 16.6771C35.5467 17.0755 35.5245 17.496 35.5334 17.9032C35.5467 18.4743 35.6308 19.0453 35.6551 19.6186C35.6684 19.9019 35.5998 20.1896 35.6042 20.4751C35.6131 20.9842 35.675 21.491 35.6662 21.9979C35.6573 22.4981 35.5799 22.9961 35.5533 23.4963C35.5444 23.6468 35.6064 23.8548 35.8167 23.7707C36.2881 23.5826 36.7905 23.4564 37.1845 23.0935C37.4811 22.8212 37.7511 22.5932 37.8773 22.1484C37.9924 21.7478 38.1517 21.3604 38.2646 20.9156Z"
-                                        fill="url(#paint0_linear_2037_86750)"
-                                      />
-                                      <path
-                                        d="M23.7124 36.9728C23.6283 36.7979 23.5663 36.6054 23.4556 36.4504C23.1436 36.0144 23.0617 35.4854 22.8293 35.0184C22.7097 34.7772 22.4862 34.5846 22.2604 34.3102C21.7381 34.4651 21.1693 34.6975 20.5805 34.7794C20.3349 34.8126 19.9918 34.578 19.7904 34.3721C19.5934 34.1663 19.631 33.821 19.8634 33.6285C19.9984 33.5156 20.2397 33.5134 20.4367 33.4934C20.897 33.4448 21.3596 33.416 21.7979 33.3806C21.6695 32.9578 21.5633 32.6103 21.4592 32.2606C21.3109 31.7604 21.0586 31.6475 20.5872 31.86C20.1091 32.0769 19.6155 31.9884 19.1308 31.8977C18.8564 31.8467 18.5554 31.8091 18.4358 31.4882C18.4049 31.4041 18.4004 31.3111 18.3827 31.2071C18.4403 31.123 18.5775 31.0123 18.5753 30.9017C18.5731 30.6073 18.7678 30.5453 18.9715 30.5165C19.5226 30.4391 20.0759 30.386 20.6005 30.3262C20.4212 29.733 20.2397 29.1288 20.0626 28.5379C19.6842 28.664 19.3787 28.8123 19.0556 28.8632C18.5487 28.9429 17.9888 29.1089 17.5882 28.6264C17.4908 28.5113 17.5527 28.2435 17.5771 28.0509C17.6147 27.7654 17.7918 27.5994 18.0884 27.5728C18.686 27.5197 19.2835 27.4666 19.8988 27.4091C19.8988 27.2231 19.8745 26.993 19.9077 26.7738C19.932 26.6145 20.0339 26.4662 20.1003 26.3135C20.2751 26.3909 20.5164 26.4219 20.6137 26.5569C20.8882 26.9354 21.1427 27.336 21.3309 27.7632C21.6695 28.5312 21.9639 29.3191 22.256 30.1049C22.4397 30.5962 22.5637 31.1097 22.7607 31.5944C22.8935 31.9176 23.1281 32.1942 23.2808 32.5107C23.5442 33.0552 23.7389 33.6373 24.0399 34.1597C24.3343 34.6687 24.4959 35.2154 24.6752 35.7599C24.7194 35.8905 24.6818 36.0476 24.6818 36.2468C24.9053 36.3243 24.8655 36.5323 24.746 36.7581C24.5933 37.048 24.3078 37.1786 23.9957 37.0901C23.8939 37.0613 23.7987 37.0082 23.7013 36.9661C23.7013 36.9617 23.7124 36.9728 23.7124 36.9728Z"
-                                        fill="url(#paint1_linear_2037_86750)"
-                                      />
-                                      <defs>
-                                        <linearGradient
-                                          id="paint0_linear_2037_86750"
-                                          x1="24.8393"
-                                          y1="9.39453"
-                                          x2="24.8393"
-                                          y2="38.6085"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#12566A" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#12566A"
-                                          />
-                                        </linearGradient>
-                                        <linearGradient
-                                          id="paint1_linear_2037_86750"
-                                          x1="21.1889"
-                                          y1="26.3135"
-                                          x2="21.1889"
-                                          y2="37.1174"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#12566A" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#12566A"
-                                          />
-                                        </linearGradient>
-                                      </defs>
-                                    </svg>
-                                  </div>
-                                  <div className="stat_texts-author">
-                                    <div className="text-size-regular">
-                                      collabs
-                                    </div>
-                                    <div>14</div>
-                                  </div>
-                                </div>
-                                <div className="stat-divider w-embed">
-                                  <svg
-                                    width={1}
-                                    height="100%"
-                                    viewBox="0 0 1 68"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <rect
-                                      width={1}
-                                      height={68}
-                                      fill="url(#paint0_linear_2037_86757)"
-                                    />
-                                    <defs>
-                                      <linearGradient
-                                        id="paint0_linear_2037_86757"
-                                        x1="0.5"
-                                        y1={0}
-                                        x2="0.5"
-                                        y2={68}
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stopColor="#12566A" />
-                                        <stop offset={1} stopColor="#12566A" />
-                                      </linearGradient>
-                                    </defs>
-                                  </svg>
-                                </div>
-                                <div className="author_stat-item">
-                                  <div className="stat-icon w-embed">
-                                    <svg
-                                      width="100%"
-                                      height="100%"
-                                      viewBox="0 0 48 48"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M23.7032 36.962C23.7497 37.1966 23.6546 37.3405 23.4731 37.5087C22.9397 38.0023 22.3133 37.9138 21.6825 37.8894C21.4877 37.8828 21.2907 37.9625 21.0982 37.9558C20.5891 37.9403 20.0823 37.8806 19.5732 37.8784C19.2191 37.8761 18.865 37.9403 18.6149 37.9669C18.4754 38.2391 18.4201 38.5158 18.2674 38.5932C18.1412 38.6552 17.869 38.5158 17.7118 38.3985C17.4839 38.2281 17.2669 38.02 17.1098 37.7832C16.9018 37.4689 16.7557 37.1148 16.5875 36.7761C16.282 36.1608 15.9677 35.5522 15.8571 34.8594C15.8283 34.6845 15.6712 34.534 15.5959 34.3636C15.2086 33.4894 14.8146 32.6173 14.4472 31.7342C14.1993 31.141 14.0001 30.5257 13.7544 29.9304C13.5929 29.5408 13.3848 29.1712 13.2033 28.7905C13.0417 28.4474 12.8802 28.1044 12.7363 27.7525C12.5482 27.2899 12.349 26.8273 12.2118 26.3492C12.1431 26.1036 12.1985 25.8225 12.1985 25.4993C12.0657 25.5237 11.8443 25.5724 11.6208 25.6011C11.5455 25.6122 11.4659 25.5768 11.3884 25.5591C11.1361 25.5015 10.886 25.4418 10.6337 25.3842C10.2817 25.3045 10.191 25.0035 10.1954 24.7291C10.1976 24.5697 10.3836 24.3661 10.5385 24.2665C10.7709 24.1204 10.6956 24.0253 10.6359 23.8061C10.5274 23.4033 10.2751 22.9872 10.5451 22.5313C10.596 22.445 10.4721 22.2657 10.4477 22.124C10.4101 21.9138 10.3924 21.6991 10.6182 21.6747C10.585 21.4954 10.5496 21.3361 10.5274 21.1745C10.4964 20.9488 10.4566 20.723 10.4522 20.495C10.4411 19.8355 10.4256 19.1737 10.4477 18.5141C10.4699 17.8346 10.5341 17.1574 10.5805 16.4646C10.4013 16.4159 10.2862 16.3938 10.1799 16.3539C9.9409 16.2654 9.74834 16.1304 9.78597 15.836C9.82359 15.5461 10.025 15.4155 10.2884 15.3579C10.4721 15.3181 10.6558 15.2761 10.8417 15.2473C11.0697 15.2097 11.2977 15.172 11.5256 15.1543C12.1099 15.1056 12.7562 14.8931 13.2675 15.0702C13.9271 15.296 14.518 15.0282 15.14 15.1101C15.7685 15.1919 16.4303 15.0259 17.0633 15.0968C17.8225 15.1809 18.5662 15.4 19.3187 15.5571C19.4161 15.5771 19.5245 15.5948 19.6197 15.5771C20.0402 15.4907 20.4563 15.3867 20.8746 15.2982C20.9853 15.2761 21.1048 15.2982 21.2177 15.2805C21.3594 15.2583 21.4966 15.2207 21.6338 15.1809C21.8042 15.13 21.968 15.0636 22.1384 15.0127C22.4085 14.9308 22.6807 14.8511 22.9529 14.7803C23.1721 14.7227 23.3934 14.674 23.6169 14.6342C24.0242 14.5612 24.4336 14.5147 24.8365 14.4239C24.9759 14.3929 25.0844 14.2336 25.2238 14.1849C25.9807 13.9171 26.7399 13.6648 27.5013 13.4102C27.7514 13.3283 28.0192 13.2907 28.256 13.1823C28.6788 12.9897 29.086 12.7595 29.4977 12.5426C29.5818 12.4984 29.6637 12.4076 29.7434 12.412C30.2104 12.4364 30.4627 12.0867 30.788 11.8565C30.9717 11.7259 31.1754 11.6197 31.3613 11.4913C31.8305 11.1615 32.3042 10.8339 32.7601 10.4887C32.9305 10.3581 33.0678 10.1788 33.2116 10.0172C33.6499 9.52145 34.1988 9.32668 34.845 9.41521C34.9336 9.42628 35.0464 9.49489 35.0863 9.57015C35.2634 9.90436 35.4559 10.2386 35.5666 10.5949C35.664 10.9158 35.6418 11.27 35.706 11.6042C35.841 12.2992 35.8034 12.9809 35.6772 13.6758C35.5909 14.1495 35.5998 14.6408 35.5666 15.1189C36.2239 15.1853 36.7264 15.4642 37.2575 15.6346C37.8994 15.8427 38.2535 16.3252 38.7471 16.6638C39.0968 16.9028 39.1101 17.33 39.2584 17.6731C39.4598 18.1423 39.6036 18.6425 39.7121 19.1449C39.9024 20.0192 40.0043 20.9023 39.7254 21.7876C39.6014 22.1816 39.5505 22.5999 39.4222 22.9939C39.3668 23.1643 39.2163 23.3148 39.0791 23.4409C38.8024 23.6933 38.5302 23.9699 38.2071 24.147C37.7954 24.3727 37.3461 24.583 36.8901 24.6627C36.4829 24.7335 36.0424 24.6206 35.5644 24.583C35.5444 24.8685 35.509 25.154 35.5112 25.4396C35.5135 25.8822 35.54 26.3249 35.5599 26.7698C35.5776 27.2191 35.6197 27.6706 35.6108 28.1199C35.6042 28.4961 35.5577 28.8746 35.5002 29.2487C35.4626 29.501 35.4714 29.6825 35.7016 29.8728C36.038 30.1517 36.3324 30.4859 36.6068 30.8268C36.6976 30.9374 36.671 31.1433 36.6976 31.3048C36.5316 31.2982 36.3457 31.3358 36.2018 31.2738C35.8964 31.1455 35.6131 30.9662 35.3032 30.7958C35.2346 31.068 35.1925 31.338 35.0907 31.5815C35.0332 31.7209 34.8871 31.8626 34.7499 31.9113C34.6879 31.9334 34.4865 31.7519 34.4511 31.6324C34.3227 31.2074 34.2497 30.767 34.1301 30.3398C34.0903 30.196 34.0018 30.0255 33.8822 29.9503C33.3201 29.5939 32.7535 29.2442 32.1647 28.9366C31.4587 28.567 30.7261 28.2505 30.0156 27.8941C29.6504 27.7104 29.3096 27.4824 28.9532 27.2855C28.6522 27.1217 28.3091 27.0132 28.0369 26.8118C27.5655 26.4621 26.9745 26.5329 26.4721 26.285C25.9763 26.0416 25.4363 25.8822 24.9051 25.7251C24.4801 25.5989 24.0352 25.5325 23.6014 25.4329C23.4886 25.4064 23.3801 25.3621 23.2694 25.3245C23.0791 25.2603 22.8954 25.1784 22.7006 25.1363C22.03 24.9903 21.3549 24.8641 20.6843 24.7224C20.2593 24.6339 20.1819 24.5166 20.0624 25.039C20.0026 25.2957 19.9428 25.5768 19.6263 25.6365C19.3939 25.6808 19.2014 25.4794 19.0243 25.0013C17.0412 25.4661 15.0094 25.6056 12.9244 25.4064C13.2963 25.9663 13.657 26.4466 13.947 26.969C14.2148 27.4515 14.4096 27.976 14.6331 28.4829C14.6552 28.536 14.6375 28.6289 14.6707 28.6489C15.1355 28.9344 15.1333 29.4943 15.4144 29.8883C15.5052 30.0167 15.5206 30.1982 15.5893 30.3465C15.9589 31.1565 16.3418 31.96 16.7026 32.7745C16.8531 33.1131 16.946 33.4783 17.0832 33.8236C17.2979 34.3725 17.5325 34.9125 17.7517 35.4592C17.8822 35.7823 18.0018 36.1099 18.1412 36.4729C18.679 36.3976 19.2368 36.2936 19.799 36.2516C20.2571 36.2184 20.7197 36.2604 21.1801 36.2693C21.2266 36.2693 21.2775 36.2892 21.3217 36.2781C22.2535 36.0457 22.9529 36.6079 23.7121 36.9687L23.7032 36.962ZM20.2638 23.6468C20.5781 23.6468 20.8724 23.6335 21.1646 23.649C21.6227 23.6756 22.0831 23.7818 22.5346 23.7464C23.1012 23.7021 23.5682 23.981 24.0817 24.0983C24.1371 24.1116 24.1703 24.2156 24.2079 24.2687C24.3916 24.2488 24.5797 24.178 24.7413 24.22C25.4872 24.4148 26.2331 24.6162 26.9612 24.8663C27.8842 25.1828 28.7983 25.5281 29.6969 25.9066C30.186 26.1124 30.6375 26.4112 31.1045 26.6746C31.7198 27.0199 32.3374 27.3607 32.9438 27.7215C33.3201 27.945 33.6764 28.1973 34.0837 28.4652C33.9177 28.0845 34.1633 27.7082 33.9509 27.3452C33.8867 27.2346 33.9818 26.9977 34.0549 26.8428C34.1567 26.6281 34.2098 26.4267 34.0438 26.2364C33.8225 25.9796 34.0637 25.7295 34.0328 25.475C33.9973 25.1917 33.973 24.9039 33.9796 24.6206C33.9929 24.0164 34.0505 23.4144 34.0527 22.8102C34.0549 22.1816 34.0106 21.553 33.9863 20.9244C33.9619 20.287 33.9332 19.6473 33.9132 19.0099C33.9022 18.7023 33.8867 18.3946 33.9044 18.0892C33.9332 17.5801 34.004 17.071 34.0239 16.562C34.0482 15.9445 34.0261 15.3247 34.0527 14.705C34.0814 14.0211 34.1346 13.3394 34.1988 12.6599C34.2364 12.2704 34.3205 11.8853 34.3847 11.4979C34.4112 11.343 34.4422 11.1903 34.471 11.0287C34.2098 11.2102 33.9752 11.3541 33.7605 11.5245C33.1098 12.0402 32.4901 12.5979 31.815 13.0782C31.182 13.5275 30.4472 13.8175 29.7743 14.2137C29.2697 14.5102 28.6854 14.6762 28.1276 14.8799C27.6451 15.0547 27.1516 15.1986 26.6624 15.3535C26.3083 15.4664 25.9586 15.5903 25.6001 15.6811C25.257 15.7674 24.9006 15.794 24.5576 15.8803C24.0375 16.0109 23.5306 16.2101 23.0061 16.3097C22.4394 16.4181 21.8573 16.4469 21.2797 16.5044C21.0672 16.5266 20.8503 16.5111 20.6422 16.5487C20.5581 16.5642 20.4298 16.6682 20.4231 16.739C20.3877 17.195 20.3678 17.6509 20.37 18.1091C20.3744 18.8306 20.4187 19.5522 20.4143 20.2715C20.4121 20.8469 20.277 21.4091 20.3589 22.0045C20.4298 22.5202 20.3036 23.0691 20.2638 23.6468ZM11.9971 16.6572C11.9971 17.1906 12.0059 17.6642 11.9926 18.1379C11.9838 18.4411 11.8443 18.7775 11.9351 19.0409C12.1542 19.6805 11.851 20.3025 11.9683 20.9355C12.0701 21.4888 12.1144 22.0576 12.1365 22.622C12.1498 22.9452 12.0568 23.2705 12.0303 23.5959C12.0214 23.6933 12.0767 23.7973 12.0967 23.8991C12.1343 24.0961 12.2295 24.0275 12.3468 23.9677C12.4132 23.9345 12.5061 23.9257 12.5814 23.9389C13.0794 24.0297 13.5641 24.0496 14.0731 23.9434C14.5224 23.8504 15.0005 23.8725 15.4653 23.8836C15.9036 23.8947 16.3529 24.0363 16.7756 23.9766C17.3931 23.888 17.9531 24.1027 18.5396 24.1669C18.8207 24.1979 18.8804 24.1492 18.8472 23.8548C18.7963 23.4122 18.6193 22.9762 18.7587 22.5158C18.7853 22.425 18.7565 22.3077 18.7299 22.2081C18.6281 21.854 18.6436 21.5176 18.8539 21.2232C18.8052 21.117 18.7255 21.0218 18.7277 20.9311C18.7432 20.3025 18.7742 19.6761 18.8074 19.0475C18.8362 18.5031 18.876 17.9608 18.8982 17.4163C18.9048 17.2791 18.8406 17.133 18.8605 17.0002C18.9004 16.7324 18.9756 16.4712 19.0398 16.1924C18.9269 16.1813 18.876 16.1614 18.834 16.1724C18.0261 16.4203 17.2382 16.7811 16.3573 16.5686C16.3174 16.5598 16.2687 16.5952 16.2223 16.6018C15.9788 16.6395 15.7353 16.697 15.4919 16.7014C15.0514 16.7081 14.611 16.6726 14.1705 16.6749C13.7279 16.6771 13.2852 16.7014 12.8448 16.7191C12.6765 16.7258 12.5083 16.7435 12.2427 16.7612C12.4242 16.604 12.5172 16.5266 12.6079 16.4469C12.588 16.4137 12.5659 16.3805 12.546 16.3473C12.3578 16.4557 12.1675 16.5598 11.9971 16.6572ZM38.2646 20.9156C38.1893 20.453 38.0942 19.9948 38.0455 19.53C37.9924 19.0188 37.8706 18.5318 37.6537 18.0692C37.5386 17.8236 37.4523 17.5292 37.2598 17.361C36.9211 17.0644 36.5249 16.8209 36.1221 16.6173C36.0225 16.5664 35.6972 16.3739 35.633 16.6771C35.5467 17.0755 35.5245 17.496 35.5334 17.9032C35.5467 18.4743 35.6308 19.0453 35.6551 19.6186C35.6684 19.9019 35.5998 20.1896 35.6042 20.4751C35.6131 20.9842 35.675 21.491 35.6662 21.9979C35.6573 22.4981 35.5799 22.9961 35.5533 23.4963C35.5444 23.6468 35.6064 23.8548 35.8167 23.7707C36.2881 23.5826 36.7905 23.4564 37.1845 23.0935C37.4811 22.8212 37.7511 22.5932 37.8773 22.1484C37.9924 21.7478 38.1517 21.3604 38.2646 20.9156Z"
-                                        fill="url(#paint0_linear_2037_86759)"
-                                      />
-                                      <path
-                                        d="M23.7124 36.9728C23.6283 36.7979 23.5663 36.6054 23.4556 36.4504C23.1436 36.0144 23.0617 35.4854 22.8293 35.0184C22.7097 34.7772 22.4862 34.5846 22.2604 34.3102C21.7381 34.4651 21.1693 34.6975 20.5805 34.7794C20.3349 34.8126 19.9918 34.578 19.7904 34.3721C19.5934 34.1663 19.631 33.821 19.8634 33.6285C19.9984 33.5156 20.2397 33.5134 20.4367 33.4934C20.897 33.4448 21.3596 33.416 21.7979 33.3806C21.6695 32.9578 21.5633 32.6103 21.4592 32.2606C21.3109 31.7604 21.0586 31.6475 20.5872 31.86C20.1091 32.0769 19.6155 31.9884 19.1308 31.8977C18.8564 31.8467 18.5554 31.8091 18.4358 31.4882C18.4049 31.4041 18.4004 31.3111 18.3827 31.2071C18.4403 31.123 18.5775 31.0123 18.5753 30.9017C18.5731 30.6073 18.7678 30.5453 18.9715 30.5165C19.5226 30.4391 20.0759 30.386 20.6005 30.3262C20.4212 29.733 20.2397 29.1288 20.0626 28.5379C19.6842 28.664 19.3787 28.8123 19.0556 28.8632C18.5487 28.9429 17.9888 29.1089 17.5882 28.6264C17.4908 28.5113 17.5527 28.2435 17.5771 28.0509C17.6147 27.7654 17.7918 27.5994 18.0884 27.5728C18.686 27.5197 19.2835 27.4666 19.8988 27.4091C19.8988 27.2231 19.8745 26.993 19.9077 26.7738C19.932 26.6145 20.0339 26.4662 20.1003 26.3135C20.2751 26.3909 20.5164 26.4219 20.6137 26.5569C20.8882 26.9354 21.1427 27.336 21.3309 27.7632C21.6695 28.5312 21.9639 29.3191 22.256 30.1049C22.4397 30.5962 22.5637 31.1097 22.7607 31.5944C22.8935 31.9176 23.1281 32.1942 23.2808 32.5107C23.5442 33.0552 23.7389 33.6373 24.0399 34.1597C24.3343 34.6687 24.4959 35.2154 24.6752 35.7599C24.7194 35.8905 24.6818 36.0476 24.6818 36.2468C24.9053 36.3243 24.8655 36.5323 24.746 36.7581C24.5933 37.048 24.3078 37.1786 23.9957 37.0901C23.8939 37.0613 23.7987 37.0082 23.7013 36.9661C23.7013 36.9617 23.7124 36.9728 23.7124 36.9728Z"
-                                        fill="url(#paint1_linear_2037_86759)"
-                                      />
-                                      <defs>
-                                        <linearGradient
-                                          id="paint0_linear_2037_86759"
-                                          x1="24.8393"
-                                          y1="9.39453"
-                                          x2="24.8393"
-                                          y2="38.6085"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#12566A" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#12566A"
-                                          />
-                                        </linearGradient>
-                                        <linearGradient
-                                          id="paint1_linear_2037_86759"
-                                          x1="21.1889"
-                                          y1="26.3135"
-                                          x2="21.1889"
-                                          y2="37.1174"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#12566A" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#12566A"
-                                          />
-                                        </linearGradient>
-                                      </defs>
-                                    </svg>
-                                  </div>
-                                  <div className="stat_texts-author">
-                                    <div className="text-size-regular">
-                                      Target customers reached
-                                    </div>
-                                    <div>3.8 Million</div>
-                                  </div>
-                                </div>
+                              <div className="nebius-popup-compact__role">
+                                Senior Digital Marketing Manager at Nebius
                               </div>
                             </div>
                           </div>
@@ -2689,21 +2354,19 @@ const SectionModals = () => {
                 >
                   <div className="modal-toggle outline">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef222acf48afc509e9512_PikaThumbnail.png"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       sizes="(max-width: 479px) 100vw, 286px"
                       alt="a logo of jam"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef222acf48afc509e9512_PikaThumbnail-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef222acf48afc509e9512_PikaThumbnail.png 572w"
                       className="modal-inside-img"
                     />
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef22f7b127f52d11e0eae_PikaThumbnail_Hover.png"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       sizes="(max-width: 479px) 100vw, 286px"
                       alt="testimonial-image-hover"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef22f7b127f52d11e0eae_PikaThumbnail_Hover-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/691ef22f7b127f52d11e0eae_PikaThumbnail_Hover.png 572w"
                       className="modal-inside-hover"
                     />
                   </div>
@@ -2714,7 +2377,7 @@ const SectionModals = () => {
                 >
                   <a href="#" className="modal-toggle w-inline-block">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/66f555f818b137c6a72e3f72_Frame%2053110.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="an image of gamma"
@@ -2793,15 +2456,11 @@ const SectionModals = () => {
                   <div className="popup-wrapper" style={{ display: "none" }}>
                     <div style={{ opacity: 0 }} className="popup-inner">
                       <div
-                        className="popup-content-wrapper red-gradient"
+                        className="popup-content-wrapper red-gradient guidde-popup-compact"
                         style={{
                           transform:
                             "translate3d(0px, 3em, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
                           transformStyle: "preserve-3d",
-                          backgroundColor: "#ee5968",
-                          height: "auto",
-                          maxHeight: "none",
-                          overflowY: "visible",
                         }}
                       >
                         <a href="#" className="popup-close w-inline-block">
@@ -2812,184 +2471,36 @@ const SectionModals = () => {
                             alt="close-icon"
                           />
                         </a>
-                        <div className="popup-content">
+                        <div className="popup-content guidde-popup-compact">
                           <div className="modal_img-wrap">
                             <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c43795f2c5a2a8214f583_guiide%20(1).webp"
+                              src="/images/trainer-clipboard-gym.jpg"
                               loading="lazy"
                               width={460}
                               sizes="(max-width: 479px) 100vw, (max-width: 991px) 460px, (max-width: 1279px) 32vw, 24vw"
                               alt="modal-img"
-                              srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c43795f2c5a2a8214f583_guiide%20(1)-p-500.webp 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c43795f2c5a2a8214f583_guiide%20(1)-p-800.webp 800w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/672c43795f2c5a2a8214f583_guiide%20(1).webp 920w"
                               className="modal_img-item"
-                              style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, objectFit: 'cover', objectPosition: 'top' }}
                             />
-
                           </div>
-                          <div
-                            className="modal_content-block"
-                            style={{ backgroundColor: '#ee5968' }}
-                          >
-                            <div className="modal-testimonial">
+                          <div className="modal_content-block guidde-popup-compact__body">
+                            <div className="modal-testimonial guidde-popup-compact__quote">
                               "Before using the platform, we spent countless
                               hours trying to find the right creators for our
                               niche—now, we've cut that time by over 50% while
                               doubling the effectiveness of our campaigns.
-                              Passionfroot's user-friendly interface made it
+                              Supreme Coach's user-friendly interface made it
                               easy for us to book, communicate, and track
                               results seamlessly. Thanks to the platform, we've
                               scaled our outreach and boosted signups in just six
                               months. For marketers looking to maximize ROI, Passionfroot is
                               an absolute game-changer."
                             </div>
-                            <div className="testimonial_modal-details">
-                              <div className="inside_modal-name-wrap">
-                                <div className="modal-testimonial">
-                                  Moran Altarac
-                                </div>
-                                <div>VP Marketing at guidde.com</div>
+                            <div className="guidde-popup-compact__meta">
+                              <div className="modal-testimonial guidde-popup-compact__name">
+                                Moran Altarac
                               </div>
-                              <div className="testimonial_author-stats">
-                                <div className="author_stat-item">
-                                  <div className="stat-icon w-embed">
-                                    <svg
-                                      width="100%"
-                                      height="100%"
-                                      viewBox="0 0 64 64"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M31.6056 49.283C31.6676 49.5959 31.5407 49.7877 31.2987 50.012C30.5875 50.67 29.7524 50.552 28.9113 50.5195C28.6516 50.5107 28.389 50.6169 28.1322 50.6081C27.4535 50.5874 26.7777 50.5077 26.0989 50.5048C25.6267 50.5018 25.1546 50.5874 24.8211 50.6228C24.6352 50.9858 24.5614 51.3547 24.3578 51.458C24.1896 51.5406 23.8266 51.3547 23.6171 51.1983C23.3131 50.9711 23.0239 50.6937 22.8144 50.3779C22.537 49.9588 22.3422 49.4867 22.1179 49.0352C21.7107 48.2148 21.2916 47.4032 21.1441 46.4795C21.1057 46.2464 20.8962 46.0457 20.7958 45.8185C20.2794 44.6528 19.7541 43.4901 19.2642 42.3126C18.9337 41.5217 18.6681 40.7013 18.3405 39.9075C18.1251 39.3881 17.8477 38.8953 17.6057 38.3877C17.3903 37.9303 17.1749 37.4728 16.983 37.0036C16.7322 36.3868 16.4666 35.7701 16.2836 35.1326C16.1922 34.8051 16.2659 34.4303 16.2659 33.9994C16.0889 34.0319 15.7938 34.0968 15.4957 34.1352C15.3954 34.1499 15.2891 34.1027 15.1858 34.0791C14.8494 34.0024 14.5159 33.9227 14.1795 33.846C13.7103 33.7397 13.5893 33.3384 13.5952 32.9724C13.5982 32.76 13.8461 32.4885 14.0526 32.3557C14.3625 32.1609 14.2622 32.034 14.1825 31.7418C14.0379 31.2047 13.7014 30.6499 14.0615 30.042C14.1294 29.9269 13.9641 29.6879 13.9316 29.499C13.8815 29.2187 13.8579 28.9324 14.1589 28.9C14.1146 28.6609 14.0674 28.4484 14.0379 28.233C13.9966 27.932 13.9434 27.631 13.9375 27.327C13.9228 26.4476 13.9021 25.5652 13.9316 24.6858C13.9611 23.7798 14.0467 22.8768 14.1087 21.9531C13.8697 21.8882 13.7162 21.8587 13.5746 21.8056C13.2558 21.6875 12.9991 21.5075 13.0493 21.115C13.0994 20.7284 13.368 20.5543 13.7192 20.4776C13.9641 20.4245 14.209 20.3684 14.4569 20.33C14.7609 20.2799 15.0648 20.2297 15.3688 20.2061C16.1479 20.1412 17.0096 19.8579 17.6913 20.0939C18.5707 20.395 19.3587 20.0379 20.1879 20.1471C21.026 20.2563 21.9084 20.0349 22.7524 20.1294C23.7646 20.2415 24.7562 20.5337 25.7595 20.7432C25.8894 20.7697 26.034 20.7933 26.1609 20.7697C26.7216 20.6546 27.2764 20.5159 27.8342 20.3979C27.9817 20.3684 28.1411 20.3979 28.2916 20.3743C28.4804 20.3448 28.6634 20.2946 28.8464 20.2415C29.0736 20.1736 29.292 20.0851 29.5192 20.0172C29.8792 19.908 30.2422 19.8018 30.6052 19.7074C30.8974 19.6306 31.1925 19.5657 31.4905 19.5126C32.0335 19.4152 32.5795 19.3532 33.1166 19.2322C33.3025 19.1909 33.4471 18.9784 33.633 18.9135C34.6423 18.5564 35.6545 18.22 36.6697 17.8806C37.0031 17.7714 37.3602 17.7213 37.676 17.5767C38.2397 17.3199 38.7826 17.013 39.3315 16.7238C39.4437 16.6648 39.5529 16.5438 39.6591 16.5497C40.2818 16.5822 40.6182 16.1159 41.052 15.809C41.297 15.6349 41.5685 15.4932 41.8164 15.3221C42.442 14.8823 43.0735 14.4456 43.6814 13.9852C43.9087 13.8111 44.0916 13.5721 44.2835 13.3566C44.8678 12.6956 45.5996 12.4359 46.4613 12.5539C46.5794 12.5687 46.7299 12.6602 46.783 12.7605C47.0191 13.2061 47.2758 13.6517 47.4234 14.1269C47.5532 14.5548 47.5237 15.0269 47.6093 15.4726C47.7893 16.3992 47.7392 17.3081 47.571 18.2348C47.4559 18.8663 47.4677 19.5214 47.4234 20.1589C48.2999 20.2474 48.9698 20.6192 49.678 20.8465C50.5338 21.1239 51.006 21.7672 51.6641 22.2187C52.1304 22.5374 52.1481 23.107 52.3458 23.5644C52.6143 24.19 52.8062 24.857 52.9508 25.5269C53.2046 26.6926 53.3403 27.87 52.9685 29.0505C52.8032 29.5758 52.7353 30.1335 52.5642 30.6588C52.4904 30.886 52.2897 31.0867 52.1068 31.2549C51.7379 31.5913 51.3749 31.9602 50.944 32.1963C50.3951 32.4973 49.7961 32.7777 49.1881 32.8839C48.6451 32.9783 48.0579 32.8278 47.4204 32.7777C47.3939 33.1584 47.3467 33.539 47.3496 33.9197C47.3526 34.51 47.388 35.1002 47.4145 35.6933C47.4382 36.2924 47.4942 36.8944 47.4824 37.4935C47.4736 37.9952 47.4116 38.4998 47.3349 38.9985C47.2847 39.335 47.2965 39.577 47.6034 39.8307C48.052 40.2026 48.4445 40.6482 48.8104 41.1027C48.9314 41.2502 48.896 41.5247 48.9314 41.7401C48.7101 41.7312 48.4622 41.7814 48.2704 41.6988C47.8631 41.5276 47.4854 41.2886 47.0722 41.0613C46.9807 41.4243 46.9247 41.7844 46.7889 42.109C46.7122 42.2949 46.5174 42.4838 46.3345 42.5487C46.2518 42.5782 45.9833 42.3362 45.9361 42.1768C45.7649 41.6102 45.6675 41.023 45.5082 40.4534C45.455 40.2616 45.337 40.0344 45.1776 39.934C44.4281 39.4589 43.6726 38.9926 42.8876 38.5824C41.9462 38.0896 40.9694 37.6676 40.0221 37.1925C39.5352 36.9475 39.0807 36.6436 38.6056 36.3809C38.2042 36.1626 37.7468 36.018 37.3838 35.7494C36.7553 35.2831 35.9673 35.3776 35.2974 35.0471C34.6364 34.7224 33.9163 34.51 33.2081 34.3004C32.6415 34.1322 32.0483 34.0437 31.4699 33.9109C31.3194 33.8755 31.1748 33.8165 31.0272 33.7663C30.7734 33.6807 30.5285 33.5715 30.2688 33.5154C29.3746 33.3207 28.4745 33.1525 27.5804 32.9636C27.0138 32.8455 26.9105 32.6891 26.7511 33.3856C26.6714 33.7279 26.5918 34.1027 26.1697 34.1824C25.8599 34.2414 25.6031 33.9729 25.3671 33.3354C22.7229 33.9552 20.0138 34.1411 17.2339 33.8755C17.7297 34.6221 18.2107 35.2625 18.5973 35.9589C18.9544 36.6023 19.2141 37.3017 19.5121 37.9775C19.5416 38.0483 19.518 38.1722 19.5623 38.1988C20.182 38.5795 20.1791 39.3261 20.5538 39.8514C20.6748 40.0226 20.6955 40.2646 20.787 40.4623C21.2798 41.5424 21.7903 42.6136 22.2714 43.6996C22.472 44.1511 22.596 44.6381 22.779 45.0984C23.0652 45.8303 23.378 46.5503 23.6702 47.2793C23.8443 47.7101 24.0037 48.1469 24.1896 48.6309C24.9067 48.5305 25.6504 48.3918 26.3999 48.3357C27.0108 48.2915 27.6276 48.3475 28.2414 48.3594C28.3034 48.3594 28.3712 48.3859 28.4303 48.3712C29.6727 48.0613 30.6052 48.8109 31.6174 49.2919L31.6056 49.283ZM27.0197 31.5294C27.4387 31.5294 27.8312 31.5117 28.2207 31.5323C28.8316 31.5677 29.4454 31.7094 30.0475 31.6622C30.8029 31.6031 31.4256 31.975 32.1103 32.1314C32.184 32.1491 32.2283 32.2878 32.2785 32.3586C32.5234 32.3321 32.7743 32.2376 32.9897 32.2937C33.9842 32.5534 34.9787 32.8219 35.9496 33.1554C37.1802 33.5774 38.399 34.0378 39.5971 34.5424C40.2493 34.8169 40.8514 35.2153 41.474 35.5664C42.2944 36.0268 43.1178 36.4813 43.9264 36.9623C44.4281 37.2604 44.9032 37.5968 45.4462 37.9539C45.2248 37.4463 45.5524 36.9446 45.2691 36.4606C45.1835 36.3131 45.3104 35.9973 45.4078 35.7907C45.5436 35.5045 45.6144 35.2359 45.3931 34.9821C45.098 34.6398 45.4196 34.3063 45.3783 33.967C45.3311 33.5892 45.2986 33.2056 45.3075 32.8278C45.3252 32.0222 45.4019 31.2195 45.4049 30.4139C45.4078 29.5758 45.3488 28.7376 45.3163 27.8995C45.2839 27.0496 45.2455 26.1968 45.2189 25.3469C45.2042 24.9367 45.1835 24.5265 45.2071 24.1192C45.2455 23.4405 45.3399 22.7617 45.3665 22.083C45.399 21.2596 45.3694 20.4333 45.4049 19.607C45.4432 18.6951 45.5141 17.7862 45.5996 16.8802C45.6498 16.3608 45.7619 15.8473 45.8475 15.3309C45.8829 15.1243 45.9243 14.9207 45.9626 14.7053C45.6144 14.9473 45.3016 15.1391 45.0153 15.3663C44.1477 16.0539 43.3214 16.7976 42.4213 17.438C41.5773 18.037 40.5976 18.4236 39.7004 18.9519C39.0276 19.3473 38.2485 19.5687 37.5048 19.8402C36.8615 20.0733 36.2034 20.2651 35.5512 20.4717C35.079 20.6222 34.6128 20.7874 34.1347 20.9084C33.6773 21.0235 33.2022 21.0589 32.7447 21.174C32.0512 21.3482 31.3754 21.6137 30.676 21.7465C29.9206 21.8912 29.1444 21.9295 28.3742 22.0062C28.0909 22.0358 27.8017 22.0151 27.5243 22.0653C27.4121 22.0859 27.241 22.2246 27.2321 22.3191C27.1849 22.927 27.1584 23.5349 27.1613 24.1458C27.1672 25.1078 27.2262 26.0699 27.2203 27.029C27.2174 27.7963 27.0374 28.5458 27.1466 29.3397C27.241 30.0273 27.0728 30.7591 27.0197 31.5294ZM15.9974 22.2099C15.9974 22.9211 16.0092 23.5526 15.9915 24.1841C15.9797 24.5884 15.7938 25.037 15.9148 25.3882C16.2069 26.241 15.8026 27.0703 15.959 27.9143C16.0948 28.6521 16.1538 29.4105 16.1833 30.163C16.201 30.5939 16.0771 31.0277 16.0417 31.4615C16.0298 31.5913 16.1036 31.73 16.1302 31.8658C16.1804 32.1284 16.3072 32.037 16.4637 31.9573C16.5522 31.913 16.6761 31.9012 16.7765 31.9189C17.4405 32.0399 18.0867 32.0665 18.7655 31.9248C19.3646 31.8009 20.002 31.8304 20.6217 31.8451C21.206 31.8599 21.8051 32.0488 22.3688 31.9691C23.1921 31.851 23.9387 32.1373 24.7208 32.2229C25.0956 32.2642 25.1752 32.1993 25.131 31.8068C25.0631 31.2166 24.827 30.6352 25.0129 30.0214C25.0483 29.9004 25.01 29.744 24.9746 29.6112C24.8388 29.139 24.8595 28.6904 25.1398 28.2979C25.0749 28.1563 24.9687 28.0294 24.9716 27.9084C24.9923 27.0703 25.0336 26.2351 25.0778 25.397C25.1162 24.6711 25.1693 23.9481 25.1988 23.2221C25.2077 23.0391 25.1221 22.8443 25.1487 22.6673C25.2018 22.3102 25.3021 21.962 25.3877 21.5901C25.2372 21.5754 25.1693 21.5488 25.1133 21.5636C24.0361 21.8941 22.9855 22.3751 21.811 22.0918C21.7579 22.08 21.693 22.1272 21.631 22.1361C21.3064 22.1863 20.9818 22.263 20.6571 22.2689C20.0699 22.2777 19.4826 22.2305 18.8953 22.2335C18.3051 22.2364 17.7149 22.2689 17.1276 22.2925C16.9034 22.3014 16.6791 22.325 16.325 22.3486C16.5669 22.139 16.6909 22.0358 16.8119 21.9295C16.7853 21.8852 16.7558 21.841 16.7293 21.7967C16.4784 21.9413 16.2246 22.08 15.9974 22.2099ZM51.0208 27.8877C50.9204 27.271 50.7935 26.6601 50.7286 26.0404C50.6578 25.3587 50.4955 24.7094 50.2063 24.0927C50.0528 23.7651 49.9377 23.3726 49.681 23.1483C49.2295 22.7529 48.7012 22.4282 48.1641 22.1567C48.0313 22.0889 47.5975 21.8321 47.5119 22.2364C47.3968 22.7676 47.3673 23.3283 47.3791 23.8713C47.3968 24.6327 47.509 25.3941 47.5414 26.1584C47.5592 26.5361 47.4677 26.9198 47.4736 27.3005C47.4854 27.9792 47.568 28.655 47.5562 29.3308C47.5444 29.9978 47.4411 30.6618 47.4057 31.3287C47.3939 31.5294 47.4765 31.8068 47.7569 31.6946C48.3855 31.4438 49.0553 31.2756 49.5806 30.7916C49.9761 30.4286 50.3361 30.1247 50.5043 29.5315C50.6578 28.9973 50.8703 28.4809 51.0208 27.8877Z"
-                                        fill="url(#paint0_linear_1197_48806)"
-                                      />
-                                      <path
-                                        d="M31.6191 49.2978C31.507 49.0647 31.4243 48.808 31.2768 48.6014C30.8607 48.02 30.7515 47.3147 30.4416 46.692C30.2823 46.3704 29.9842 46.1136 29.6832 45.7477C28.9867 45.9543 28.2283 46.2641 27.4433 46.3733C27.1158 46.4176 26.6583 46.1048 26.3898 45.8303C26.1272 45.5559 26.1773 45.0955 26.4872 44.8388C26.6672 44.6883 26.9889 44.6853 27.2515 44.6587C27.8653 44.5938 28.4821 44.5555 29.0664 44.5082C28.8953 43.9446 28.7536 43.4813 28.6149 43.015C28.4172 42.348 28.0808 42.1975 27.4522 42.4808C26.8148 42.7701 26.1567 42.652 25.5104 42.531C25.1444 42.4631 24.7431 42.413 24.5837 41.9851C24.5424 41.8729 24.5365 41.749 24.5129 41.6103C24.5896 41.4981 24.7726 41.3506 24.7697 41.203C24.7667 40.8105 25.0264 40.7279 25.2979 40.6895C26.0327 40.5863 26.7705 40.5154 27.4699 40.4358C27.2309 39.6449 26.9889 38.8392 26.7528 38.0513C26.2481 38.2195 25.8409 38.4172 25.41 38.4851C24.7342 38.5913 23.9876 38.8127 23.4535 38.1693C23.3236 38.0159 23.4063 37.6588 23.4387 37.402C23.4889 37.0214 23.725 36.8 24.1204 36.7646C24.9172 36.6938 25.714 36.623 26.5344 36.5462C26.5344 36.2983 26.5019 35.9914 26.5462 35.6993C26.5787 35.4868 26.7144 35.2891 26.8029 35.0854C27.0361 35.1887 27.3578 35.2301 27.4876 35.4101C27.8535 35.9147 28.1929 36.4488 28.4437 37.0184C28.8953 38.0424 29.2878 39.093 29.6773 40.1406C29.9222 40.7958 30.0875 41.4804 30.3501 42.1267C30.5272 42.5576 30.84 42.9265 31.0436 43.3485C31.3948 44.0744 31.6545 44.8506 32.0559 45.547C32.4484 46.2258 32.6638 46.9547 32.9028 47.6806C32.9618 47.8548 32.9117 48.0643 32.9117 48.3299C33.2097 48.4332 33.1566 48.7106 32.9973 49.0116C32.7936 49.3982 32.4129 49.5723 31.9968 49.4542C31.8611 49.4159 31.7342 49.3451 31.6043 49.289C31.6043 49.2831 31.6191 49.2978 31.6191 49.2978Z"
-                                        fill="url(#paint1_linear_1197_48806)"
-                                      />
-                                      <defs>
-                                        <linearGradient
-                                          id="paint0_linear_1197_48806"
-                                          x1="33.1203"
-                                          y1="12.5264"
-                                          x2="33.1203"
-                                          y2="51.4783"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#740612" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#830714"
-                                          />
-                                        </linearGradient>
-                                        <linearGradient
-                                          id="paint1_linear_1197_48806"
-                                          x1="28.2545"
-                                          y1="35.0854"
-                                          x2="28.2545"
-                                          y2="49.4907"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#740612" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#830714"
-                                          />
-                                        </linearGradient>
-                                      </defs>
-                                    </svg>
-                                  </div>
-                                  <div className="stat_texts-author">
-                                    <div className="text-size-regular">
-                                      collabs
-                                    </div>
-                                    <div>41</div>
-                                  </div>
-                                </div>
-                                <div className="stat-divider w-embed">
-                                  <svg
-                                    width={1}
-                                    height="100%"
-                                    viewBox="0 0 1 68"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <rect
-                                      width={1}
-                                      height={68}
-                                      fill="url(#paint0_linear_2037_86410)"
-                                    />
-                                    <defs>
-                                      <linearGradient
-                                        id="paint0_linear_2037_86410"
-                                        x1="0.5"
-                                        y1={0}
-                                        x2="0.5"
-                                        y2={68}
-                                        gradientUnits="userSpaceOnUse"
-                                      >
-                                        <stop stopColor="#740612" />
-                                        <stop offset={1} stopColor="#830714" />
-                                      </linearGradient>
-                                    </defs>
-                                  </svg>
-                                </div>
-                                <div className="author_stat-item">
-                                  <div className="stat-icon w-embed">
-                                    <svg
-                                      width="100%"
-                                      height="100%"
-                                      viewBox="0 0 48 48"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M34.4 28.2918C34.5416 28.2277 34.6169 28.1701 34.6988 28.1591C35.2388 28.0904 35.2344 28.0927 35.2056 27.5415C35.1857 27.1586 35.1569 26.7713 35.1724 26.3884C35.1879 26.0232 35.2587 25.6624 35.2964 25.2972C35.3362 24.9232 35.303 24.5292 35.4137 24.1795C35.5509 23.7435 35.407 23.2367 35.7567 22.856C35.9449 22.6523 36.175 22.5992 36.4384 22.6125C36.7084 22.6258 36.7771 22.8582 36.8944 23.0264C37.1555 23.4004 37.0936 23.8542 37.129 24.2703C37.1555 24.5779 37.0382 24.8988 36.9984 25.2154C36.9807 25.3548 36.994 25.4964 36.994 25.6381C36.994 25.6824 37.0006 25.7333 36.9829 25.7731C36.839 26.1361 36.7925 26.5035 36.8435 26.8975C36.8789 27.1631 36.8235 27.4397 36.8213 27.7097C36.8191 27.9134 36.8103 28.1214 36.8479 28.3206C36.9608 28.9271 36.4274 29.5977 35.8032 29.622C35.396 29.6375 34.9909 29.673 34.608 29.6973C34.5682 30.0381 34.4509 30.3679 34.5128 30.6623C34.6147 31.1448 34.5283 31.6184 34.5593 32.0921C34.5859 32.4839 34.5969 32.8756 34.6279 33.2652C34.6346 33.3581 34.7143 33.4422 34.732 33.5374C34.7807 33.8207 34.8493 34.1018 34.7231 34.3939C34.6678 34.5201 34.7187 34.6883 34.6988 34.8322C34.67 35.0402 34.6567 35.2593 34.577 35.4475C34.4398 35.775 34.0746 35.9034 33.7515 35.7529C33.3863 35.5825 33.083 35.775 32.7533 35.8702C32.3305 35.9897 31.9011 36.0982 31.4651 36.1624C31.3013 36.1867 31.1198 36.0672 30.9251 36.0097C30.8454 36.2421 30.7082 36.3416 30.4315 36.2398C30.3076 36.1934 30.1371 36.2752 29.9866 36.2974C29.8915 36.3107 29.7963 36.3195 29.7011 36.3239C29.4289 36.3328 29.1566 36.3416 28.8844 36.3439C28.3532 36.3483 27.8198 36.262 27.2952 36.4678C27.1425 36.5276 26.93 36.4258 26.7463 36.4258C26.3612 36.4302 25.9606 36.5342 25.5976 36.4523C24.9226 36.3018 24.2785 36.6449 23.599 36.4767C23.2825 36.3992 22.9151 36.5586 22.5698 36.563C22.0276 36.5674 21.4831 36.5342 20.9386 36.5143C20.6863 36.5054 20.4362 36.4922 20.1839 36.47C19.9825 36.4523 19.7811 36.4191 19.5797 36.397C19.5332 36.3926 19.4756 36.3771 19.4424 36.3992C18.9865 36.6869 18.4973 36.5873 18.0038 36.5519C17.5655 36.5187 17.1207 36.5519 16.678 36.5519C16.5961 36.5519 16.5142 36.5386 16.4323 36.532C16.0162 36.4966 15.6001 36.4457 15.1818 36.4346C14.9693 36.428 14.748 36.5386 14.54 36.5187C14.0088 36.4656 13.4886 36.3328 12.9397 36.4169C12.6188 36.4678 12.2802 36.4302 11.9548 36.397C11.7512 36.3771 11.5542 36.2465 11.355 36.242C11.0628 36.2354 10.8083 36.2133 10.5715 36.0052C10.4586 35.9056 10.2594 35.9012 10.0978 35.8614C9.90971 35.8149 9.72601 35.7064 9.75257 35.5183C9.77028 35.401 9.95398 35.2438 10.0868 35.2173C10.2993 35.1775 10.3148 35.0513 10.3103 34.9074C10.3015 34.644 10.2638 34.3829 10.2439 34.1195C10.2284 33.9026 10.2063 33.6835 10.224 33.4688C10.2351 33.3183 10.3568 33.1722 10.3457 33.0283C10.3236 32.734 10.3502 32.4728 10.4741 32.1939C10.5317 32.0633 10.3789 31.8508 10.3634 31.6694C10.3302 31.3263 10.2284 30.9921 10.4232 30.6335C10.5272 30.441 10.452 30.1488 10.4542 29.9031C10.4564 29.7305 10.4343 29.5579 10.452 29.3874C10.5471 28.4379 10.5649 27.4928 10.4608 26.5433C10.4365 26.3264 10.5516 26.0962 10.6047 25.8705C10.618 25.8107 10.6689 25.7266 10.6445 25.6979C10.2816 25.2397 10.5405 24.7395 10.5383 24.257C10.5383 24.0268 10.5272 23.7988 10.5272 23.5687C10.5294 23.0884 10.5405 22.6103 10.5383 22.13C10.5383 22.0016 10.4807 21.8733 10.4874 21.7449C10.4985 21.5302 10.525 21.3133 10.5715 21.1052C10.6423 20.7887 10.753 20.4811 10.6158 20.1535C10.5981 20.1093 10.6313 20.0451 10.6335 19.9897C10.6467 19.7529 10.66 19.5139 10.6711 19.277C10.6866 18.9384 10.6622 18.5931 10.722 18.2656C10.8105 17.7941 10.9234 17.3161 11.2288 16.9265C11.3107 16.8225 11.459 16.7428 11.5896 16.7118C11.791 16.6631 11.9703 16.6631 12.0478 16.3953C12.0854 16.2647 12.2824 16.1718 12.4196 16.0788C12.6741 15.9084 12.9331 15.7402 13.2009 15.5941C13.586 15.3838 13.9911 15.2068 14.3717 14.9899C14.7436 14.7796 15.0911 14.5273 15.4585 14.3104C15.6023 14.2241 15.7794 14.1953 15.9299 14.1178C16.0583 14.0536 16.1667 13.9496 16.2929 13.8788C16.4213 13.808 16.5607 13.7615 16.6935 13.6995C16.906 13.5999 17.1162 13.4959 17.3287 13.3985C17.7249 13.2148 18.1189 13.0311 18.5173 12.8585C18.5859 12.8297 18.6766 12.854 18.774 12.854C18.898 12.4224 19.2277 12.2586 19.6483 12.1945C19.7523 12.179 19.8298 12.0329 19.936 11.9776C20.2392 11.8248 20.5535 11.6965 20.8589 11.5482C21.233 11.3645 21.5916 11.1454 21.9767 10.9882C22.4038 10.8156 22.8554 10.7005 23.2892 10.5478C23.3622 10.5212 23.4441 10.4371 23.4662 10.3641C23.5348 10.125 23.5481 9.85057 23.8358 9.76204C23.9465 9.72884 24.0793 9.77532 24.2033 9.77089C24.3405 9.76425 24.9027 10.1206 24.9691 10.2534C24.9978 10.3132 25.0576 10.3574 25.1063 10.4039C25.5622 10.8355 25.819 11.38 25.965 11.9776C25.9938 12.0927 25.965 12.2387 25.9186 12.3538C25.8544 12.5132 25.7371 12.6017 25.5423 12.5043C25.3099 12.3892 25.062 12.3029 24.8274 12.1945C24.7455 12.1568 24.668 12.0971 24.6105 12.0307C24.4379 11.8293 24.2785 11.6212 24.1059 11.4065C23.7053 11.6035 23.3622 11.8071 23.1475 12.1922C23.09 12.2963 22.9417 12.3605 22.8222 12.4158C22.3839 12.615 21.9302 12.781 21.5008 13.0001C20.5712 13.4715 19.6527 13.9629 18.732 14.4542C18.4973 14.5782 18.2937 14.7885 18.0458 14.8549C17.5058 15.0031 17.083 15.3462 16.6116 15.6074C16.4368 15.7048 16.2508 15.7822 16.0693 15.8663C16.0848 15.904 16.1003 15.9416 16.1158 15.977C16.3128 15.9172 16.5098 15.8531 16.709 15.8022C17.4969 15.6007 18.2849 15.3993 19.075 15.2068C19.2388 15.1669 19.4159 15.1758 19.5819 15.1448C19.9028 15.0828 20.2171 14.9943 20.538 14.939C20.6332 14.9235 20.7416 14.9788 20.828 14.9633C21.0205 14.9168 21.2175 14.8792 21.4056 14.8217C21.5097 14.7907 21.6004 14.7066 21.7044 14.6778C22.3131 14.5052 22.9218 14.3347 23.5348 14.1776C24.2719 13.9895 25.0111 13.8124 25.7481 13.6353C25.8654 13.6066 25.9894 13.5999 26.1067 13.5756C26.5494 13.4826 26.9898 13.3808 27.4325 13.2945C27.6914 13.2436 27.9592 13.2613 28.1983 13.0909C28.289 13.0267 28.4661 13.0886 28.6011 13.0754C29.1788 13.02 29.7564 12.916 30.3341 12.916C30.6373 12.916 30.9538 13.0665 31.2349 13.2059C31.3412 13.2591 31.3699 13.4715 31.4275 13.6154C31.6001 14.0514 31.7706 14.4897 31.9432 14.9279C31.9742 15.0054 32.0096 15.0828 32.0561 15.1514C32.3017 15.5056 32.2995 15.7667 32.0384 16.112C31.9852 16.1806 31.9343 16.2515 31.8834 16.3201C31.8945 16.3511 31.9034 16.3798 31.9144 16.4108C32.4545 16.4263 32.9923 16.4352 33.5323 16.4573C33.6983 16.4639 33.8688 16.4905 34.0259 16.5436C34.4287 16.6764 34.5815 16.9841 34.5372 17.4621C34.5195 17.6503 34.577 17.8428 34.5726 18.0332C34.5483 18.7569 34.504 19.4785 34.4841 20.2022C34.4664 20.7821 34.4774 21.362 34.4597 21.9419C34.4553 22.0614 34.4 22.1831 34.3491 22.296C34.2959 22.4199 34.2229 22.4886 34.4509 22.5262C34.7563 22.5771 34.9776 23.0308 34.9002 23.3473C34.8869 23.3982 34.8581 23.4558 34.8205 23.4868C34.5018 23.7324 34.1476 23.9095 33.7515 23.9825C33.6209 24.0069 33.4549 23.9914 33.3442 23.9294C33.1229 23.8033 32.9281 23.8342 32.709 23.9117C32.5917 23.9516 32.4523 23.9361 32.3239 23.9383C31.8038 23.9449 31.2858 23.9449 30.7657 23.956C30.1991 23.967 29.6347 23.9914 29.0681 24.0025C28.6454 24.0113 28.2204 24.0157 27.7977 24.0135C27.552 24.0135 27.4015 24.0644 27.4125 24.3721C27.4303 24.8656 27.4059 25.3636 27.3926 25.8594C27.3816 26.2202 27.355 26.581 27.3417 26.9417C27.324 27.3955 27.3063 27.8514 27.3107 28.3051C27.3107 28.3671 27.4679 28.4933 27.5077 28.4756C27.9482 28.2941 28.3908 28.3428 28.8423 28.3981C29.0482 28.4224 29.2717 28.3804 29.4776 28.3317C30.1858 28.1701 30.9007 28.2476 31.6156 28.2542C31.7772 28.2564 31.9388 28.1812 32.1026 28.1613C32.2331 28.1458 32.3681 28.1613 32.5032 28.1613C32.7975 28.1613 33.0919 28.1635 33.3885 28.1613C33.5722 28.159 33.7603 28.1259 33.9418 28.1502C34.1189 28.1723 34.2871 28.2542 34.4 28.2918ZM12.081 27.9665C11.9924 28.1812 11.9592 28.3937 12.081 28.6371C12.123 28.7212 12.0965 28.843 12.0876 28.9448C12.0677 29.1573 12.0256 29.3675 12.0146 29.58C12.0035 29.7593 12.0168 29.943 12.0256 30.1245C12.0389 30.4056 11.8663 30.6911 12.0765 30.9744C12.123 31.0364 12.0544 31.2068 12.0101 31.3152C11.9172 31.541 11.8397 31.7468 11.9437 32.0036C12.0544 32.2736 12.154 32.5657 11.9061 32.8336C11.8751 32.8668 11.8928 32.9464 11.8951 33.004C11.9017 33.2961 11.9039 33.5861 11.9172 33.8782C11.9305 34.1328 11.9415 34.3895 11.9924 34.6352C12.0013 34.6795 12.2027 34.6927 12.3178 34.706C12.6985 34.7459 13.0792 34.7879 13.4599 34.8078C13.7741 34.8233 14.0907 34.799 14.4049 34.81C14.7015 34.8211 15.0047 34.9052 15.2903 34.8609C15.5138 34.8255 15.6842 34.7658 15.9454 34.8255C16.4478 34.9428 16.9923 34.9406 17.5146 34.9096C18.0901 34.8764 18.6611 34.8787 19.2366 34.9163C19.8032 34.9539 20.3698 34.9539 20.9386 34.965C21.0117 34.9672 21.0825 34.9384 21.1555 34.9318C21.2994 34.9163 21.4433 34.9052 21.5871 34.8919C21.804 34.8499 22.0209 34.8012 22.2378 34.799C22.7159 34.7968 23.1984 34.8609 23.6721 34.8233C24.1324 34.7879 24.5862 34.6684 25.0532 34.7525C25.1815 34.7746 25.3121 34.7945 25.4427 34.7945C25.8544 34.7923 26.2638 34.7813 26.6755 34.768C27.023 34.7569 27.3727 34.7414 27.7202 34.7171C27.9305 34.7016 28.1407 34.6396 28.3488 34.6396C28.6852 34.6396 29.0216 34.6772 29.358 34.6883C29.4842 34.6927 29.6104 34.6573 29.7387 34.6507C29.9955 34.6352 30.2522 34.6263 30.5068 34.6131C30.6196 34.6285 30.7392 34.6352 30.8542 34.6595C31.0512 34.7038 31.2438 34.7879 31.443 34.799C31.6333 34.8078 31.8104 34.7879 31.9432 34.9628C31.972 35.0004 32.0361 35.0269 32.0871 35.0314C32.4722 35.0646 32.8573 35.0911 33.2579 35.1221C33.2269 34.9849 33.1915 34.872 33.1804 34.7569C33.1561 34.4913 33.1517 34.2257 33.1295 33.9623C33.0698 33.2253 32.9834 32.4883 32.9502 31.749C32.937 31.4569 33.0676 31.1625 33.072 30.8681C33.0786 30.5229 33.0211 30.1776 32.9901 29.7969C32.8307 29.7703 32.6492 29.7062 32.4722 29.7128C31.8547 29.7371 31.2394 29.788 30.6241 29.8279C30.4669 29.8367 30.3098 29.8323 30.1526 29.8478C29.9512 29.8677 29.752 29.9142 29.5528 29.9208C29.1367 29.9385 28.7184 29.9297 28.3023 29.9452C28.0013 29.9563 27.7025 30.0072 27.4015 30.0027C27.127 29.9983 26.8548 29.9319 26.5803 29.9142C26.3657 29.9009 26.1709 29.8345 26.1023 29.6375C25.965 29.248 25.7858 28.8452 25.7747 28.4446C25.7481 27.4973 25.8123 26.5478 25.8322 25.5983C25.8367 25.3349 25.8123 25.0715 25.8013 24.8081C25.799 24.7439 25.7791 24.6642 25.8079 24.6155C26.0447 24.2326 25.9363 23.8055 25.9628 23.4027C25.9982 22.8847 26.1974 22.6413 26.722 22.6014C26.9544 22.5837 27.1868 22.5815 27.417 22.5594C27.7468 22.5284 28.0743 22.4841 28.4019 22.4509C28.5391 22.4376 28.6764 22.4376 28.8114 22.4288C29.1035 22.4089 29.3935 22.3049 29.679 22.5018C29.7675 22.5638 29.9379 22.5218 30.0663 22.5085C30.3828 22.4753 30.6993 22.4089 31.0158 22.3934C31.6488 22.3646 32.2818 22.3646 32.9016 22.3513C32.8484 22.0171 32.771 21.736 32.7665 21.4572C32.7621 21.1141 32.8108 20.771 32.8462 20.428C32.8816 20.0716 32.9303 19.7175 32.9702 19.3612C32.9724 19.3346 32.9702 19.3058 32.968 19.2793C32.9547 18.9163 32.9348 18.5533 32.9281 18.1881C32.9259 18.0553 32.9392 17.9579 32.7422 17.9756C32.408 18.0044 32.0671 18.0553 31.7374 17.9159C31.6444 17.876 31.5293 17.8915 31.4231 17.8893C31.215 17.8871 31.007 17.9004 30.8011 17.8915C30.6506 17.8849 30.5023 17.8406 30.354 17.8406C30.1903 17.8406 30.0243 17.8871 29.8605 17.8849C29.5727 17.8782 29.285 17.8384 28.9973 17.834C28.7383 17.8295 28.4772 17.865 28.2182 17.865C27.8375 17.8672 27.4568 17.8362 27.0783 17.8517C26.4852 17.876 25.8942 17.9491 25.3033 17.9579C24.9226 17.9646 24.5397 17.8583 24.1612 17.8672C23.6765 17.8782 23.1984 17.9424 22.7071 17.9291C22.0608 17.9136 21.4101 18.0044 20.7948 18.0464C20.7261 17.9513 20.6752 17.8805 20.6266 17.8096C20.6066 17.8185 20.5867 17.8295 20.5668 17.8384C20.5756 17.8937 20.5845 17.9513 20.5956 18.0221C19.9736 18.0221 19.3716 18.0177 18.7674 18.0221C18.203 18.0265 17.6364 18.0354 17.072 18.0531C16.8684 18.0597 16.6669 18.1195 16.4655 18.1128C16.0494 18.0996 15.6333 18.0332 15.2217 18.1505C15.1641 18.166 15.0955 18.146 15.0313 18.1416C14.7856 18.1328 14.54 18.1217 14.2943 18.1128C14.0907 18.1062 13.8848 18.0974 13.6812 18.0951C13.2518 18.0929 12.8224 18.0951 12.3444 18.0951C12.382 18.27 12.4152 18.3895 12.4329 18.5112C12.444 18.5887 12.444 18.6728 12.4262 18.7481C12.393 18.8897 12.3466 19.0269 12.3045 19.1642C12.185 19.5449 12.4307 19.9765 12.1474 20.3394C12.1274 20.366 12.1739 20.4435 12.1828 20.4966C12.2093 20.6338 12.2536 20.771 12.2558 20.9083C12.2602 21.2336 12.2425 21.559 12.2381 21.8843C12.2381 21.9308 12.2934 21.9994 12.2757 22.0215C12.0433 22.3049 12.081 22.5948 12.2204 22.9047C12.2514 22.9711 12.1717 23.0817 12.1584 23.1747C12.1407 23.2853 12.1297 23.4004 12.1341 23.5133C12.1363 23.5996 12.1872 23.6882 12.1806 23.7701C12.1584 24.029 12.0256 24.3212 12.1075 24.5359C12.2647 24.9475 12.1717 25.3238 12.1274 25.7178C12.1053 25.9103 12.1341 26.1073 12.1297 26.2999C12.1274 26.3928 12.081 26.4858 12.081 26.581C12.081 26.9285 12.0965 27.2782 12.1009 27.6256C12.1075 27.7363 12.0898 27.8514 12.081 27.9665ZM31.007 16.309C30.8786 16.2005 30.6816 16.112 30.6108 15.9615C30.3872 15.4901 30.2168 14.9965 30.0132 14.5162C29.9844 14.4476 29.876 14.3591 29.814 14.3679C29.586 14.3945 29.3625 14.4587 29.1367 14.5074C28.6277 14.618 28.1186 14.7353 27.6073 14.8394C27.0562 14.9522 26.4962 15.0364 25.9496 15.1669C25.5113 15.271 25.0908 15.4525 24.6526 15.5543C23.8668 15.738 23.07 15.8818 22.2821 16.0545C21.9922 16.1164 21.7089 16.2094 21.4211 16.2891C21.4233 16.3201 21.4256 16.3488 21.4278 16.3798C21.5274 16.3865 21.627 16.402 21.7266 16.3997C22.0077 16.3887 22.2998 16.3134 22.5698 16.3621C23.3113 16.4993 24.0439 16.3068 24.7787 16.3488C24.896 16.3555 25.0133 16.3533 25.1306 16.3511C25.4139 16.3466 25.6995 16.3422 25.9828 16.3333C26.4055 16.3201 26.8282 16.2869 27.2488 16.2891C27.7291 16.2913 28.2049 16.1054 28.6896 16.247C28.7538 16.2647 28.8335 16.2249 28.9065 16.2205C29.0836 16.2094 29.2607 16.1851 29.4355 16.1983C29.7697 16.2249 30.1017 16.2802 30.4337 16.309C30.613 16.3223 30.7945 16.309 31.007 16.309Z"
-                                        fill="url(#paint0_linear_2037_86412)"
-                                      />
-                                      <path
-                                        d="M30.7619 25.815C30.6844 25.7818 30.6091 25.7464 30.4431 25.6733C30.8438 26.2112 30.3745 26.4436 30.1621 26.6915C30.0625 26.8088 29.6685 26.7401 29.4383 26.6649C29.0244 26.5299 28.8186 26.0186 28.9492 25.6003C29.0997 25.1222 29.8301 24.9938 30.2108 25.359C30.379 25.5184 30.6025 25.6224 30.7995 25.7508C30.7862 25.7729 30.7729 25.7951 30.7619 25.815Z"
-                                        fill="url(#paint1_linear_2037_86412)"
-                                      />
-                                      <defs>
-                                        <linearGradient
-                                          id="paint0_linear_2037_86412"
-                                          x1="23.4414"
-                                          y1="9.75"
-                                          x2="23.4414"
-                                          y2="36.5976"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#740612" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#830714"
-                                          />
-                                        </linearGradient>
-                                        <linearGradient
-                                          id="paint1_linear_2037_86412"
-                                          x1="29.8548"
-                                          y1="25.1484"
-                                          x2="29.8548"
-                                          y2="26.7545"
-                                          gradientUnits="userSpaceOnUse"
-                                        >
-                                          <stop stopColor="#740612" />
-                                          <stop
-                                            offset={1}
-                                            stopColor="#830714"
-                                          />
-                                        </linearGradient>
-                                      </defs>
-                                    </svg>
-                                  </div>
-                                  <div className="stat_texts-author">
-                                    <div className="text-size-regular">
-                                      Average CPL
-                                    </div>
-                                    <div>$1.07</div>
-                                  </div>
-                                </div>
+                              <div className="guidde-popup-compact__role">
+                                VP Marketing at guidde.com
                               </div>
                             </div>
                           </div>
@@ -3005,19 +2516,18 @@ const SectionModals = () => {
                 >
                   <div className="modal-toggle outline">
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c5659d38ce96f4a12406_Eleven%20testimonial.avif"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       alt="a logo of jam"
                       className="modal-inside-img"
                     />
                     <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c576a992eb7ca2954496_Eleven%20testimonial%20hover.png"
+                      src="/images/trainer-clipboard-gym.jpg"
                       loading="lazy"
                       width={286}
                       sizes="(max-width: 479px) 100vw, 286px"
                       alt="testimonial-image-hover"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c576a992eb7ca2954496_Eleven%20testimonial%20hover-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c576a992eb7ca2954496_Eleven%20testimonial%20hover-p-800.png 800w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/68b1c576a992eb7ca2954496_Eleven%20testimonial%20hover.png 1145w"
                       className="modal-inside-hover"
                     />
                   </div>

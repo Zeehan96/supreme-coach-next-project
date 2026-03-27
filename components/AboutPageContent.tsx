@@ -44,25 +44,22 @@ export default function AboutPageContent() {
         </div>
       </section>
 
-      {/* About Story Section – orange bg #ff9147 */}
-      <section
-        className="section-about-story section-about-story--orange"
-        style={{ backgroundColor: "#802b00" }}
-      >
+      {/* About Story Section – light gray #f8f8f6; dark text via CSS */}
+      <section className="section-about-story section-about-story--orange">
         <div className="page-padding">
           <div className="padding-section-medium">
             <div className="container-large">
               <div className="about-story_component">
                 <div className="about-story_title">
                   <div className="margin-bottom margin-medium">
-                    <h2 className="heading-style-h3" style={{ color: "#fff" }}>
-                      Suoreme Coach about sustaining the spark in every creator and
-                      fuelling the growth of the new-generation of companies
+                    <h2 className="heading-style-h3">
+                      Supreme Coach is about sustaining the spark in every creator
+                      and fuelling the growth of the new generation of companies
                     </h2>
                   </div>
                 </div>
                 <div className="about-story_rich-text">
-                  <div className="text-size-regular w-richtext" style={{ color: "#fff" }}>
+                  <div className="text-size-regular w-richtext">
                     <p>
                       Our mission is to help creators and brands unlock
                       high-quality partnerships and transform the way companies
@@ -119,7 +116,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Co-founder &amp; CEO
                           </div>
@@ -148,7 +145,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Co-founder &amp; COO
                           </div>
@@ -177,7 +174,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Co-founder and CTO
                           </div>
@@ -206,7 +203,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">CGO</div>
                         </div>
                       </div>
@@ -233,7 +230,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Product Engineering
                           </div>
@@ -262,7 +259,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Product Design
                           </div>
@@ -291,7 +288,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Product Engineering
                           </div>
@@ -320,7 +317,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Product Engineering
                           </div>
@@ -349,7 +346,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Product Engineering
                           </div>
@@ -378,7 +375,7 @@ export default function AboutPageContent() {
                         />
                       </div>
                       <div className="pill-outer-wrapper">
-                        <div className="pill_wrapper is-blue">
+                        <div className="pill_wrapper is-brand-peach">
                           <div className="text-style-label is-small">
                             Product Engineering
                           </div>
@@ -402,7 +399,13 @@ export default function AboutPageContent() {
         <div className="page-padding">
           
         </div>
-        <div className="padding-section-medium padding-top-0"         style={{backgroundColor:"#a8ebff",padding:"20px",paddingBottom:"20px"}}
+        <div
+          className="padding-section-medium padding-top-0"
+          style={{
+            backgroundColor: "#f8f8f6",
+            padding: "20px",
+            paddingBottom: "20px",
+          }}
           >
             <div className="container-large position-relative">
               <div className="margin-bottom margin-large" style={{display:"flex",justifyContent:"center",marginBottom:"0px"}}>

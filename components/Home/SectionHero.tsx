@@ -282,7 +282,7 @@ const SectionHero = () => {
               
               <picture>
                 <img
-                  src="/randomimg.jpg"
+                  src="/images/trainer-clipboard-gym.jpg"
                   alt="Workspace"
                   style={{
                     width: "120%",

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fafbff"/>
+      <stop offset="35%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e8eefc"/>
+    </linearGradient>
+    <linearGradient id="arc" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.22"/>
+      <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.1"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="72%" cy="22%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#c7d2fe" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#c7d2fe" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="18%" cy="78%" r="60%">
+      <stop offset="0%" stop-color="#fde68a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g3" cx="48%" cy="48%" r="40%">
+      <stop offset="0%" stop-color="#a5b4fc" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#a5b4fc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#base)"/>
+  <rect width="800" height="520" fill="url(#arc)"/>
+  <ellipse cx="560" cy="130" rx="240" ry="170" fill="url(#g1)"/>
+  <ellipse cx="150" cy="410" rx="280" ry="160" fill="url(#g2)"/>
+  <ellipse cx="400" cy="280" rx="180" ry="140" fill="url(#g3)"/>
+  <path d="M0 380 C180 340 380 400 560 370 C640 358 720 365 800 355 L800 520 L0 520 Z" fill="#6366f1" opacity="0.05"/>
+  <path d="M0 0 L800 0 L800 120 C600 80 400 140 0 90 Z" fill="#ffffff" opacity="0.35"/>
+</svg>

@@ -3,7 +3,7 @@ import BOOK_SLOTS_PATTERN_IMAGE from "./sectionBento2PatternImage";
 
 const SectionBento2 = () => {
   return (
-    <div className="section_bento">
+    <div className="section_bento section-bento-home-coaching">
       <div className="padding-section-xmedium z-index-10">
         <div className="padding-global">
           <div className="container-xlarge">
@@ -18,7 +18,7 @@ const SectionBento2 = () => {
                   <div className="bento_item">
                     <div className="bento_graphic design-campaign design-campaign-with-image">
                       <img
-                        src="/beautiful-mountain-landscape.jpg"
+                        src="/images/trainer-clipboard-gym.jpg"
                         alt=""
                         className="design-campaign-image"
                         aria-hidden
@@ -182,7 +182,7 @@ const SectionBento2 = () => {
                   <div className="bento_item">
                     <div className="bento_graphic book-slots book-slots-with-image">
                       <img
-                        src="/beautiful-mountain-landscape.jpg"
+                        src="/images/trainer-clipboard-gym.jpg"
                         alt=""
                         className="book-slots-bg-image"
                         aria-hidden
@@ -203,11 +203,11 @@ const SectionBento2 = () => {
                   <div className="bento_item">
                     <div className="bento_graphic bfore-after bfore-after-with-images">
                       <div className="bento_before bento_before-with-image">
-                        <img src="/beautiful-mountain-landscape.jpg" alt="" className="bento-panel-bg-image" aria-hidden />
+                        <img src="/images/trainer-clipboard-gym.jpg" alt="" className="bento-panel-bg-image" aria-hidden />
                         <div className="bfore-tag">Before Supreme Coach</div>
                       </div>
                       <div className="bento_after bento_after-with-image">
-                        <img src="/randomimg.jpg" alt="" className="bento-panel-bg-image" aria-hidden />
+                        <img src="/images/trainer-clipboard-gym.jpg" alt="" className="bento-panel-bg-image" aria-hidden />
                         <div className="bfore-tag">With Supreme Coach</div>
                        
                         <div className="sc_checks-overlay"></div>
