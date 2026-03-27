@@ -600,6 +600,13 @@ export default function HomePageScripts() {
 
           gsap.set(bentoSwiper.slides, { clearProps: "all" });
 
+          if (
+            !slide ||
+            typeof (slide as Element).querySelector !== "function"
+          ) {
+            return timeline;
+          }
+
           const dummyTop = document.querySelector(
             '[data-evaluate-bento="dummy-top"]'
           );
@@ -746,10 +753,16 @@ export default function HomePageScripts() {
         };
 
         bentoSwiper.on("slideChangeTransitionStart", function () {
-          animateSlide(bentoSwiper.slides[bentoSwiper.activeIndex]).play();
+          const activeSlide = bentoSwiper.slides[bentoSwiper.activeIndex];
+          if (activeSlide) {
+            animateSlide(activeSlide).play();
+          }
         });
 
-        animateSlide(bentoSwiper.slides[bentoSwiper.activeIndex]).play();
+        const initialSlide = bentoSwiper.slides[bentoSwiper.activeIndex];
+        if (initialSlide) {
+          animateSlide(initialSlide).play();
+        }
 
         const swiperContainer = document.querySelector("#bento-profiles");
         let hoverTimeout: any;
