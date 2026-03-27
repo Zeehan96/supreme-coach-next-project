@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import CustomersPageContent from "../../components/CustomersPageContent";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -11,7 +12,9 @@ export default function CustomersPage() {
   return (
     <>
       <Header />
-      <CustomersPageContent />
+      <Suspense fallback={null}>
+        <CustomersPageContent />
+      </Suspense>
       <Footer />
     </>
   );
