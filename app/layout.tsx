@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 import "../styles/components.css";
 import "../styles/header-responsive.css";
+import NotistackProvider from "../components/NotistackProvider";
 
 export const metadata: Metadata = {
   title: "Supreme Coach | The Largest B2B Influencer Platform",
@@ -45,10 +46,12 @@ export default function RootLayout({
         />
       </head>
       <body className="v2-body">
-        <div className="page-wrapper">
-          <div className="global-styles w-embed" />
-          {children}
-        </div>
+        <NotistackProvider>
+          <div className="page-wrapper">
+            <div className="global-styles w-embed" />
+            {children}
+          </div>
+        </NotistackProvider>
       </body>
     </html>
   );

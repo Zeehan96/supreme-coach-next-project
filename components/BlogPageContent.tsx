@@ -1,51 +1,208 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroBlog from "./Blog/HeroBlog";
+import { invokeApi } from "../api";
+import { cmsContentTypeForApi, type CmsContentSection } from "../lib/cmsContentApiType";
+import {
+  normalizeWebsiteContentList,
+  parseContentPagination,
+  sortBlogCards,
+  toBlogCard,
+  type BlogCardModel,
+} from "../lib/websiteContent";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const PAGE_SIZE = 12;
+
+function isInvokeApiErrorPayload(payload: unknown): boolean {
+  if (!payload || typeof payload !== "object") return false;
+  const o = payload as Record<string, unknown>;
+  return typeof o.code === "number" && o.code > 0 && o.data === undefined;
+}
 
 interface BlogPageContentProps {
-  type?: "blog" | "stories";
+  type?: "blog" | "stories" | "guides";
+}
+
+function getPaginationPages(totalPages: number, currentPage: number) {
+  if (totalPages <= 1) return [1];
+  const pages: Array<number | "..."> = [];
+
+  const maxPagesToShowDesktop = 10;
+  const start = Math.max(2, currentPage - 1);
+  const end = Math.min(totalPages - 1, currentPage + 1);
+
+  if (totalPages <= maxPagesToShowDesktop) {
+    for (let i = 1; i <= totalPages; i += 1) pages.push(i);
+    return pages;
+  }
+
+  pages.push(1);
+
+  if (start > 2) pages.push("...");
+  for (let i = start; i <= end; i += 1) pages.push(i);
+  if (end < totalPages - 1) pages.push("...");
+
+  pages.push(totalPages);
+  return pages;
 }
 
 export default function BlogPageContent({ type = "blog" }: BlogPageContentProps) {
-  const basePath = type === "stories" ? "/stories" : "/blog";
-  
+  const section: CmsContentSection =
+    type === "stories" ? "stories" : type === "guides" ? "guides" : "blog";
+  const apiContentType = cmsContentTypeForApi(section);
+  const basePath =
+    type === "stories" ? "/stories" : type === "guides" ? "/guides" : "/blog";
+
+  const headingText = useMemo(() => {
+    if (type === "stories") return "All stories";
+    if (type === "guides") return "All guides";
+    return "All blogs";
+  }, [type]);
+
+  const [heroPosts, setHeroPosts] = useState<BlogCardModel[]>([]);
+  const [posts, setPosts] = useState<BlogCardModel[]>([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(false);
+  const skipFetchOnFirstPageChangeRef = useRef(false);
+
+  const loadPage = async (pageNum: number) => {
+    console.log("[BlogPageContent] loadPage pageNum=", pageNum);
+    const payload = await invokeApi({
+      path: "/api/website/content",
+      method: "GET",
+      queryParams: {
+        type: apiContentType,
+        page: String(pageNum),
+        limit: String(PAGE_SIZE),
+      },
+    });
+
+    if (isInvokeApiErrorPayload(payload)) {
+      return { cards: [] as BlogCardModel[], pagination: null as ReturnType<typeof parseContentPagination> };
+    }
+
+    const raw = normalizeWebsiteContentList(payload);
+    const cards = raw
+      .map((item) => toBlogCard(item))
+      .filter((c): c is BlogCardModel => c !== null)
+      .sort(sortBlogCards);
+
+    const pagination = parseContentPagination(payload);
+    console.log("[BlogPageContent] pagination=", pagination);
+    return { cards, pagination };
+  };
+
   useEffect(() => {
-    // Any DOM-dependent logic or initializations for the content can go here
-  }, []);
+    let cancelled = false;
+    setInitialLoading(true);
+    setPageLoading(false);
+    setCurrentPage(1);
+    skipFetchOnFirstPageChangeRef.current = true;
+
+    (async () => {
+      const { cards, pagination } = await loadPage(1);
+      if (cancelled) return;
+      setHeroPosts(cards);
+      setPosts(cards);
+      setTotalPages(pagination?.totalPages ?? 1);
+      setTotalCount(pagination?.totalCount ?? cards.length);
+      setInitialLoading(false);
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, apiContentType]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (skipFetchOnFirstPageChangeRef.current) {
+      skipFetchOnFirstPageChangeRef.current = false;
+      return;
+    }
+    setPageLoading(true);
+
+    (async () => {
+      const { cards, pagination } = await loadPage(currentPage);
+      if (cancelled) return;
+      if (currentPage === 1) {
+        setHeroPosts(cards);
+      }
+      setPosts(cards);
+      setTotalPages(pagination?.totalPages ?? totalPages);
+      setTotalCount(pagination?.totalCount ?? totalCount);
+      setPageLoading(false);
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, type, apiContentType]);
+
+  const displayStart = (currentPage - 1) * PAGE_SIZE;
+  const displayEnd = Math.min(displayStart + PAGE_SIZE, totalCount);
+  const pageItems = getPaginationPages(totalPages, currentPage);
 
   return (
     <>
-      {/* Page-specific styles */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        * {
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        ::selection { background-color: rgba(255, 153, 102, 1); }
+        .blog-card_card-image { aspect-ratio: 16/9; }
+        .blog-card_no-image-placeholder {
+          display: flex; align-items: center; justify-content: center; min-height: 0;
+          background-color: rgba(0, 0, 0, 0.05);
+          border: 1px dashed rgba(0, 0, 0, 0.18);
+          color: rgba(0, 0, 0, 0.45);
         }
-        ::selection {
-          background-color: rgba(255, 153, 102, 1);
+        .pagination-bar button {
+          border: 1px solid rgba(0,0,0,0.25);
+          border-radius: 9999px;
+          padding: 0;
+          width: 2rem;
+          height: 2rem;
+          background: transparent;
+          cursor: pointer;
+          transition: background 0.15s ease, opacity 0.15s ease;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
         }
-        @media (min-width: 992px) {
-          .intercom-banner-active .navbar_menu {
-            top: 50px;
-            transition: top 0.2s ease;
-          }
+        .pagination-bar button:hover { background: rgba(255, 153, 102, 0.2); }
+        .pagination-bar button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pagination-bar .is-active { background: rgba(255, 153, 102, 0.35); font-weight: 700; }
+        .blog-page-spinner {
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          border: 3px solid rgba(255, 163, 102, 0.25); /* #ffa366 */
+          border-top-color: rgba(255, 163, 102, 1); /* #ffa366 */
+          animation: blog-spinner-rotate 0.85s linear infinite;
         }
-        .blog-card_card-image {
-          aspect-ratio: 16/9;
-        }
-        .podcast-cms_thumbnail {
-          aspect-ratio: 16/9;
+        @keyframes blog-spinner-rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `,
         }}
       />
 
       <main className="main-wrapper">
-        <HeroBlog type={type} />
+        <HeroBlog type={type} featuredPosts={heroPosts.slice(0, 3)} loading={initialLoading} />
+
         <section className="section-podcast-episodes">
           <div className="page-padding">
             <div className="padding-section-medium">
@@ -53,19 +210,19 @@ export default function BlogPageContent({ type = "blog" }: BlogPageContentProps)
                 <div className="container-small">
                   <div className="margin-bottom margin-medium">
                     <div className="text-align-center">
-                      <h2 className="heading-style-h3 blog">All posts</h2>
+                      <h2 className="heading-style-h3 blog">{headingText}</h2>
                     </div>
                   </div>
                   <div className="w-embed">
                     <style
                       dangerouslySetInnerHTML={{
-                        __html:
-                          "\n.podcast-cms_thumbnail {\naspect-ratio: 16/9;}\n",
+                        __html: "\n.podcast-cms_thumbnail {aspect-ratio: 16/9;}\n",
                       }}
                     />
                   </div>
                 </div>
               </div>
+
               <div className="container-large">
                 <div className="blog-collection_wrapper w-dyn-list">
                   <div
@@ -73,79 +230,189 @@ export default function BlogPageContent({ type = "blog" }: BlogPageContentProps)
                     role="list"
                     className="blog-collection_list w-dyn-items"
                   >
-                    <div
-                      role="listitem"
-                      className="main-card-collection_item w-dyn-item"
-                    >
-                      <a
-                        href={`${basePath}/implosions-and-explosions-rebuilding-advertising-for-the-fragmented-media-era`}
-                        className="main-card_wrapper w-inline-block"
+                    {initialLoading || pageLoading ? (
+                      <div
+                        className="text-align-center padding-section-medium"
+                        style={{
+                          gridColumn: "1 / -1",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
                       >
-                        <div className="blog-card_content-wrap">
-                          <div className="blog-content_wrapper">
-                            <img
-                              src="https://cdn.prod.website-files.com/6340255dae4cf9a2b6a9ffba/6799521174e0389b4b4474a4_Implosions%20and%20Explosions.png"
-                              loading="lazy"
-                              alt=""
-                              sizes="100vw"
-                              srcSet="https://cdn.prod.website-files.com/6340255dae4cf9a2b6a9ffba/6799521174e0389b4b4474a4_Implosions%20and%20Explosions-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf9a2b6a9ffba/6799521174e0389b4b4474a4_Implosions%20and%20Explosions-p-800.png 800w, https://cdn.prod.website-files.com/6340255dae4cf9a2b6a9ffba/6799521174e0389b4b4474a4_Implosions%20and%20Explosions-p-1080.png 1080w, https://cdn.prod.website-files.com/6340255dae4cf9a2b6a9ffba/6799521174e0389b4b4474a4_Implosions%20and%20Explosions-p-1600.png 1600w, https://cdn.prod.website-files.com/6340255dae4cf9a2b6a9ffba/6799521174e0389b4b4474a4_Implosions%20and%20Explosions-p-2000.png 2000w, https://cdn.prod.website-files.com/6340255dae4cf9a2b6a9ffba/6799521174e0389b4b4474a4_Implosions%20and%20Explosions.png 2240w"
-                              className="blog-card_card-image"
-                            />
-                            <div className="margin-bottom margin-xsmall">
-                              <div className="margin-top margin-small">
-                                <div className="content-meta_wrapper margin-bottom margin-xsmall">
-                                  <div className="text-style-label is-small margin-right margin-xsmall">
-                                    January 16, 2025
-                                  </div>
-                                  <div className="text-style-label is-small margin-right margin-xsmall">
-                                    •
-                                  </div>
-                                  <div className="text-style-label is-small margin-right margin-xxsmall">
-                                    10
-                                  </div>
-                                  <div className="text-style-label is-small">
-                                    min read
+                        <div
+                          role="status"
+                          aria-live="polite"
+                          aria-label="Loading posts"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <div className="blog-page-spinner" />
+                        </div>
+                      </div>
+                    ) : posts.length === 0 ? (
+                      <div className="text-align-center padding-section-medium">
+                        <p className="text-style-label is-medium">No posts yet.</p>
+                      </div>
+                    ) : (
+                      <>
+                        {posts.map((post) => (
+                          <div
+                            key={post.slug}
+                            role="listitem"
+                            className="main-card-collection_item w-dyn-item"
+                          >
+                            <Link
+                              href={`${basePath}/${encodeURIComponent(post.slug)}`}
+                              className="main-card_wrapper is-featured w-inline-block"
+                            >
+                              <div className="blog-card_content-wrap">
+                                <div className="blog-card_top-content">
+                                  {post.imageUrl ? (
+                                    <img
+                                      src={post.imageUrl}
+                                      loading="lazy"
+                                      alt=""
+                                      sizes="100vw"
+                                      className="blog-card_card-image"
+                                    />
+                                  ) : (
+                                    <div
+                                      className="blog-card_card-image blog-card_no-image-placeholder"
+                                      role="img"
+                                      aria-label="No image"
+                                    >
+                                      <span className="text-style-label is-medium">No image</span>
+                                    </div>
+                                  )}
+
+                                  {post.dateLabel || post.readMinutes ? (
+                                    <div className="margin-bottom margin-xsmall">
+                                      <div className="margin-top margin-small">
+                                        <div className="content-meta_wrapper margin-bottom margin-xsmall">
+                                          {post.dateLabel ? (
+                                            <div className="text-style-label is-small margin-right margin-xsmall">
+                                              {post.dateLabel}
+                                            </div>
+                                          ) : null}
+                                          {post.dateLabel && post.readMinutes ? (
+                                            <div className="text-style-label is-small margin-right margin-xsmall">
+                                              •
+                                            </div>
+                                          ) : null}
+                                          {post.readMinutes ? (
+                                            <>
+                                              <div className="text-style-label is-small margin-right margin-xxsmall">
+                                                {post.readMinutes}
+                                              </div>
+                                              <div className="text-style-label is-small">min read</div>
+                                            </>
+                                          ) : null}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ) : null}
+
+                                  <h2 className="heading-style-h5">{post.title}</h2>
+                                </div>
+
+                                <div className="blog-card_bottom-content">
+                                  <div className="button">
+                                    <div className="button-text">Read more</div>
+                                    <img
+                                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf94567a9ffdd_Arrow%20Frame.svg"
+                                      loading="lazy"
+                                      alt=""
+                                      className="button-arrow"
+                                    />
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <h2 className="heading-style-h5">
-                              Implosions and Explosions: Rebuilding Advertising
-                              for the Fragmented Media Era
-                            </h2>
+                            </Link>
+
+                            {post.categories.length > 0 ? (
+                              <div className="category-cms_filter-hidden w-dyn-list">
+                                <div role="list" className="w-dyn-items">
+                                  {post.categories.map((cat) => (
+                                    <div key={cat} role="listitem" className="w-dyn-item">
+                                      <div fs-cmsfilter-field="category">{cat}</div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : null}
                           </div>
-                        </div>
-                      </a>
-                      <div className="category-cms_filter-hidden w-dyn-list">
-                        <div role="list" className="w-dyn-items">
-                          <div role="listitem" className="w-dyn-item">
-                            <div fs-cmsfilter-field="category">Business</div>
-                          </div>
-                          <div role="listitem" className="w-dyn-item">
-                            <div fs-cmsfilter-field="category">Partners</div>
-                          </div>
-                          <div role="listitem" className="w-dyn-item">
-                            <div fs-cmsfilter-field="category">
-                              Passionfroot
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div style={{ marginTop: "1.25rem" }} className="pagination-bar">
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+                    <div className="text-style-label is-medium" style={{ opacity: 0.75 }}>
+                      {totalCount > 0 ? (
+                        <>
+                          Showing {displayStart + 1} to {displayEnd} of {totalCount}
+                        </>
+                      ) : (
+                        "No items"
+                      )}
+                    </div>
+
+                    <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
+                      <button
+                        onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                        disabled={currentPage === 1 || initialLoading}
+                      >
+                        <ChevronLeft size={16} />
+                      </button>
+
+                      {pageItems.map((p, idx) =>
+                        p === "..." ? (
+                          <span key={`ellipsis-${idx}`} style={{ opacity: 0.6 }}>
+                            ...
+                          </span>
+                        ) : (
+                          <button
+                            key={p}
+                            onClick={() => setCurrentPage(p)}
+                            disabled={initialLoading}
+                            className={p === currentPage ? "is-active" : ""}
+                            style={{ fontSize: "0.875rem" }}
+                          >
+                            {p}
+                          </button>
+                        ),
+                      )}
+
+                      <button
+                        onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages || initialLoading}
+                      >
+                        <ChevronRight size={16} />
+                      </button>
                     </div>
                   </div>
+
+                  {pageLoading ? (
+                    null
+                  ) : null}
                 </div>
               </div>
             </div>
           </div>
         </section>
+
         <section className="section-content-link">
           <div className="page-padding">
             <div className="padding-section-medium">
               <div className="container-large">
                 <div className="margin-bottom margin-large">
-                  <h2 className="heading-style-h3">
-                    Content that gets your creative juices going
-                  </h2>
+                  <h2 className="heading-style-h3">Content that gets your creative juices going</h2>
                 </div>
                 <div className="w-layout-grid content-link_grid">
                   <a
@@ -218,163 +485,8 @@ export default function BlogPageContent({ type = "blog" }: BlogPageContentProps)
             </div>
           </div>
         </section>
-        <section className="section-product-cta">
-          <div className="page-padding">
-            <div className="padding-section-medium">
-              <div className="container-large">
-                <div className="footer-cta-flex">
-                  <div className="cta-footer-wrap">
-                    <div className="margin-bottom margin-small">
-                      <img
-                        src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf9600ea9ffe6_Stacking%20Creator.svg"
-                        loading="lazy"
-                        alt="passionfroot stacking creators"
-                        className="footer-cta-image"
-                      />
-                    </div>
-                    <div className="margin-bottom margin-medium">
-                      <h2 className="heading-style-h3">
-                        Get the tools you need to succeed as a creator.
-                      </h2>
-                    </div>
-                    <a
-                      id="w-node-b61da248-f52e-a83d-28e7-598506ba853c-06ba852d"
-                      href="https://workspace.passionfroot.me/select-workspace"
-                      target="_blank"
-                      className="button w-inline-block"
-                    >
-                      <div className="button-text">Get access</div>
-                      <img
-                        src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf94567a9ffdd_Arrow%20Frame.svg"
-                        loading="lazy"
-                        alt="right arrow illustration"
-                        className="button-arrow"
-                      />
-                    </a>
-                  </div>
-                  <div className="footer-cta-product hide-mobile-portrait">
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf9515aaa00f6_Increase%20UI.webp"
-                      loading="lazy"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf9515aaa00f6_Increase%2520UI-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf9515aaa00f6_Increase%20UI.webp 518w"
-                      sizes="(max-width: 518px) 100vw, 518px"
-                      alt="Dashboard UI element"
-                      className="ui-increase"
-                    />
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf9710baa00f5_Workflow.webp"
-                      loading="lazy"
-                      alt="Workflow UI element"
-                      className="ui-workflow"
-                    />
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf94d21aa00ca_Cashflow.webp"
-                      loading="lazy"
-                      srcSet="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf94d21aa00ca_Cashflow-p-500.png 500w, https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf94d21aa00ca_Cashflow.webp 770w"
-                      sizes="(max-width: 770px) 100vw, 770px"
-                      alt="Cashflow dashboard"
-                      className="ui-cashflow"
-                    />
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf992bdaa00f3_UI%20Component.webp"
-                      loading="lazy"
-                      alt="UI booking component"
-                      className="ui-booking"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="section-social-media">
-          <div className="page-padding">
-            <div className="padding-section-medium">
-              <div className="container-large">
-                <div className="margin-bottom margin-large">
-                  <div className="text-align-center">
-                    <h2 className="heading-style-h3">Catch us on social </h2>
-                  </div>
-                </div>
-                <div className="w-layout-grid social-media_grid">
-                  <a
-                    id="w-node-_2b60442b-59f9-6b3a-c1c3-a937cbba45c1-cbba45b8"
-                    href="https://www.instagram.com/supremecoach/"
-                    target="_blank"
-                    className="social-media_link-wrapper is-pink end-left w-inline-block"
-                  >
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf960f5aa0035_IG.svg"
-                      loading="lazy"
-                      alt="Instagram icon"
-                      className="social-mdeia_illustrated-icon"
-                    />
-                    <div className="text-align-center">
-                      <div className="font-new-kansas heading-style-h5">
-                        Check our Instagram
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    id="w-node-_2b60442b-59f9-6b3a-c1c3-a937cbba45c6-cbba45b8"
-                    href="https://www.youtube.com/@supremecoach"
-                    target="_blank"
-                    className="social-media_link-wrapper is-blue mobile-landscape-radius-right w-inline-block"
-                  >
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf924abaa003f_YT.svg"
-                      loading="lazy"
-                      alt="YouTube icon"
-                      className="social-mdeia_illustrated-icon"
-                    />
-                    <div className="text-align-center">
-                      <div className="font-new-kansas heading-style-h5">
-                        Watch our YouTube
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    id="w-node-_2b60442b-59f9-6b3a-c1c3-a937cbba45cb-cbba45b8"
-                    href="https://twitter.com/supremecoach"
-                    target="_blank"
-                    className="social-media_link-wrapper is-yellow mobile-landscape-radius-left w-inline-block"
-                  >
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf9baacaa0033_TW.svg"
-                      loading="lazy"
-                      alt="Twitter icon"
-                      className="social-mdeia_illustrated-icon"
-                    />
-                    <div className="text-align-center">
-                      <div className="font-new-kansas heading-style-h5">
-                        Find us on Twitter
-                      </div>
-                    </div>
-                  </a>
-                  <a
-                    id="w-node-_2b60442b-59f9-6b3a-c1c3-a937cbba45d0-cbba45b8"
-                    href="https://www.linkedin.com/company/supremecoach/"
-                    target="_blank"
-                    className="social-media_link-wrapper is-green end-right w-inline-block"
-                  >
-                    <img
-                      src="https://cdn.prod.website-files.com/6340255dae4cf91cdda9ff9f/6340255dae4cf92c2baa0034_IN.svg"
-                      loading="lazy"
-                      alt="Linkedin icon"
-                      className="social-mdeia_illustrated-icon"
-                    />
-                    <div className="text-align-center">
-                      <div className="font-new-kansas heading-style-h5">
-                        Follow us on LinkedIn
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </>
   );
 }
+

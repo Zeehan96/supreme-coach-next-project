@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { invokeApi } from "../api";
 
 declare global {
   interface Window {
@@ -18,6 +19,26 @@ declare global {
 
 export default function HomePageScripts() {
   useEffect(() => {
+    // Debug API hit on homepage mount
+    const hitCmsApi = async () => {
+      try {
+        await invokeApi({
+          path: "/api/website/content",
+          method: "GET",
+          queryParams: { type: "blog" },
+        });
+      } catch (error) {
+        console.log("Homepage CMS hit failed on /api/website/content, trying /api/content", error);
+        await invokeApi({
+          path: "/api/content",
+          method: "GET",
+          queryParams: { type: "blog" },
+        });
+      }
+    };
+
+    hitCmsApi();
+
     // Wait for all scripts to load
     const initScripts = () => {
       if (typeof window === "undefined") return;

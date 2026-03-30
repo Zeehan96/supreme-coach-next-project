@@ -1,70 +1,60 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Header from "../../../components/Header";
-import GuidePostPageContent from "../../../components/GuidePostPageContent";
-import GuidePostPageScripts from "../../../components/GuidePostPageScripts";
+import BlogPostDynamicView from "../../../components/BlogPostDynamicView";
+import BlogPostPageScripts from "../../../components/BlogPostPageScripts";
 import Footer from "../../../components/Footer";
+import { fetchAllSlugsForContentType } from "../../../lib/fetchAllContentSlugs";
+import { getBlogPostViewModel } from "../../../lib/blogPostFromApi";
 
-// Static params for known guide posts
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  try {
+    const slugs = await fetchAllSlugsForContentType("guides");
+    if (slugs.length > 0) {
+      return slugs.map((slug: string) => ({ slug }));
+    }
+  } catch (error) {
+    console.error("Failed to fetch guide static params:", error);
+  }
+
   return [{ slug: "getting-started-with-creator-marketing" }];
 }
 
-// Generate metadata for each guide post
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const post = await getBlogPostViewModel(slug);
 
-  // Guide post metadata mapping
-  const guideMetadata: Record<
-    string,
-    {
-      title: string;
-      description: string;
-      image: string;
-      publishedTime: string;
-      modifiedTime: string;
-    }
-  > = {
-    "getting-started-with-creator-marketing": {
-      title:
-        "Getting Started With Creator Marketing | Supreme Coach Guides",
-      description:
-        "Learn how to get started with creator marketing and build successful partnerships",
-      image: "",
-      publishedTime: "2024-03-05",
-      modifiedTime: "2024-03-08",
-    },
-  };
-
-  const metadata = guideMetadata[slug] || {
+  const fallback = {
     title: "Guide Post | Supreme Coach",
     description: "Read our latest guide",
     image: "",
-    publishedTime: "",
-    modifiedTime: "",
   };
 
+  const title = post?.title || fallback.title;
+  const description =
+    (post?.description && post.description.trim()) || fallback.description;
+  const image = post?.heroImageUrl || fallback.image;
+
   return {
-    title: metadata.title,
-    description: metadata.description,
+    title,
+    description,
     openGraph: {
-      title: metadata.title,
-      description: metadata.description,
+      title,
+      description,
       type: "article",
       url: `https://www.supremecoach.xyz/guides/${slug}`,
       siteName: "Supreme Coach",
-      images: metadata.image ? [{ url: metadata.image }] : [],
-      publishedTime: metadata.publishedTime,
-      modifiedTime: metadata.modifiedTime,
+      images: image ? [{ url: image }] : [],
     },
     twitter: {
       card: "summary_large_image",
-      title: metadata.title,
-      description: metadata.description,
-      images: metadata.image ? [metadata.image] : [],
+      title,
+      description,
+      images: image ? [image] : [],
     },
   };
 }
@@ -75,12 +65,18 @@ export default async function GuidePost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const post = await getBlogPostViewModel(slug);
+  if (!post) notFound();
 
   return (
     <>
       <Header />
-      <GuidePostPageContent slug={slug} />
-      <GuidePostPageScripts />
+      <BlogPostDynamicView
+        post={post}
+        backHref="/guides"
+        backLabel="back to guides"
+      />
+      <BlogPostPageScripts />
       <Footer />
     </>
   );
