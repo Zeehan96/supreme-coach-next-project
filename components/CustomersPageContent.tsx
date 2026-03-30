@@ -460,7 +460,7 @@ export default function CustomersPageContent() {
         </div>
       </div>
 
-      {/* Coach / Firm sections: ACC, BCC, MCC - same cards, alternating section bg */}
+      {/* Coach / Firm sections: ACC, PCC, MCC - same cards, alternating section bg */}
       <div className="section_gold-standard bg-gray">
         <div className="padding-global">
           <div className="container-xlarge">
@@ -479,7 +479,7 @@ export default function CustomersPageContent() {
           <div className="container-xlarge">
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h2 className="heading-style-h3" style={{ fontSize: '2.5rem', fontWeight: '600' }}>
-                BCC {sectionWord}
+                PCC {sectionWord}
               </h2>
             </div>
             <GoldStandardCardsGrid />
