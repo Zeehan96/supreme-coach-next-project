@@ -50,8 +50,8 @@ const SectionHero = () => {
 
   return (
     <div className="section_hero creators">
-      <div 
-        className="padding-global hero new-hero" 
+      <div
+        className="padding-global hero new-hero"
         style={{
           display: "block",
           position: "relative",
@@ -59,29 +59,7 @@ const SectionHero = () => {
           paddingBottom: 0
         }}
       >
-        {/* White mask at top and bottom of section */}
-        <div style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "80px",
-          background: "linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0) 100%)",
-          zIndex: 2,
-          pointerEvents: "none"
-        }} />
-        
-        <div style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "80px",
-          background: "linear-gradient(0deg, #ffffff 0%, rgba(255,255,255,0) 100%)",
-          zIndex: 2,
-          pointerEvents: "none"
-        }} />
-        
+
         <div className="container-xxlarge">
           <div
             className="hero_component hero_component--two-col"
@@ -108,20 +86,20 @@ const SectionHero = () => {
                 className="hero_texts-heading-side"
                 style={{ alignItems: "flex-start", maxWidth: "100%" }}
               >
-                
+
                 <h1 className="heading-style-h2-v2">
-                Maximize human
-                productivity                </h1>
+                  Maximize human
+                  productivity                </h1>
               </div>
               <div
                 className="buttons_hero-outer"
                 style={{ alignItems: "flex-start", maxWidth: "100%" }}
               >
                 <div className="text-size-medium-v2 text-weight-medium">
-                Replace all your software. Every app, AI agent, and human in one place.
+                  Replace all your software. Every app, AI agent, and human in one place.
 
                   <br />
-                 
+
                 </div>
                 <div className="HomeHero4o_ctaSection__VbhyI">
                   <Link
@@ -165,7 +143,7 @@ const SectionHero = () => {
                   >
                     GET 400% MORE DONE • CUSTOMIZE YOUR WORKSPACE
                   </div>
-                  <div 
+                  <div
                     className="HomeHero4o_workspaceBuilderFeatures__xgXJ9"
                     style={{
                       display: "flex",
@@ -177,79 +155,80 @@ const SectionHero = () => {
                     {HERO_TABS.map((tab) => {
                       const isSelected = selectedTabs.has(tab);
                       return (
-                      <button
-                        key={tab}
-                        type="button"
-                        onClick={() => toggleTab(tab)}
-                        className={`HomeHero4o_workspaceBuilderFeature__um7iP ${isSelected ? "HomeHero4o_selected__BdTPJ" : ""}`}
-                        style={{
-                          position: "relative",
-                          padding: "4.33px 12.33px",
-                          border: isSelected ? "1px solid #000000" : "1px solid #d9d9d9",
-                          borderRadius: "54px",
-                          color: isSelected ? "#000000" : "#646464",
-                          fontWeight: 600,
-                          fontSize: "14px",
-                          fontFamily: "Inter, sans-serif",
-                          lineHeight: "20px",
-                          letterSpacing: "-0.15px",
-                          cursor: "pointer",
-                          userSelect: "none",
-                          transition: "border-color 0.3s ease, background-color 0.3s ease",
-                          backgroundColor: isSelected ? "#f5f5f5" : "transparent",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          outline: "none"
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isSelected) {
-                            e.currentTarget.style.backgroundColor = "#fafafa";
-                            e.currentTarget.style.borderColor = "#b3b3b3";
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isSelected) {
-                            e.currentTarget.style.backgroundColor = "transparent";
-                            e.currentTarget.style.borderColor = "#d9d9d9";
-                          }
-                        }}
-                      >
-                        {isSelected && (
-                          <span
-                            style={{
-                              position: "absolute",
-                              top: "-4px",
-                              right: "-4px",
-                              width: "18px",
-                              height: "18px",
-                              borderRadius: "50%",
-                              background: "#000000",
-                              display: "inline-flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              flexShrink: 0,
-                              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.25)",
-                            }}
-                          >
-                            <Check
-                              size={10}
-                              strokeWidth={3}
-                              color="#ffffff"
-                              style={{ display: "block" }}
-                            />
-                          </span>
-                        )}
-                        {tab}
-                      </button>
-                    );})}
+                        <button
+                          key={tab}
+                          type="button"
+                          onClick={() => toggleTab(tab)}
+                          className={`HomeHero4o_workspaceBuilderFeature__um7iP ${isSelected ? "HomeHero4o_selected__BdTPJ" : ""}`}
+                          style={{
+                            position: "relative",
+                            padding: "4.33px 12.33px",
+                            border: isSelected ? "1px solid #000000" : "1px solid #d9d9d9",
+                            borderRadius: "54px",
+                            color: isSelected ? "#000000" : "#646464",
+                            fontWeight: 600,
+                            fontSize: "14px",
+                            fontFamily: "Inter, sans-serif",
+                            lineHeight: "20px",
+                            letterSpacing: "-0.15px",
+                            cursor: "pointer",
+                            userSelect: "none",
+                            transition: "border-color 0.3s ease, background-color 0.3s ease",
+                            backgroundColor: isSelected ? "#f5f5f5" : "transparent",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            outline: "none"
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isSelected) {
+                              e.currentTarget.style.backgroundColor = "#fafafa";
+                              e.currentTarget.style.borderColor = "#b3b3b3";
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isSelected) {
+                              e.currentTarget.style.backgroundColor = "transparent";
+                              e.currentTarget.style.borderColor = "#d9d9d9";
+                            }
+                          }}
+                        >
+                          {isSelected && (
+                            <span
+                              style={{
+                                position: "absolute",
+                                top: "-4px",
+                                right: "-4px",
+                                width: "18px",
+                                height: "18px",
+                                borderRadius: "50%",
+                                background: "#000000",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                flexShrink: 0,
+                                boxShadow: "0 1px 3px rgba(0, 0, 0, 0.25)",
+                              }}
+                            >
+                              <Check
+                                size={10}
+                                strokeWidth={3}
+                                color="#ffffff"
+                                style={{ display: "block" }}
+                              />
+                            </span>
+                          )}
+                          {tab}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right: Image - Bara kiya gaya hai taake cut ho jaye with white mask */}
-            <div 
+            <div
               className="hero_image-side HomeHero4o_heroImageWrapper__8DM2b"
               style={{
                 overflow: "hidden",
@@ -257,9 +236,8 @@ const SectionHero = () => {
                 position: "relative"
               }}
             >
-              {/* White gradient overlay - bottom to top (lighter) */}
+              {/* White gradient overlay - bottom to top */}
               <div
-                className="HomeHero4o_heroImageWrapper__8DM2b_overlay"
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -268,18 +246,18 @@ const SectionHero = () => {
                   pointerEvents: "none"
                 }}
               />
-              {/* White mask on image edges (lighter) */}
+              {/* White fade on right edge */}
               <div style={{
                 position: "absolute",
                 top: 0,
-                left: 0,
                 right: 0,
                 bottom: 0,
-                background: "radial-gradient(circle at center, transparent 50%, rgba(255,255,255,0.45) 100%)",
-                zIndex: 1,
+                width: "45%",
+                background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 40%, transparent 100%)",
+                zIndex: 3,
                 pointerEvents: "none"
               }} />
-              
+
               <picture>
                 <img
                   src="/images/trainer-clipboard-gym.jpg"

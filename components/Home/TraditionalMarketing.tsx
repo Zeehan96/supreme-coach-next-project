@@ -72,153 +72,153 @@ const TraditionalMarketing = () => {
             <div className="CuWallOfFeatures_gridWrapper__ff1He">
               <div className="features-grid">
 
-              {/* Empty row – top, so start is not cut off by mask */}
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
+                {/* Empty row – top, so start is not cut off by mask */}
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
 
-              {/* Top Row - Marketing Features */}
-              <div className="feature-item"><div className="icon-wrapper"><Megaphone size={24} strokeWidth={1.5} /></div><span className="feature-name">Advertising</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Target size={24} strokeWidth={1.5} /></div><span className="feature-name">Targeting</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><TrendingUp size={24} strokeWidth={1.5} /></div><span className="feature-name">Growth</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><BarChart3 size={24} strokeWidth={1.5} /></div><span className="feature-name">Analytics</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Globe size={24} strokeWidth={1.5} /></div><span className="feature-name">Reach</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Award size={24} strokeWidth={1.5} /></div><span className="feature-name">Success</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Radio size={24} strokeWidth={1.5} /></div><span className="feature-name">Broadcast</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Newspaper size={24} strokeWidth={1.5} /></div><span className="feature-name">Media</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Network size={24} strokeWidth={1.5} /></div><span className="feature-name">Network</span></div>
+                {/* Top Row - Marketing Features */}
+                <div className="feature-item"><div className="icon-wrapper"><Megaphone size={24} strokeWidth={1.5} /></div><span className="feature-name">Advertising</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Target size={24} strokeWidth={1.5} /></div><span className="feature-name">Targeting</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><TrendingUp size={24} strokeWidth={1.5} /></div><span className="feature-name">Growth</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><BarChart3 size={24} strokeWidth={1.5} /></div><span className="feature-name">Analytics</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Globe size={24} strokeWidth={1.5} /></div><span className="feature-name">Reach</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Award size={24} strokeWidth={1.5} /></div><span className="feature-name">Success</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Radio size={24} strokeWidth={1.5} /></div><span className="feature-name">Broadcast</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Newspaper size={24} strokeWidth={1.5} /></div><span className="feature-name">Media</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Network size={24} strokeWidth={1.5} /></div><span className="feature-name">Network</span></div>
 
-              {/* Row 1 Left */}
-              <div className="feature-item"><div className="icon-wrapper"><Bell size={24} strokeWidth={1.5} /></div><span className="feature-name">Reminders</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><PieChart size={24} strokeWidth={1.5} /></div><span className="feature-name">Reporting</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Flag size={24} strokeWidth={1.5} /></div><span className="feature-name">Goals</span></div>
+                {/* Row 1 Left */}
+                <div className="feature-item"><div className="icon-wrapper"><Bell size={24} strokeWidth={1.5} /></div><span className="feature-name">Reminders</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><PieChart size={24} strokeWidth={1.5} /></div><span className="feature-name">Reporting</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Flag size={24} strokeWidth={1.5} /></div><span className="feature-name">Goals</span></div>
 
-              {/* Featured: Projects */}
-              <div className="feature-item featured-item projects-card">
-                <div className="featured-content">
-                  <div className="mini-ui-projects">
-                    <div className="ui-header"><div className="ui-badge yellow">Needs Update</div> <div className="ui-badge green">Closed</div></div>
-                    <div className="ui-row"><div className="ui-avatar"></div> <div className="ui-bar"></div></div>
-                  </div>
-                  <div className="featured-label">
-                    <Layout style={{ color: "#2F56EA", marginRight: "8px" }} size={24} strokeWidth={2} />
-                    <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Projects</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Featured: Docs */}
-              <div className="feature-item featured-item docs-card">
-                <div className="featured-content">
-                  <div className="mini-ui-docs">
-                    <div className="ui-title">Convergence Brief</div>
-                    <div className="ui-lines">
-                      <div className="ui-line long"></div>
-                      <div className="ui-line medium"></div>
-                      <div className="ui-line short"></div>
+                {/* Featured: Projects */}
+                <div className="feature-item featured-item projects-card">
+                  <div className="featured-content">
+                    <div className="mini-ui-projects">
+                      <div className="ui-header"><div className="ui-badge yellow">Needs Update</div> <div className="ui-badge green">Closed</div></div>
+                      <div className="ui-row"><div className="ui-avatar"></div> <div className="ui-bar"></div></div>
+                    </div>
+                    <div className="featured-label">
+                      <Layout style={{ color: "#2F56EA", marginRight: "8px" }} size={24} strokeWidth={2} />
+                      <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Projects</span>
                     </div>
                   </div>
-                  <div className="featured-label">
-                    <FileText style={{ color: "#00A9FF", marginRight: "8px" }} size={24} strokeWidth={2} />
-                    <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Docs</span>
-                  </div>
                 </div>
-              </div>
 
-              {/* Row 1 Right */}
-              <div className="feature-item"><div className="icon-wrapper"><Timer size={24} strokeWidth={1.5} /></div><span className="feature-name">Sprints</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Disc size={24} strokeWidth={1.5} /></div><span className="feature-name">Custom Status</span></div>
-
-              {/* Row 2 Left (Filling around featured items) */}
-              <div className="feature-item"><div className="icon-wrapper"><Code size={24} strokeWidth={1.5} /></div><span className="feature-name">API Calls</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Milestone size={24} strokeWidth={1.5} /></div><span className="feature-name">Milestones</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><FileInput size={24} strokeWidth={1.5} /></div><span className="feature-name">Forms</span></div>
-
-              {/* Row 2 Right */}
-              <div className="feature-item"><div className="icon-wrapper"><Zap size={24} strokeWidth={1.5} /></div><span className="feature-name">Automations</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><List size={24} strokeWidth={1.5} /></div><span className="feature-name">Custom Fields</span></div>
-
-
-              {/* Row 3 Left */}
-              <div className="feature-item"><div className="icon-wrapper"><MessageCircle size={24} strokeWidth={1.5} /></div><span className="feature-name">AI Q&A</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><ArrowUp size={24} strokeWidth={1.5} /></div><span className="feature-name">Priorities</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Calculator size={24} strokeWidth={1.5} /></div><span className="feature-name">Time Estimates</span></div>
-
-              {/* Featured: Brain */}
-              <div className="feature-item featured-item brain-card">
-                <div className="featured-content">
-                  <div className="mini-ui-brain">
-                    <div className="ui-chat-bubble">What did I miss last week?</div>
-                    <div className="ui-search-bar"><Sparkles size={12} color="#D45894" /> Search</div>
-                    <div className="ui-tag">OOH Campaign <span className="ui-badge pink">IN PROGRESS</span></div>
-                  </div>
-                  <div className="featured-label">
-                    <BrainCircuit style={{ color: "#D45894", marginRight: "8px" }} size={24} strokeWidth={2} />
-                    <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Brain</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Featured: Chat */}
-              <div className="feature-item featured-item chat-card">
-                <div className="featured-content">
-                  <div className="mini-ui-chat">
-                    <div className="ui-msg-row"><div className="ui-avatar blue"></div><div className="ui-bubble"></div></div>
-                    <div className="ui-msg-row"><div className="ui-avatar pink"></div><div className="ui-bubble"></div></div>
-                    <div className="ui-reactions">🚀 🔥 💜</div>
-                  </div>
-                  <div className="featured-label">
-                    <div className="hash-icon-box">
-                      <Hash style={{ color: "#fff" }} size={16} strokeWidth={3} />
+                {/* Featured: Docs */}
+                <div className="feature-item featured-item docs-card">
+                  <div className="featured-content">
+                    <div className="mini-ui-docs">
+                      <div className="ui-title">Convergence Brief</div>
+                      <div className="ui-lines">
+                        <div className="ui-line long"></div>
+                        <div className="ui-line medium"></div>
+                        <div className="ui-line short"></div>
+                      </div>
                     </div>
-                    <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Chat</span>
+                    <div className="featured-label">
+                      <FileText style={{ color: "#00A9FF", marginRight: "8px" }} size={24} strokeWidth={2} />
+                      <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Docs</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Row 3 Right */}
-              <div className="feature-item"><div className="icon-wrapper"><Video size={24} strokeWidth={1.5} /></div><span className="feature-name">Clips</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><LayoutGrid size={24} strokeWidth={1.5} /></div><span className="feature-name">Everything view</span></div>
+                {/* Row 1 Right */}
+                <div className="feature-item"><div className="icon-wrapper"><Timer size={24} strokeWidth={1.5} /></div><span className="feature-name">Sprints</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Disc size={24} strokeWidth={1.5} /></div><span className="feature-name">Custom Status</span></div>
 
-              {/* Row 4 Left */}
-              <div className="feature-item"><div className="icon-wrapper"><Mail size={24} strokeWidth={1.5} /></div><span className="feature-name">Emails</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><LayoutDashboard size={24} strokeWidth={1.5} /></div><span className="feature-name">Dashboards</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Watch size={24} strokeWidth={1.5} /></div><span className="feature-name">Time Tracking</span></div>
+                {/* Row 2 Left (Filling around featured items) */}
+                <div className="feature-item"><div className="icon-wrapper"><Code size={24} strokeWidth={1.5} /></div><span className="feature-name">API Calls</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Milestone size={24} strokeWidth={1.5} /></div><span className="feature-name">Milestones</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><FileInput size={24} strokeWidth={1.5} /></div><span className="feature-name">Forms</span></div>
 
-              {/* Row 4 Right */}
-              <div className="feature-item"><div className="icon-wrapper"><SquareDashed size={24} strokeWidth={1.5} /></div><span className="feature-name">Kanban Boards</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Plug size={24} strokeWidth={1.5} /></div><span className="feature-name">Integrations</span></div>
+                {/* Row 2 Right */}
+                <div className="feature-item"><div className="icon-wrapper"><Zap size={24} strokeWidth={1.5} /></div><span className="feature-name">Automations</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><List size={24} strokeWidth={1.5} /></div><span className="feature-name">Custom Fields</span></div>
 
 
-              {/* Row 5 - Bottom full row */}
-              <div className="feature-item"><div className="icon-wrapper"><Tag size={24} strokeWidth={1.5} /></div><span className="feature-name">Tags</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Headphones size={24} strokeWidth={1.5} /></div><span className="feature-name">24/7 Support</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><CheckSquare size={24} strokeWidth={1.5} /></div><span className="feature-name">Checklists</span></div>
+                {/* Row 3 Left */}
+                <div className="feature-item"><div className="icon-wrapper"><MessageCircle size={24} strokeWidth={1.5} /></div><span className="feature-name">AI Q&A</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><ArrowUp size={24} strokeWidth={1.5} /></div><span className="feature-name">Priorities</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Calculator size={24} strokeWidth={1.5} /></div><span className="feature-name">Time Estimates</span></div>
 
-              {/* More items to fill */}
-              <div className="feature-item"><div className="icon-wrapper"><CalendarClock size={24} strokeWidth={1.5} /></div><span className="feature-name">Scheduling</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Table size={24} strokeWidth={1.5} /></div><span className="feature-name">Spreadsheets</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><PenTool size={24} strokeWidth={1.5} /></div><span className="feature-name">Whiteboards</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Map size={24} strokeWidth={1.5} /></div><span className="feature-name">Gantt Charts</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Users size={24} strokeWidth={1.5} /></div><span className="feature-name">Roadmaps</span></div>
-              <div className="feature-item"><div className="icon-wrapper"><Inbox size={24} strokeWidth={1.5} /></div><span className="feature-name">Inbox</span></div>
+                {/* Featured: Brain */}
+                <div className="feature-item featured-item brain-card">
+                  <div className="featured-content">
+                    <div className="mini-ui-brain">
+                      <div className="ui-chat-bubble">What did I miss last week?</div>
+                      <div className="ui-search-bar"><Sparkles size={12} color="#D45894" /> Search</div>
+                      <div className="ui-tag">OOH Campaign <span className="ui-badge pink">IN PROGRESS</span></div>
+                    </div>
+                    <div className="featured-label">
+                      <BrainCircuit style={{ color: "#D45894", marginRight: "8px" }} size={24} strokeWidth={2} />
+                      <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Brain</span>
+                    </div>
+                  </div>
+                </div>
 
-              {/* Empty row – so bottom row is not cut off by mask */}
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
-              <div className="feature-item feature-item--empty" aria-hidden="true" />
+                {/* Featured: Chat */}
+                <div className="feature-item featured-item chat-card">
+                  <div className="featured-content">
+                    <div className="mini-ui-chat">
+                      <div className="ui-msg-row"><div className="ui-avatar blue"></div><div className="ui-bubble"></div></div>
+                      <div className="ui-msg-row"><div className="ui-avatar pink"></div><div className="ui-bubble"></div></div>
+                      <div className="ui-reactions">🚀 🔥 💜</div>
+                    </div>
+                    <div className="featured-label">
+                      <div className="hash-icon-box">
+                        <Hash style={{ color: "#fff" }} size={16} strokeWidth={3} />
+                      </div>
+                      <span style={{ fontSize: "20px", fontWeight: "600", color: "#24223E" }}>Chat</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 3 Right */}
+                <div className="feature-item"><div className="icon-wrapper"><Video size={24} strokeWidth={1.5} /></div><span className="feature-name">Clips</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><LayoutGrid size={24} strokeWidth={1.5} /></div><span className="feature-name">Everything view</span></div>
+
+                {/* Row 4 Left */}
+                <div className="feature-item"><div className="icon-wrapper"><Mail size={24} strokeWidth={1.5} /></div><span className="feature-name">Emails</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><LayoutDashboard size={24} strokeWidth={1.5} /></div><span className="feature-name">Dashboards</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Watch size={24} strokeWidth={1.5} /></div><span className="feature-name">Time Tracking</span></div>
+
+                {/* Row 4 Right */}
+                <div className="feature-item"><div className="icon-wrapper"><SquareDashed size={24} strokeWidth={1.5} /></div><span className="feature-name">Kanban Boards</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Plug size={24} strokeWidth={1.5} /></div><span className="feature-name">Integrations</span></div>
+
+
+                {/* Row 5 - Bottom full row */}
+                <div className="feature-item"><div className="icon-wrapper"><Tag size={24} strokeWidth={1.5} /></div><span className="feature-name">Tags</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Headphones size={24} strokeWidth={1.5} /></div><span className="feature-name">24/7 Support</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><CheckSquare size={24} strokeWidth={1.5} /></div><span className="feature-name">Checklists</span></div>
+
+                {/* More items to fill */}
+                <div className="feature-item"><div className="icon-wrapper"><CalendarClock size={24} strokeWidth={1.5} /></div><span className="feature-name">Scheduling</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Table size={24} strokeWidth={1.5} /></div><span className="feature-name">Spreadsheets</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><PenTool size={24} strokeWidth={1.5} /></div><span className="feature-name">Whiteboards</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Map size={24} strokeWidth={1.5} /></div><span className="feature-name">Gantt Charts</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Users size={24} strokeWidth={1.5} /></div><span className="feature-name">Roadmaps</span></div>
+                <div className="feature-item"><div className="icon-wrapper"><Inbox size={24} strokeWidth={1.5} /></div><span className="feature-name">Inbox</span></div>
+
+                {/* Empty row – so bottom row is not cut off by mask */}
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
+                <div className="feature-item feature-item--empty" aria-hidden="true" />
 
               </div>
             </div>
@@ -287,7 +287,7 @@ const TraditionalMarketing = () => {
           align-items: center;
           justify-content: center;
           padding: 24px 10px;
-          min-height: 120px;
+          min-height: 130px;
           position: relative;
           border: 1px solid transparent;
           transition: border-color 0.25s ease, color 0.2s ease;
@@ -320,7 +320,7 @@ const TraditionalMarketing = () => {
         }
 
         .feature-item--empty {
-          min-height: 110px;
+          min-height: 130px;
           pointer-events: none;
         }
         .feature-item--empty::before {
@@ -426,10 +426,22 @@ const TraditionalMarketing = () => {
         @media (min-width: 992px) {
             .features-grid {
                 grid-template-columns: repeat(9, 1fr);
+                grid-auto-rows: 130px;
             }
             .feature-item {
-                min-height: 110px;
+                min-height: unset;
+                height: 100%;
                 padding: 16px 8px;
+            }
+            .featured-item {
+                grid-column: span 2;
+                grid-row: span 2;
+                height: 100%;
+                min-height: unset;
+            }
+            .feature-item--empty {
+                min-height: unset;
+                height: 100%;
             }
         }
 

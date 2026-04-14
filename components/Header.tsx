@@ -167,7 +167,6 @@ export default function Header() {
                 {/* Contact Sales button removed per request */}
                 <a
                   href="/get-access"
-                  target="_blank"
                   className="button-dark is-small w-inline-block"
                 >
                   <div>Request a demo</div>
@@ -224,9 +223,9 @@ function ForBrandsDropdown() {
     const el = brandsWrapperRef.current;
     if (!el || typeof window === "undefined") return;
 
-  const rect = el.getBoundingClientRect();
-  // desired dropdown width: reduce the max and make it a bit less wide on smaller viewports
-  const dropdownWidth = Math.min(960, Math.floor(window.innerWidth * 0.9));
+    const rect = el.getBoundingClientRect();
+    // desired dropdown width: reduce the max and make it a bit less wide on smaller viewports
+    const dropdownWidth = Math.min(960, Math.floor(window.innerWidth * 0.9));
     const safety = 8;
 
     // If the dropdown fits when anchored to the left edge of the wrapper, use left.
@@ -267,7 +266,7 @@ function ForBrandsDropdown() {
 
     const onResize = () => {
       const r = el.getBoundingClientRect();
-  const newDropdownWidth = Math.min(960, Math.floor(window.innerWidth * 0.9));
+      const newDropdownWidth = Math.min(960, Math.floor(window.innerWidth * 0.9));
       setBrandsTopPx(Math.max(0, Math.floor(r.bottom - 6)));
       setBrandsDropdownWidth(newDropdownWidth);
       const newFitsLeft = r.left + newDropdownWidth <= window.innerWidth - safety;
@@ -335,16 +334,16 @@ function ForBrandsDropdown() {
           position: "fixed",
           top: brandsTopPx != null ? `${brandsTopPx}px` : "100%",
           // if we computed a pixel width, use it; otherwise fallback to the fluid value
-            width: brandsDropdownWidth != null ? `${brandsDropdownWidth}px` : "min(960px, 90vw)",
-            minWidth: "560px",
+          width: brandsDropdownWidth != null ? `${brandsDropdownWidth}px` : "min(960px, 90vw)",
+          minWidth: "560px",
           boxSizing: "border-box",
           // ensure overflow inside dropdown is clipped instead of creating page scroll
           overflow: "hidden",
           ...(brandsFixedRight != null
             ? { right: `${brandsFixedRight}px`, left: "auto" }
             : brandsFixedLeft != null
-            ? { left: `${brandsFixedLeft}px`, right: "auto" }
-            : { right: 20, left: "auto" }),
+              ? { left: `${brandsFixedLeft}px`, right: "auto" }
+              : { right: 20, left: "auto" }),
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -437,7 +436,7 @@ function ForBrandsDropdown() {
                   <div className="nav-mega-head">Blog</div>
                 </div>
               </a>
-             
+
             </div>
           </div>
 
@@ -467,8 +466,8 @@ function ForCreatorsDropdown() {
     const el = creatorsWrapperRef.current;
     if (!el || typeof window === "undefined") return;
 
-  const rect = el.getBoundingClientRect();
-  const dropdownWidth = Math.min(960, Math.floor(window.innerWidth * 0.9));
+    const rect = el.getBoundingClientRect();
+    const dropdownWidth = Math.min(960, Math.floor(window.innerWidth * 0.9));
     const safety = 8;
 
     const fitsLeft = rect.left + dropdownWidth <= window.innerWidth - safety;
@@ -578,8 +577,8 @@ function ForCreatorsDropdown() {
           ...(creatorsFixedRight != null
             ? { right: `${creatorsFixedRight}px`, left: "auto" }
             : creatorsFixedLeft != null
-            ? { left: `${creatorsFixedLeft}px`, right: "auto" }
-            : { right: 20, left: "auto" }),
+              ? { left: `${creatorsFixedLeft}px`, right: "auto" }
+              : { right: 20, left: "auto" }),
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -672,7 +671,7 @@ function ForCreatorsDropdown() {
                   <div className="nav-mega-head">Blog</div>
                 </div>
               </a>
-             
+
             </div>
           </div>
 
@@ -699,7 +698,7 @@ function ForProductsDropdown() {
       onMouseEnter={() => setIsProductsOpen(true)}
       onMouseLeave={() => setIsProductsOpen(false)}
     >
-     
+
 
       <nav
         className="nav_drop-list creators w-dropdown-list"
